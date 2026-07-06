@@ -2048,27 +2048,8 @@
             </div>
 
             <!-- FMEA Risk Assessment Sub-Tab -->
-            <div class="sub-tab-content hidden" id="subtab-fmea">
-                <!-- FMEA Summary Cards -->
-                <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px;">
-                    <div class="metric-card blue">
-                        <div class="metric-label">Total FMEA Items</div>
-                        <div id="fmeaTotalItems" class="metric-value">0</div>
-                    </div>
-                    <div class="metric-card red">
-                        <div class="metric-label">High Priority AP</div>
-                        <div id="fmeaHighCount" class="metric-value">0</div>
-                    </div>
-                    <div class="metric-card amber">
-                        <div class="metric-label">Medium Priority AP</div>
-                        <div id="fmeaMediumCount" class="metric-value">0</div>
-                    </div>
-                    <div class="metric-card emerald">
-                        <div class="metric-label">Low Priority AP</div>
-                        <div id="fmeaLowCount" class="metric-value">0</div>
-                    </div>
-                </div>
 
+            <div class="sub-tab-content hidden" id="subtab-fmea">
                 <!-- Project Info Card -->
                 <div class="panel" style="background-color: var(--bg-secondary); margin-bottom: 20px; padding: 20px;">
                     <h3 style="margin-top:0; font-size: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: var(--text-primary);">FMEA Project Information</h3>
@@ -2088,17 +2069,8 @@
                     </div>
                 </div>
 
-                <!-- FMEA Table Toolbar -->
-                <div class="toolbar" style="display:flex; gap:12px; margin-bottom:16px; align-items:center; flex-wrap: wrap;">
-                    <button class="action-btn" onclick="exportFmeaMD()">📤 Export Markdown</button>
-                    <button class="action-btn" onclick="document.getElementById('fmeaFileInput').click()">📥 Import Markdown</button>
-                    <input type="file" id="fmeaFileInput" accept=".md" style="display:none;" onchange="importFmeaMD(event)">
-                    <button class="action-btn" onclick="loadFmeaDemo()" style="background: linear-gradient(135deg, var(--color-purple) 0%, #6d28d9 100%);">🧪 Load FMEA Demo</button>
-                    <button class="action-btn" onclick="addFmeaRow()" style="background: linear-gradient(135deg, var(--color-emerald) 0%, #047857 100%); margin-left:auto;">➕ Add FMEA Item</button>
-                </div>
-
                 <!-- FMEA Grid Table -->
-                <div class="panel" style="background-color: var(--bg-secondary); overflow-x: auto; padding: 16px;">
+                <div class="panel" style="background-color: var(--bg-secondary); overflow-x: auto; padding: 16px; margin-bottom: 20px;">
                     <table class="fmea-table">
                         <thead>
                             <tr>
@@ -2119,6 +2091,33 @@
                             <!-- Dynamically loaded rows -->
                         </tbody>
                     </table>
+                </div>
+
+                <!-- FMEA Bottom Section -->
+                <div class="panel" style="background-color: var(--bg-secondary); padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <button class="action-btn" onclick="addFmeaRow()" style="background: linear-gradient(135deg, var(--color-emerald) 0%, #047857 100%); width: auto; padding: 8px 16px; margin: 0;">➕ Add FMEA Item</button>
+                    </div>
+                    
+                    <!-- FMEA Summary Cards (moved to the end) -->
+                    <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 8px;">
+                        <div class="metric-card blue">
+                            <div class="metric-label">Total FMEA Items</div>
+                            <div id="fmeaTotalItems" class="metric-value">0</div>
+                        </div>
+                        <div class="metric-card red">
+                            <div class="metric-label">High Priority AP</div>
+                            <div id="fmeaHighCount" class="metric-value">0</div>
+                        </div>
+                        <div class="metric-card amber">
+                            <div class="metric-label">Medium Priority AP</div>
+                            <div id="fmeaMediumCount" class="metric-value">0</div>
+                        </div>
+                        <div class="metric-card emerald">
+                            <div class="metric-label">Low Priority AP</div>
+                            <div id="fmeaLowCount" class="metric-value">0</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -2641,6 +2640,7 @@
 
         <!-- PANEL 5: HELP & README -->
         
+        
         <!-- PANEL 6: QUALITY STATISTICS HUB -->
         <div class="panel hidden" id="qshPanel">
             <div class="panel-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
@@ -2648,9 +2648,11 @@
                 <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Mobile-Optimized Decision Engine with Automated Sample Size Mapping</p>
             </div>
 
-            <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+            <!-- 3-Column Grid for Calculators -->
+            <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; align-items: stretch; margin-top: 10px;">
+                
                 <!-- 1. PPM Sample Size Tool -->
-                <div class="panel" style="background-color: var(--bg-secondary); display: flex; flex-direction: column; justify-content: space-between; padding: 20px; border-radius: 8px;">
+                <div class="panel" style="background-color: var(--bg-secondary); display: flex; flex-direction: column; justify-content: space-between; padding: 20px; border-radius: 8px; margin: 0;">
                     <div>
                         <h3 style="margin-top:0; font-size: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: var(--text-primary); margin-bottom: 16px;">1. PPM Sample Size Tool (Poisson)</h3>
                         <div class="control-group" style="margin-bottom: 12px;">
@@ -2674,81 +2676,94 @@
                             </select>
                         </div>
                     </div>
-                    <div class="info-alert emerald-alert" style="margin-top: 15px; text-align: center; padding: 16px; border-radius: 8px;">
-                        <div style="font-weight: 600; font-size: 13px; color: var(--color-emerald);">Required Sample Size ($n$)</div>
+                    <div style="margin-top: 15px; text-align: center; padding: 16px; border-radius: 8px; background: var(--bg-tertiary); border: 1px solid var(--border-color);">
+                        <div style="font-weight: 600; font-size: 13px; color: var(--text-secondary);">Required Sample Size ($n$)</div>
                         <div id="sampleSizeResult" class="metric-value" style="font-size: 28px; font-weight: 800; color: var(--color-emerald); margin: 6px 0;">299,574</div>
-                        <div id="resultDesc" style="font-size: 12px; color: var(--text-secondary);">Pull <b>299,574</b> units with &le; <b>0</b> errors to secure target limits.</div>
+                        <div id="resultDesc" style="font-size: 12px; color: var(--text-primary);">Pull <b>299,574</b> units with &le; <b>0</b> errors to secure target limits.</div>
                     </div>
                 </div>
 
                 <!-- 2. Chi-Square & Realized CL Display -->
-                <div class="panel" style="background-color: var(--bg-secondary); padding: 20px; border-radius: 8px;">
-                    <h3 style="margin-top:0; font-size: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: var(--text-primary); margin-bottom: 16px;">2. Chi-Square & Realized CL Display</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
-                        <div class="control-group">
-                            <label style="font-weight: 600; font-size: 12px; color: var(--color-blue); margin-bottom: 4px; display: block;">Group A (Old Baseline)</label>
-                            <input type="number" id="a-sample" class="fmea-input" value="500000000" placeholder="Size" oninput="runChiSquare()" style="padding: 8px;">
-                            <input type="number" id="a-defects" class="fmea-input" value="200000" placeholder="Defects" style="margin-top:5px; padding: 8px;" oninput="runChiSquare()">
+                <div class="panel" style="background-color: var(--bg-secondary); display: flex; flex-direction: column; justify-content: space-between; padding: 20px; border-radius: 8px; margin: 0;">
+                    <div>
+                        <h3 style="margin-top:0; font-size: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: var(--text-primary); margin-bottom: 16px;">2. Chi-Square & Realized CL Display</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                            <div class="control-group">
+                                <label style="font-weight: 600; font-size: 12px; color: var(--color-blue); margin-bottom: 4px; display: block;">Group A (Old Baseline)</label>
+                                <input type="number" id="a-sample" class="fmea-input" value="500000000" placeholder="Size" oninput="runChiSquare()" style="padding: 8px;">
+                                <input type="number" id="a-defects" class="fmea-input" value="199997" placeholder="Defects" style="margin-top:5px; padding: 8px;" oninput="runChiSquare()">
+                            </div>
+                            <div class="control-group">
+                                <label style="font-weight: 600; font-size: 12px; color: var(--color-blue); margin-bottom: 4px; display: block;">Group B (New Run)</label>
+                                <input type="number" id="b-sample" class="fmea-input" value="50000" placeholder="Size" oninput="runChiSquare()" style="padding: 8px;">
+                                <input type="number" id="b-defects" class="fmea-input" value="11" placeholder="Defects" style="margin-top:5px; padding: 8px;" oninput="runChiSquare()">
+                            </div>
                         </div>
-                        <div class="control-group">
-                            <label style="font-weight: 600; font-size: 12px; color: var(--color-blue); margin-bottom: 4px; display: block;">Group B (New Run)</label>
-                            <input type="number" id="b-sample" class="fmea-input" value="50000" placeholder="Size" oninput="runChiSquare()" style="padding: 8px;">
-                            <input type="number" id="b-defects" class="fmea-input" value="11" placeholder="Defects" style="margin-top:5px; padding: 8px;" oninput="runChiSquare()">
+
+                        <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block; color: var(--text-secondary);">Expected Counts Feasibility:</label>
+                        <div style="width: 100%; overflow-x: auto; margin-bottom: 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                                <thead>
+                                    <tr style="background-color: var(--bg-tertiary);">
+                                        <th style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">Category</th>
+                                        <th style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">A Expected</th>
+                                        <th style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">B Expected</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 6px; border: 1px solid var(--border-color); font-weight: bold; color: var(--text-primary);">Defects</td>
+                                        <td id="exp-a-def" style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">199988.00</td>
+                                        <td id="exp-b-def" style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">20.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="chi-warning" class="info-alert warning" style="margin-top: 8px; display: none; padding: 12px; border-radius: 6px; font-size: 12px; border-left: none; border: 1px solid var(--color-red);">
+                            <h4 style="margin: 0 0 4px 0; font-size: 13px;">⚠️ Mathematical Validity Flagged!</h4>
+                            <span>Expected cell counts drop below 5.0. Chi-Square curve becomes highly unstable.</span>
                         </div>
                     </div>
 
-                    <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block; color: var(--text-secondary);">Expected Counts Feasibility:</label>
-                    <div style="width: 100%; overflow-x: auto; margin-bottom: 12px; border: 1px solid var(--border-color); border-radius: 6px;">
-                        <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
-                            <thead>
-                                <tr style="background-color: var(--bg-tertiary);">
-                                    <th style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">Category</th>
-                                    <th style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">A Expected</th>
-                                    <th style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">B Expected</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="padding: 6px; border: 1px solid var(--border-color); font-weight: bold; color: var(--text-primary);">Defects</td>
-                                    <td id="exp-a-def" style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">200011.00</td>
-                                    <td id="exp-b-def" style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">19.98</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id="chi-warning" class="info-alert warning" style="margin-top: 8px; display: none; padding: 12px; border-radius: 6px; font-size: 12px;">
-                        <h4 style="margin: 0 0 4px 0; font-size: 13px;">⚠️ Mathematical Validity Flagged!</h4>
-                        <span>Expected cell counts drop below 5.0. Chi-Square curve becomes highly unstable.</span>
-                    </div>
-
-                    <div id="chi-success" class="info-alert" style="margin-top: 12px; padding: 16px; border-radius: 8px; text-align: center;">
-                        <div style="font-weight: 600; font-size: 13px;">Realized Analysis Breakdown</div>
-                        <div id="chi-val-display" style="font-size: 18px; font-weight:800; margin:3px 0;">&Chi;&sup2; = 4.041</div>
-                        <div id="chi-cl-display" style="font-size: 22px; font-weight: 800; color: var(--color-red); margin: 5px 0;">Realized CL: 95.56%</div>
-                        <div id="chi-p-display" style="font-size: 12px; color: var(--text-secondary);">p-value ≈ 0.0444</div>
+                    <div style="margin-top: 12px; padding: 16px; border-radius: 8px; background: var(--bg-tertiary); border: 1px solid var(--border-color);">
+                        <div style="font-weight: 600; font-size: 13px; color: var(--text-secondary); text-align: center; margin-bottom: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 4px;">Realized Analysis Breakdown</div>
+                        <div style="display: flex; flex-direction: column; gap: 6px;">
+                            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-primary);">
+                                <span>Chi-Square Stat (&Chi;&sup2;):</span>
+                                <span id="chi-val-display" style="font-weight: bold; font-family: monospace;">4.051</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-primary);">
+                                <span>Drift Significance (p-value):</span>
+                                <span id="chi-p-display" style="font-weight: bold; font-family: monospace;">0.0441</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-primary); margin-top: 4px; border-top: 1px dashed var(--border-color); padding-top: 6px;">
+                                <span>Realized Confidence Level:</span>
+                                <span id="chi-cl-display" class="ap-low" style="font-weight: 800; font-size: 12px; padding: 2px 8px; border-radius: 4px; color: white !important;">95.59%</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 3. TTR Run Size Automated Planner -->
-                <div class="panel" style="background-color: var(--bg-secondary); grid-column: 1 / -1; padding: 20px; border-radius: 8px;">
-                    <h3 style="margin-top:0; font-size: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: var(--color-purple); margin-bottom: 16px;">3. TTR Run Size Automated Planner (Inverse Chi-Square Engine)</h3>
-                    <p style="font-size: 13px; color: var(--text-secondary); margin-top:-5px; margin-bottom: 16px;">Lock Group A baseline metrics, input your target defect capability for Group B, and let the engine <strong>automatically calculate</strong> the required sample size.</p>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px;">
-                        <div class="control-group">
+                <div class="panel" style="background-color: var(--bg-secondary); display: flex; flex-direction: column; justify-content: space-between; padding: 20px; border-radius: 8px; margin: 0;">
+                    <div>
+                        <h3 style="margin-top:0; font-size: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: var(--color-purple); margin-bottom: 16px;">3. TTR Run Size Automated Planner</h3>
+                        <p style="font-size: 12px; color: var(--text-secondary); margin-top:-5px; margin-bottom: 16px;">Lock Group A baseline metrics, input your target defect capability for Group B, and let the engine <strong>automatically calculate</strong> the required sample size.</p>
+                        
+                        <div class="control-group" style="margin-bottom: 10px;">
                             <label style="font-weight: 600; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Group A Baseline Size ($n_A$)</label>
                             <input type="number" id="inv-a-size" class="fmea-input" value="500000000" oninput="predictRequiredNB()" style="padding: 8px;">
                         </div>
-                        <div class="control-group">
+                        <div class="control-group" style="margin-bottom: 10px;">
                             <label style="font-weight: 600; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Group A Baseline Defects ($d_A$)</label>
                             <input type="number" id="inv-a-def" class="fmea-input" value="200000" oninput="predictRequiredNB()" style="padding: 8px;">
                         </div>
-                        <div class="control-group">
+                        <div class="control-group" style="margin-bottom: 10px;">
                             <label style="font-weight: 600; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Group B Expected Defects ($d_B$)</label>
                             <input type="number" id="inv-b-def" class="fmea-input" value="0" min="0" oninput="predictRequiredNB()" style="padding: 8px;">
                         </div>
-                        <div class="control-group">
+                        <div class="control-group" style="margin-bottom: 10px;">
                             <label style="font-weight: 600; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Target Confidence Level ($CL$)</label>
                             <select id="inv-target-cl" class="fmea-select" onchange="predictRequiredNB()" style="padding: 8px; width: 100%;">
                                 <option value="0.90">90% (Critical Chi2 = 2.706)</option>
@@ -2758,12 +2773,13 @@
                         </div>
                     </div>
 
-                    <div class="info-alert purple-alert" style="padding: 16px; border-radius: 8px; text-align: center;">
-                        <div style="font-weight: 600; font-size: 14px; color: var(--color-purple);">Required Target Run Size for Group B ($n_B$)</div>
-                        <div id="predictResultVal" style="font-size: 32px; font-weight: 800; color: var(--color-purple); margin: 6px 0;">9,602</div>
-                        <div id="predictResultDesc" style="font-size: 12px; color: var(--text-secondary);">To mathematically confirm an optimization shift with a target <b>95% Confidence Level</b>, Group B's evaluation sample run <b>must run at least 9,602 units</b> while generating exactly <b>0 defect(s)</b>.</div>
+                    <div style="margin-top: 15px; padding: 16px; border-radius: 8px; background: var(--bg-tertiary); border: 1px solid var(--border-color); text-align: center;">
+                        <div style="font-weight: 600; font-size: 13px; color: var(--text-secondary);">Required Target Run Size for Group B ($n_B$)</div>
+                        <div id="predictResultVal" style="font-size: 28px; font-weight: 800; color: var(--color-purple); margin: 6px 0;">9,602</div>
+                        <div id="predictResultDesc" style="font-size: 11px; color: var(--text-primary);">To mathematically confirm an optimization shift with a target <b>95% Confidence Level</b>, Group B's evaluation sample run <b>must run at least 9,602 units</b> while generating exactly <b>0 defect(s)</b>.</div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -2943,8 +2959,108 @@
                     </div>
                 </div>
 
+
+                <!-- FMEA Risk Assessment Collapsible -->
+                <div class="help-section collapsible">
+                    <button class="help-section-btn" onclick="toggleSection(this)">📋 FMEA Risk Assessment Guide</button>
+                    <div class="help-section-content">
+                        <div class="help-section-body">
+                            <h3>AIAG-VDA Failure Mode and Effects Analysis (FMEA)</h3>
+                            <p>
+                                FMEA is a structured, systematic method for identifying potential failure modes in a product or process, evaluating their effects, and prioritizing corrective actions to mitigate risks.
+                            </p>
+                            <h4>1. Risk Evaluation Metrics (Severity, Occurrence, Detection)</h4>
+                            <ul>
+                                <li><strong>Severity (S):</strong> Evaluates the seriousness of the failure effect on the customer or subsequent processes (1 = No effect, 10 = Hazardous without warning).</li>
+                                <li><strong>Occurrence (O):</strong> Estimates the likelihood of the cause occurring during the planned process/design lifecycle (1 = Remote chance, 10 = Almost inevitable).</li>
+                                <li><strong>Detection (D):</strong> Assesses the ability of current controls to detect the failure mode or its cause before reaching the customer (1 = Almost certain detection, 10 = Cannot detect).</li>
+                            </ul>
+                            <h4>2. Action Priority (AP) Rules</h4>
+                            <p>
+                                Rather than using the traditional Risk Priority Number ($RPN = S \times O \times D$), modern AIAG-VDA standards use the <strong>Action Priority (AP)</strong> logic matrix to evaluate engineering priorities (HIGH, MEDIUM, LOW):
+                            </p>
+                            <ul>
+                                <li><strong>HIGH Priority (Red):</strong> The team must identify corrective actions to reduce severity/occurrence or improve detection controls. (e.g. S is 9-10, or S is 8 and O/D are high).</li>
+                                <li><strong>MEDIUM Priority (Amber):</strong> The team should evaluate current controls and identify potential improvements.</li>
+                                <li><strong>LOW Priority (Green):</strong> The risk is acceptable; current controls are sufficient.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quality Statistics Hub Collapsible -->
+                <div class="help-section collapsible">
+                    <button class="help-section-btn" onclick="toggleSection(this)">📊 Quality Statistics Hub (PPM & Chi-Square)</button>
+                    <div class="help-section-content">
+                        <div class="help-section-body">
+                            <h3>Quality Statistics Hub Reference</h3>
+                            
+                            <h4>1. The Core Dilemma: Chi-Square vs. Binomial</h4>
+                            <p>
+                                When working with ultra-low defect rates like <strong>PPM (Parts Per Million)</strong>, engineers often confuse <strong>Chi-Square Tests</strong> with <strong>Binomial Attribute Sampling Plans</strong>. While both process discrete data (Pass/Fail), they serve completely different statistical tasks:
+                            </p>
+                            <ul>
+                                <li><strong>Poisson/Binomial sampling</strong> is used for lot acceptance testing and validation. It determines the minimum sample size ($n$) required to prove a process does not exceed a target PPM threshold at a specified Confidence Level ($CL$) under a given number of allowed defects ($c$).</li>
+                                <li><strong>Chi-Square tests</strong> are used for comparative testing. They evaluate whether the difference in defect rates between two independent samples is statistically significant or merely due to random sampling noise.</li>
+                            </ul>
+
+                            <h4>2. Mathematical Formulas</h4>
+                            <ul>
+                                <li><strong>Chi-Square Realized Confidence Level:</strong> Unlike Poisson sampling which takes desired confidence as an input, Chi-Square outputs a p-value dynamically based on observed drift. The achieved <strong>Confidence Level ($CL$)</strong> is explicitly calculated as:
+                                    $$\text{Realized CL} = (1 - p\text{-value}) \times 100\%$$
+                                </li>
+                                <li><strong>The Attribute Sampling Formula (Binomial & Poisson):</strong> To confirm that a process does not exceed a designated probability boundary $p$ at a fixed Confidence Level ($CL$) under zero failures ($c = 0$), we deploy the cumulative binomial limit:
+                                    $$(1 - p)^n \le 1 - CL$$
+                                    For micro-scale variables where $p$ approaches zero (such as PPM boundaries), applying a Poisson approximation transforms this into the clean <strong>"Rule of Three"</strong>:
+                                    $$n \approx \frac{-\ln(1 - CL)}{p}$$
+                                    Where $p = \text{Target PPM} / 1,000,000$. If $CL = 0.95$, then $-\ln(1 - 0.95) \approx 3$, reducing perfectly to:
+                                    $$n \approx \frac{3}{p}$$
+                                </li>
+                                <li><strong>The Chi-Square Framework & Feasibility Risk:</strong> The standard chi-square test analyzes differences between frequencies across discrete datasets. The algorithm relies on the following framework:
+                                    $$\chi^2 = \sum \frac{(O - E)^2}{E}$$
+                                    Where $O$ is the Observed value in a cell, and $E$ is the Expected frequency calculated via:
+                                    $$E = \frac{\text{Row Total} \times \text{Column Total}}{\text{Grand Total}}$$
+                                    <strong>The "E &ge; 5" Feasibility Trap:</strong> Because Chi-Square is a continuous curve approximating discrete step counts, it completely breaks down if the Expected Defect frequency $E$ is less than 5. In low PPM cases, unless your sample sizes span into many millions, the calculated test metric becomes highly unstable and invalid.
+                                </li>
+                                <li><strong>Automated Run Size ($n_B$) Optimization Engine:</strong> Operating as an <strong>Inverse Run-Size Planner</strong>, by fixing Group A's mass production baseline and pre-defining your experimental target error capacity (e.g., aiming for an aggressive zero-failure $d_B = 0$ validation run), the system determines the critical alpha cross-over boundaries:
+                                    $$\alpha = 1 - CL \implies \chi^2_{\text{critical}} = 3.841 \quad (\text{for } df=1, 95\%)$$
+                                    The code dynamically increments $n_B$ from 1 upward, executing full chi-square cross-multiplications step-by-step. It returns the exact minimum sample threshold point where the mathematical variance overcomes random sampling noise to deliver statistical significance:
+                                    $$\chi^2_{\text{calculated}}(n_A, d_A, n_B, d_B) \ge \chi^2_{\text{critical}}$$
+                                </li>
+                            </ul>
+
+                            <h4>3. Semiconductor Case Study: The TTR Sample Disparity Paradox</h4>
+                            <p>
+                                Consider the asymmetric parameters queried during tool benchmarking validations:
+                            </p>
+                            <ul>
+                                <li><strong>Group A (POR Baseline Tool):</strong> $n_A = 500,000,000$ (Full production history), $d_A = 200,000$ defects (Baseline Rate = <strong>400 PPM</strong>).</li>
+                                <li><strong>Group B (New TTR Tool Scenario):</strong> We assume an engineering run that targets <strong>0 defects ($d_B = 0$)</strong>.</li>
+                                <li><strong>Target Goal:</strong> Find the automated sample size needed to prove statistical significance at $CL = 95\%$.</li>
+                            </ul>
+                            <p>
+                                the inverse calculator dynamically outputs a mandatory minimum run count of <strong>$n_B \ge 9,602$ units</strong>.
+                            </p>
+                            <p style="border-left: 4px solid var(--color-purple); background-color: var(--bg-tertiary); padding: 12px; border-radius: 0 8px 8px 0; margin-top: 12px; margin-bottom: 12px;">
+                                <strong>The Interpretation Paradox:</strong> Why does a target defect count of 0 only require 9,602 samples, but if we change Group B to test 50,000 units, the system suddenly restricts us to a maximum of 11 errors?
+                                <br><br>
+                                Because at 9,602 samples with 0 errors, the observed rate is 0 PPM. The mathematical gap between 0 PPM and 400 PPM is so wide that it only takes 9,602 pieces to prove it's not a fluke. However, if your test size expands to 50,000 pieces, you are gathering more evidence; a rate of 11 errors out of 50,000 equals 220 PPM, which requires a much larger data profile to safely separate from the 400 PPM baseline without falling into random variation flags.
+                            </p>
+                            
+                            <h4>4. The Missing Parameter: Why Population Size ($N$) is Absent</h4>
+                            <p>
+                                In low-PPM environments, the population $N$ is assumed to be infinitely large relative to the sample size ($N > 10n$). Under this condition, the traditional <em>Hypergeometric Distribution</em> simplifies into the <strong>Binomial/Poisson model</strong>. Mathematically, the probability of encountering an ultra-rare event depends solely on the raw amount of evidence gathered ($n$) and the occurrence rate ($p$), completely independent of how massive the lot size ($N$) is.
+                            </p>
+                            <p style="border-left: 4px solid var(--color-blue); background-color: var(--bg-tertiary); padding: 12px; border-radius: 0 8px 8px 0; margin-top: 12px;">
+                                <strong>The Universal Truth of Low PPM:</strong> Whether your factory builds 1 million or 100 million units a month, to prove a 10 PPM defect threshold with 95\% confidence using a strict zero-defect rule ($c = 0$), you must always inspect an identical sample size of exactly <strong>299,574 units</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="help-section">
                     <h2>Frequently Asked Questions & Q&A</h2>
+
                     
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFaq(this)">Why are Welch's t-Test and F-Test conducted separately, and what are their benefits for engineers?</button>
@@ -3518,9 +3634,22 @@
         const chiSq = computeRawChiSquare(nA, dA, nB, dB);
         const pVal = chisqr_1dof_pvalue(chiSq);
         const realizedCL = (1 - pVal) * 100;
-        document.getElementById('chi-val-display').innerHTML = `&Chi;&sup2; = ${chiSq.toFixed(3)}`;
-        document.getElementById('chi-cl-display').innerText = `Realized CL: ${realizedCL.toFixed(2)}%`;
-        document.getElementById('chi-p-display').innerText = `p-value ≈ ${pVal.toFixed(4)}`;
+
+        document.getElementById('chi-val-display').innerText = chiSq.toFixed(3);
+        document.getElementById('chi-p-display').innerText = pVal.toFixed(4);
+        
+        const clDisplay = document.getElementById('chi-cl-display');
+        clDisplay.innerText = realizedCL.toFixed(2) + '%';
+        
+        clDisplay.className = '';
+        if (realizedCL >= 95.0) {
+            clDisplay.classList.add('ap-low');
+        } else if (realizedCL >= 90.0) {
+            clDisplay.classList.add('ap-medium');
+        } else {
+            clDisplay.classList.add('ap-high');
+        }
+
     }
     
     function predictRequiredNB() {
