@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8D Problem Solving Tool</title>
+
+<!-- ✅ FIXED Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+
+<style>
+body { font-family: Arial; margin:0; background:#eef1f5; }
+header { background:#1f2937; color:white; padding:15px; font-size:20px; }
+.container { padding:20px; }
+
+.tabs { display:flex; gap:10px; margin-bottom:20px; }
+.tab { padding:10px; background:#d1d5db; cursor:pointer; border-radius:6px; }
+.tab.active { background:#2563eb; color:white; }
+
+.content { display:none; }
+.content.active { display:block; }
+
+.card {
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+textarea, input {
+  width:100%;
+  margin-top:6px;
+  padding:8px;
+}
+
+button {
+  margin-top:10px;
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+}
+button:hover { background:#1d4ed8; }
+
+.addBtn { background:#16a34a; }
+
+.fishbone { display:flex; gap:10px; }
+.bone {
+  flex:1;
+  background:#f8fafc;
+  padding:10px;
+  border-radius:8px;
+}
+.bone h4 { text-align:center; }
+</style>
+</head>
+
+<body>
+
+<header>8D Problem Solving Dashboard</header>
+
+<div class="container">
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab(event,'d8')">8D</div>
+  <div class="tab" onclick="showTab(event,'why')">3×5 Why</div>
+  <div class="tab" onclick="showTab(event,'fish')">Fishbone</div>
+  <div class="tab" onclick="showTab(event,'chartTab')">Chart</div>
+</div>
+
+<!-- ✅ 8D -->
+<div id="d8" class="content active">
+<div class="card">
+<h3>8D Input</h3>
+
+<label>D1 - Team</label><textarea id="d1"></textarea>
+<label>D2 - Problem Description</label><textarea id="d2"></textarea>
+<label>D3 - Containment</label><textarea id="d3"></textarea>
+<label>D4 - Root Cause</label><textarea id="d4"></textarea>
+<label>D5 - Corrective Action</label><textarea id="d5"></textarea>
+<label>D6 - Validation</label><textarea id="d6"></textarea>
+<label>D7 - Prevention</label><textarea id="d7"></textarea>
+<label>D8 - Recognition</label><textarea id="d8f"></textarea>
+
+</div>
+</div>
+
+<!-- ✅ WHY -->
+<div id="why" class="content">
+<div class="card">
+<h3>3×5 Why</h3>
+
+<input id="problem" placeholder="Problem">
+<div id="whyContainer"></div>
+
+<button class="addBtn" onclick="addWhyChain()">+ Add 5-Why Chain</button>
+
+</div>
+</div>
+
+<!-- ✅ FISHBONE -->
+<div id="fish" class="content">
+<div class="card">
+<h3>Fishbone</h3>
+<div class="fishbone" id="fishContainer"></div>
+</div>
+</div>
+
+<!-- ✅ CHART -->
+<div id="chartTab" class="content">
+<div class="card">
+<h3>Failure Distribution</h3>
+<canvas id="chart"></canvas>
+<button onclick="updateChart()">Update Chart</button>
+</div>
+</div>
+
+<!-- ✅ ACTION -->
+<div class="card">
+<button onclick="exportAll()">Export JSON</button>
+<button onclick="loadMock()">Load Mock Example</button>
+<button onclick="location.reload()">Reset</button>
+</div>
+
+</div>
+
+<script>
+
+const categories=['Process','Material','Method','Machine'];
+let chart;
+
+// Tabs
+function showTab(e,id){
+document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+e.currentTarget.classList.add('active');
+}
+
+////////////////////////////////////////////////
+// ✅ 3×5 WHY (MULTI-CHAIN)
+////////////////////////////////////////////////
+let chainCount=0;
+
+function addWhyChain(){
+
+chainCount++;
+
+const block=document.createElement('div');
+block.className='card';
+
+block.innerHTML=`
+<b>Chain ${chainCount}</b>
+<input placeholder="Why 1">
+<input placeholder="Why 2">
+<input placeholder="Why 3">
+<input placeholder="Why 4">
+<input placeholder="Why 5">
+`;
+
+document.getElementById('whyContainer').appendChild(block);
+}
+
+////////////////////////////////////////////////
+// ✅ FISHBONE + NUMBER
+////////////////////////////////////////////////
+function initFish(){
+
+const container=document.getElementById('fishContainer');
+
+categories.forEach(cat=>{
+
+   const div=document.createElement('div');
+   div.className='bone';
+
+   div.innerHTML=`
+   <h4>${cat}</h4>
+   <div class="items"></div>
+   <button class="addBtn" onclick="addItem(this)">+ Add Cause</button>
+   `;
+
+   container.appendChild(div);
+});
+}
+
+function addItem(btn){
+
+const area=btn.parentElement.querySelector('.items');
+const count=area.children.length+1;
+
+const input=document.createElement('input');
+input.placeholder='Cause '+count;
+
+area.appendChild(input);
+}
+
+////////////////////////////////////////////////
+// ✅ CHART
+////////////////////////////////////////////////
+function initChart(){
+chart=new Chart(document.getElementById('chart'),{
+   type:'bar',
+   data:{
+ 	labels:categories,
+ 	datasets:[{
+   	label:'Cause Count',
+   	data:[0,0,0,0],
+   	backgroundColor:['#ef4444','#f59e0b','#10b981','#3b82f6']
+ 	}]
+   }
+});
+}
+
+function updateChart(){
+
+const counts=[...document.querySelectorAll('.bone')]
+.map(b=>b.querySelectorAll('input').length);
+
+chart.data.datasets[0].data=counts;
+chart.update();
+}
+
+////////////////////////////////////////////////
+// ✅ EXPORT
+////////////////////////////////////////////////
+function exportAll(){
+
+const whyChains=[...document.querySelectorAll('#whyContainer .card')]
+.map(c=>[...c.querySelectorAll('input')].map(i=>i.value));
+
+const fishboneData=categories.reduce((acc,cat,i)=>{
+   acc[cat]=[...document.querySelectorAll('.bone')[i]
+   .querySelectorAll('input')].map(i=>i.value);
+   return acc;
+},{});
+
+const data={
+   d8:{
+ 	d1:d1.value,d2:d2.value,d3:d3.value,d4:d4.value,
+ 	d5:d5.value,d6:d6.value,d7:d7.value,d8:d8f.value
+   },
+   why:whyChains,
+   fishbone:fishboneData
+};
+
+const blob=new Blob([JSON.stringify(data,null,2)]);
+const a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download='8d.json';
+a.click();
+}
+
+////////////////////////////////////////////////
+// ✅ ✅ LOAD MOCK (FULLY WORKING)
+////////////////////////////////////////////////
+function loadMock(){
+
+// ✅ 8D
+d1.value="Team: Test / Process / Supplier";
+d2.value="Final test failure increased to 8%";
+d3.value="Containment: Stop shipment + sorting";
+d4.value="Solder + capacitor variation";
+d5.value="Adjust process + supplier control";
+d6.value="Failure reduced to 1.5%";
+d7.value="Update SOP + SPC";
+d8f.value="Team recognition";
+
+// ✅ WHY RESET
+const whyContainer=document.getElementById('whyContainer');
+whyContainer.innerHTML="";
+chainCount=0;
+
+const chains=[
+  ["Output unstable","Solder issue","Temp variation","Oven drift","No calibration"],
+  ["Output unstable","Cap drift","Supplier change","No notice","Weak control"],
+  ["Escape defect","Inspection miss","Low sampling","Old spec","No update"]
+];
+
+chains.forEach(arr=>{
+   addWhyChain();
+   const last=whyContainer.lastChild;
+   last.querySelectorAll('input').forEach((inp,i)=>inp.value=arr[i]);
+});
+
+// ✅ FISHBONE RESET
+const fishContainer=document.getElementById('fishContainer');
+fishContainer.innerHTML="";
+initFish();
+
+const fishData={
+   Process:["Temp fluctuation","Reflow unstable","Oven not calibrated"],
+   Material:["Cap drift","Supplier change","Batch variation"],
+   Method:["Old SOP","Low sampling","No update control"],
+   Machine:["Sensor drift","Tester aging"]
+};
+
+document.querySelectorAll('.bone').forEach((bone,i)=>{
+   const cat=categories[i];
+
+   fishData[cat].forEach(val=>{
+ 	addItem(bone.querySelector('button'));
+ 	const inputs=bone.querySelectorAll('input');
+ 	inputs[inputs.length-1].value=val;
+   });
+});
+
+// ✅ UPDATE CHART
+updateChart();
+}
+
+////////////////////////////////////////////////
+// INIT
+////////////////////////////////////////////////
+addWhyChain();
+initFish();
+initChart();
+
+</script>
+
+</body>
+</html>

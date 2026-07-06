@@ -1,0 +1,19 @@
+# Temporary Python scripts and logs from repairs
+temp_script.js
+node_error.txt
+all_corrupted_report.txt
+check_js_syntax.py
+find_all_corrupted_lines.py
+update_spec_limits.py
+final_restore_and_repair.py
+list_corrupted_lines.py
+
+# Backups
+CPKn_test.html
+CPKn SIMULATOR - *.html
+
+# IDEs and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

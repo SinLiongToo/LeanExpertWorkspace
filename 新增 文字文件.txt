@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Non-Normal Cpk Simulator</title>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fb;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 20px;
+        }
+        header {
+            grid-column: 1 / -1;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        header h1 { margin: 0; font-size: 24px; color: #1e293b; }
+        header p { margin: 5px 0 0 0; color: #64748b; font-size: 14px; }
+        
+        .sidebar {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .panel {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        label { font-weight: 600; font-size: 14px; color: #475569; }
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="range"] { flex: 1; }
+        .value-display { width: 45px; text-align: right; font-variant-numeric: tabular-nums; font-size: 14px; }
+        
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            background-color: #fff;
+            font-size: 14px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .metric-card {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #cbd5e1;
+        }
+        .metric-card.highlight-blue { border-left-color: #3b82f6; }
+        .metric-card.highlight-purple { border-left-color: #a855f7; }
+        .metric-label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+        .metric-value { font-size: 24px; font-weight: 700; color: #0f172a; margin-top: 5px; }
+        
+        #chart { width: 100%; height: 500px; }
+        
+        .alert-text {
+            font-size: 12px;
+            color: #b91c1c;
+            background: #fef2f2;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Interactive Process Capability Simulator (Non-Normal Distributions)</h1>
+        <p>Compare standard parametric Cpk against ISO percentile-based Cpk under heavy skewness conditions.</p>
+    </header>
+
+    <div class="sidebar">
+        <div class="control-group">
+            <label for="distType">Distribution Model</label>
+            <select id="distType">
+                <option value="normal">Normal (Symmetrical)</option>
+                <option value="lognormal">Log-Normal (Long Right Tail)</option>
+            </select>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 5px 0;">
+
+        <div class="control-group">
+            <label id="param1Label" for="param1">Mean (μ):</label>
+            <div class="slider-container">
+                <input type="range" id="param1" min="90" max="110" step="0.1" value="100">
+                <span id="param1Val" class="value-display">100</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label id="param2Label" for="param2">Std Dev (σ):</label>
+            <div class="slider-container">
+                <input type="range" id="param2" min="0.5" max="5" step="0.1" value="2">
+                <span id="param2Val" class="value-display">2</span>
+            </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 5px 0;">
+
+        <div class="control-group">
+            <label for="lsl">Lower Spec Limit (LSL):</label>
+            <div class="slider-container">
+                <input type="range" id="lsl" min="80" max="98" step="1" value="90">
+                <span id="lslVal" class="value-display">90</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="usl">Upper Spec Limit (USL):</label>
+            <div class="slider-container">
+                <input type="range" id="usl" min="102" max="130" step="1" value="110">
+                <span id="uslVal" class="value-display">110</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="panel">
+            <h2>Capability Metrics Comparison</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Sample Mean / Median</div>
+                    <div id="statCenter" class="metric-value">-</div>
+                </div>
+                <div class="metric-card highlight-blue">
+                    <div class="metric-label">Standard Parametric Cpk</div>
+                    <div id="standardCpk" class="metric-value">-</div>
+                </div>
+                <div class="metric-card highlight-purple">
+                    <div class="metric-label">ISO Percentile Cpk (Non-Normal)</div>
+                    <div id="isoCpk" class="metric-value">-</div>
+                </div>
+            </div>
+            <div id="skewWarning" class="alert-text" style="display:none;">
+                <strong>⚠️ Distribution Skewed:</strong> Notice how Standard Cpk misrepresents process performance because it assumes symmetry. The ISO Percentile method accurately assesses the risk inside the long tail.
+            </div>
+        </div>
+
+        <div class="panel">
+            <div id="chart"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Constants
+    const SAMPLE_SIZE = 10000;
+
+    // UI Elements
+    const distTypeSelect = document.getElementById('distType');
+    const param1Slider = document.getElementById('param1');
+    const param2Slider = document.getElementById('param2');
+    const lslSlider = document.getElementById('lsl');
+    const uslSlider = document.getElementById('usl');
+
+    const param1Label = document.getElementById('param1Label');
+    const param2Label = document.getElementById('param2Label');
+
+    // Box-Muller transform to generate standard normal random variables
+    function randomNormal(mean, stdDev) {
+        let u = 0, v = 0;
+        while(u === 0) u = Math.random(); 
+        while(v === 0) v = Math.random();
+        let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        return num * stdDev + mean;
+    }
+
+    // Handle UI Adjustments when changing distribution types
+    function handleDistributionChange() {
+        if (distTypeSelect.value === 'normal') {
+            param1Label.innerText = "Process Mean (μ):";
+            param2Label.innerText = "Process Std Dev (σ):";
+            
+            param1Slider.min = "90"; param1Slider.max = "110"; param1Slider.step = "0.1"; param1Slider.value = "100";
+            param2Slider.min = "0.5"; param2Slider.max = "5"; param2Slider.step = "0.1"; param2Slider.value = "2";
+            
+            document.getElementById('skewWarning').style.display = 'none';
+        } else if (distTypeSelect.value === 'lognormal') {
+            param1Label.innerText = "Location Parameter (μ-log):";
+            param2Label.innerText = "Shape/Skew Parameter (σ-log):";
+            
+            // Scaled to fit comfortably between our 90-110 default focus area
+            param1Slider.min = "4.2"; param1Slider.max = "4.7"; param1Slider.step = "0.01"; param1Slider.value = "4.6";
+            param2Slider.min = "0.02"; param2Slider.max = "0.15"; param2Slider.step = "0.005"; param2Slider.value = "0.05";
+            
+            document.getElementById('skewWarning').style.display = 'block';
+        }
+        runSimulation();
+    }
+
+    // Helper to get specific percentile elements from sorted array
+    function getPercentile(sortedArray, percentile) {
+        const index = Math.floor((percentile / 100) * (sortedArray.length - 1));
+        return sortedArray[index];
+    }
+
+    function runSimulation() {
+        const mode = distTypeSelect.value;
+        const p1 = parseFloat(param1Slider.value);
+        const p2 = parseFloat(param2Slider.value);
+        const LSL = parseFloat(lslSlider.value);
+        const USL = parseFloat(uslSlider.value);
+
+        // Update textual readouts
+        document.getElementById('param1Val').innerText = p1;
+        document.getElementById('param2Val').innerText = p2;
+        document.getElementById('lslVal').innerText = LSL;
+        document.getElementById('uslVal').innerText = USL;
+
+        // 1. Generate Raw Data Point Samples
+        let data = new Array(SAMPLE_SIZE);
+        if (mode === 'normal') {
+            for (let i = 0; i < SAMPLE_SIZE; i++) {
+                data[i] = randomNormal(p1, p2);
+            }
+        } else {
+            // Log-Normal formulation: e^(normal distribution)
+            for (let i = 0; i < SAMPLE_SIZE; i++) {
+                data[i] = Math.exp(randomNormal(p1, p2));
+            }
+        }
+
+        // Calculate sample parameters
+        const sampleMean = data.reduce((a, b) => a + b, 0) / SAMPLE_SIZE;
+        const sampleVariance = data.reduce((a, b) => a + Math.pow(b - sampleMean, 2), 0) / (SAMPLE_SIZE - 1);
+        const sampleStdDev = Math.sqrt(sampleVariance);
+
+        // Sort data explicitly to compute pure non-parametric percentiles
+        let sortedData = [...data].sort((a, b) => a - b);
+        const x0135 = getPercentile(sortedData, 0.135);
+        const x50 = getPercentile(sortedData, 50.0); // Median
+        const x99865 = getPercentile(sortedData, 99.865);
+
+        document.getElementById('statCenter').innerText = mode === 'normal' 
+            ? sampleMean.toFixed(2) 
+            : `${sampleMean.toFixed(1)} / ${x50.toFixed(1)}`;
+
+        // 2. Compute Standard Cpk (Parametric formula assuming Gaussian profile)
+        const cpuStd = (USL - sampleMean) / (3 * sampleStdDev);
+        const cplStd = (sampleMean - LSL) / (3 * sampleStdDev);
+        const cpkStandard = Math.min(cpuStd, cplStd);
+        document.getElementById('standardCpk').innerText = cpkStandard.toFixed(2);
+
+        // 3. Compute Non-Normal ISO Percentile-Based Cpk
+        const cpuIso = (USL - x50) / (x99865 - x50);
+        const cplIso = (x50 - LSL) / (x50 - x0135);
+        const cpkIso = Math.min(cpuIso, cplIso);
+        document.getElementById('isoCpk').innerText = cpkIso.toFixed(2);
+
+        // 4. Update the Interactive Plotly Chart Canvas
+        const traceHistogram = {
+            x: data,
+            type: 'histogram',
+            name: 'Process Sample Trace',
+            autobinx: true,
+            marker: { color: 'rgba(100, 116, 139, 0.6)' }
+        };
+
+        const layout = {
+            title: 'Dynamic Statistical Distribution and Spec Containment',
+            hovermode: 'closest',
+            margin: { t: 50, r: 30, l: 50, b: 40 },
+            xaxis: { title: 'Measured Characteristics Values' },
+            yaxis: { title: 'Frequency Count' },
+            shapes: [
+                // Lower Spec Limit (Solid Red Line)
+                { type: 'line', x0: LSL, x1: LSL, y0: 0, y1: 1, yref: 'paper', line: { color: '#ef4444', width: 2.5 } },
+                // Upper Spec Limit (Solid Red Line)
+                { type: 'line', x0: USL, x1: USL, y0: 0, y1: 1, yref: 'paper', line: { color: '#ef4444', width: 2.5 } },
+                // 0.135 Percentile Boundary (Dashed Blue Line)
+                { type: 'line', x0: x0135, x1: x0135, y0: 0, y1: 0.8, yref: 'paper', line: { color: '#3b82f6', width: 1.5, dash: 'dashdot' } },
+                // 99.865 Percentile Boundary (Dashed Blue Line)
+                { type: 'line', x0: x99865, x1: x99865, y0: 0, y1: 0.8, yref: 'paper', line: { color: '#3b82f6', width: 1.5, dash: 'dashdot' } }
+            ],
+            annotations: [
+                { x: LSL, y: 0.95, yref: 'paper', text: 'LSL', showarrow: false, xanchor: 'right', font: { color: '#ef4444', weight: 'bold' } },
+                { x: USL, y: 0.95, yref: 'paper', text: 'USL', showarrow: false, xanchor: 'left', font: { color: '#ef4444', weight: 'bold' } },
+                { x: x0135, y: 0.75, yref: 'paper', text: 'X0.135%', showarrow: false, xanchor: 'right', font: { color: '#3b82f6' } },
+                { x: x99865, y: 0.75, yref: 'paper', text: 'X99.865%', showarrow: false, xanchor: 'left', font: { color: '#3b82f6' } }
+            ]
+        };
+
+        Plotly.newPlot('chart', [traceHistogram], layout, { displayModeBar: false });
+    }
+
+    // Event Wiring
+    distTypeSelect.addEventListener('change', handleDistributionChange);
+    param1Slider.addEventListener('input', runSimulation);
+    param2Slider.addEventListener('input', runSimulation);
+    lslSlider.addEventListener('input', runSimulation);
+    uslSlider.addEventListener('input', runSimulation);
+
+    // Bootstrap app on viewport execution
+    handleDistributionChange();
+</script>
+</body>
+</html>
