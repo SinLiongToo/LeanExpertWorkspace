@@ -27,6 +27,7 @@ A comprehensive, step-by-step problem-solving system that guides quality teams t
   - Metric Indicators: Total Action Items, Completion Rate (%), and Overdue Items.
   - Overdue Detection: Highlights tasks with a pulsing red **[OVERDUE]** badge if the target date is in the past and the task is not marked Done.
 - **Failure Distribution**: A Plotly-backed bar chart that counts causes in each of the 6M categories (People, Machine, Method, Material, Measurement, Environment).
+- **FMEA Risk Assessment**: Guided AIAG-VDA Failure Mode and Effects Analysis panel. Integrates Severity (S), Occurrence (O), and Detection (D) ratings to calculate modern Action Priority (AP: HIGH, MEDIUM, LOW) rankings. Features a compact item deletion system and is fully serialized into the JSON project files.
 
 ### 2. 📈 Process Cpk (Capability Analysis)
 Evaluate process capability indices ($C_{pk}$) under various distribution models:
@@ -66,6 +67,12 @@ Evaluate parametric stability and repeatability of devices across multiple stres
   3. **Robust Sigma / Median Ratio**: $\left|\frac{1.4826 \times \text{MAD}}{P_{50}}\right| \times 100\%$ (Excellent $\le 2\%$, Acceptable $\le 5\%$, Poor $> 5\%$)
   4. **Drift Repeatability (Rpt)**: $Rpt = 3 \times \sigma_{\text{drift}}$ (Excellent $\le 0.5$, Acceptable $\le 1.0$, Poor $> 1.0$)
 - **Device Qualification Status**: Evaluates whether a device qualifies based on repeatability and statistical significance.
+
+### 7. 📊 Quality Statistics Hub
+An independent top-level tab providing tools for sample size estimation and mathematical significance tests in sub-PPM defect rate environments:
+- **PPM Sample Size Tool (Poisson)**: Calculate the required sample size ($n$) to verify a target PPM boundary with a specified confidence level (90%/95%/99%) under a given number of allowed defects ($c \le 2$).
+- **Chi-Square & Realized CL Display**: Compares Group A and Group B defect counts to compute the expected counts, $\chi^2$ statistic, $p$-value, and realized Confidence Level. Automatically flags calculations if expected counts fall below the mathematical limit of 5.0.
+- **TTR Run Planner (Inverse Chi-Square)**: Automatically predicts the minimum sample size ($n_B$) required for a validation run to achieve statistical significance given a baseline Group A performance.
 
 ---
 
@@ -138,6 +145,11 @@ $$\sigma^2_{\text{Reproducibility}} = \sigma^2_{\text{Operator}} + \sigma^2_{\te
 ### 2026-07-04 (Q-Q Plot Integration)
 - **Q-Q Plot in Distribution Comparison**: Added a Quantile-Quantile (Q-Q) Plot comparing Dataset A and Dataset B quantiles to help engineers diagnose shape, center, and variance differences in a 2x2 grid.
 - **Added CDF vs. Q-Q Documentation**: Documented the physical and mathematical difference between CDF plots and Q-Q plots in both the Help tab and README.md.
+
+### 2026-07-07 (Integrated FMEA & Quality Statistics Hub Dashboard Modules)
+- **FMEA Risk Assessment**: Integrated the AIAG-VDA FMEA Manager as a subset tab of the 8D workspace. Features automated Action Priority (AP) grading, row deletion, and full JSON project save/load serialization.
+- **Quality Statistics Hub**: Added an independent top-level tab containing PPM Sample Size, Chi-Square Significance, and TTR Run Planner calculators in a clean 3-column responsive layout.
+- **Collapsible Help Guides**: Expanded the Help / Readme panel with interactive documentation for FMEA risk metrics and Chi-Square formulas.
 
 ### 2026-07-06 (Implemented Device Drift & Shift Tab & Layout Optimizations)
 - **Device Drift & Shift Tab**: Developed a complete interactive module to simulate and qualify device drift over stress loops. Integrates random-effects ANOVA for repeatability assessment, Welch's t-test for run-to-run drift significance, and boxplot distribution analysis.
