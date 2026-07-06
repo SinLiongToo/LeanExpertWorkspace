@@ -1334,7 +1334,65 @@
             color: #4ade80;
             font-weight: 600;
         }
-    </style>
+    
+        /* FMEA Styles */
+        .fmea-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .fmea-table th, .fmea-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: left;
+            font-size: 13px;
+        }
+        .fmea-table th {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .fmea-input {
+            width: 100%;
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 6px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            box-sizing: border-box;
+        }
+        .fmea-input:focus {
+            outline: none;
+            border-color: var(--color-blue);
+        }
+        .fmea-select {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .fmea-ap-cell {
+            text-align: center;
+            font-weight: bold;
+        }
+        .ap-high {
+            background-color: #ef4444 !important;
+            color: white !important;
+        }
+        .ap-medium {
+            background-color: #f59e0b !important;
+            color: white !important;
+        }
+        .ap-low {
+            background-color: #10b981 !important;
+            color: white !important;
+        }
+
+</style>
 </head>
 <body>
 
@@ -1351,6 +1409,7 @@
         <button class="tab-btn" data-tab="significance" onclick="switchTab('significance')">📊 Statistical Significance</button>
         <button class="tab-btn" data-tab="msc" onclick="switchTab('msc')">🔍 Gage R&R (MSA)</button>
         <button class="tab-btn" data-tab="drift" onclick="switchTab('drift')">⏳ Device Drift & Shift</button>
+        <button class="tab-btn" data-tab="qsh" onclick="switchTab('qsh')">📊 Quality Statistics Hub</button>
         <button class="tab-btn" data-tab="help" onclick="switchTab('help')">📖 Help / Readme</button>
         </div>
     </header>
@@ -1603,6 +1662,7 @@
                     <button class="sub-tab-btn" data-subtab="fishbone" onclick="switch8dTab('fishbone')">🐟 Fishbone Diagram</button>
                     <button class="sub-tab-btn" data-subtab="kanban" onclick="switch8dTab('kanban')">📋 Action Tracker (Kanban)</button>
                     <button class="sub-tab-btn" data-subtab="chart" onclick="switch8dTab('chart')">📊 Failure Chart</button>
+                    <button class="sub-tab-btn" data-subtab="fmea" onclick="switch8dTab('fmea')">📋 FMEA Risk Assessment</button>
                 </div>
             </div>
 
@@ -1986,6 +2046,82 @@
                     <div id="fishbonePlotlyChart" class="chart-box" style="height: 380px;"></div>
                 </div>
             </div>
+
+            <!-- FMEA Risk Assessment Sub-Tab -->
+            <div class="sub-tab-content hidden" id="subtab-fmea">
+                <!-- FMEA Summary Cards -->
+                <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px;">
+                    <div class="metric-card blue">
+                        <div class="metric-label">Total FMEA Items</div>
+                        <div id="fmeaTotalItems" class="metric-value">0</div>
+                    </div>
+                    <div class="metric-card red">
+                        <div class="metric-label">High Priority AP</div>
+                        <div id="fmeaHighCount" class="metric-value">0</div>
+                    </div>
+                    <div class="metric-card amber">
+                        <div class="metric-label">Medium Priority AP</div>
+                        <div id="fmeaMediumCount" class="metric-value">0</div>
+                    </div>
+                    <div class="metric-card emerald">
+                        <div class="metric-label">Low Priority AP</div>
+                        <div id="fmeaLowCount" class="metric-value">0</div>
+                    </div>
+                </div>
+
+                <!-- Project Info Card -->
+                <div class="panel" style="background-color: var(--bg-secondary); margin-bottom: 20px; padding: 20px;">
+                    <h3 style="margin-top:0; font-size: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: var(--text-primary);">FMEA Project Information</h3>
+                    <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top: 12px;">
+                        <div style="flex:1; min-width:200px;">
+                            <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block; color: var(--text-secondary);">Project / Product Name:</label>
+                            <input id="fmeaProject" class="fmea-input" placeholder="e.g. SSD Read Controller">
+                        </div>
+                        <div style="flex:1; min-width:200px;">
+                            <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block; color: var(--text-secondary);">Focus Element / Component:</label>
+                            <input id="fmeaItem" class="fmea-input" placeholder="e.g. ECC Module / Firmware">
+                        </div>
+                        <div style="flex:1; min-width:120px;">
+                            <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block; color: var(--text-secondary);">Revision / Date:</label>
+                            <input id="fmeaRevision" class="fmea-input" placeholder="e.g. Rev 1.0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FMEA Table Toolbar -->
+                <div class="toolbar" style="display:flex; gap:12px; margin-bottom:16px; align-items:center; flex-wrap: wrap;">
+                    <button class="action-btn" onclick="exportFmeaMD()">📤 Export Markdown</button>
+                    <button class="action-btn" onclick="document.getElementById('fmeaFileInput').click()">📥 Import Markdown</button>
+                    <input type="file" id="fmeaFileInput" accept=".md" style="display:none;" onchange="importFmeaMD(event)">
+                    <button class="action-btn" onclick="loadFmeaDemo()" style="background: linear-gradient(135deg, var(--color-purple) 0%, #6d28d9 100%);">🧪 Load FMEA Demo</button>
+                    <button class="action-btn" onclick="addFmeaRow()" style="background: linear-gradient(135deg, var(--color-emerald) 0%, #047857 100%); margin-left:auto;">➕ Add FMEA Item</button>
+                </div>
+
+                <!-- FMEA Grid Table -->
+                <div class="panel" style="background-color: var(--bg-secondary); overflow-x: auto; padding: 16px;">
+                    <table class="fmea-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 14%;">Function / Process Step</th>
+                                <th style="width: 14%;">Potential Failure Mode</th>
+                                <th style="width: 14%;">Potential Failure Effect</th>
+                                <th style="width: 6%; text-align: center;">Sev (S)</th>
+                                <th style="width: 14%;">Potential Cause</th>
+                                <th style="width: 6%; text-align: center;">Occ (O)</th>
+                                <th style="width: 6%; text-align: center;">Det (D)</th>
+                                <th style="width: 8%; text-align: center;">AP</th>
+                                <th style="width: 14%;">Recommended Action</th>
+                                <th style="width: 10%;">Owner</th>
+                                <th style="width: 4%; text-align: center;">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fmeaBody">
+                            <!-- Dynamically loaded rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
 
             <!-- Action panel at the bottom of 8D page -->
             <div class="panel" style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-start; align-items: center;">
@@ -2504,6 +2640,133 @@
         </div>
 
         <!-- PANEL 5: HELP & README -->
+        
+        <!-- PANEL 6: QUALITY STATISTICS HUB -->
+        <div class="panel hidden" id="qshPanel">
+            <div class="panel-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
+                <h2>Quality Statistics Hub</h2>
+                <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Mobile-Optimized Decision Engine with Automated Sample Size Mapping</p>
+            </div>
+
+            <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+                <!-- 1. PPM Sample Size Tool -->
+                <div class="panel" style="background-color: var(--bg-secondary); display: flex; flex-direction: column; justify-content: space-between; padding: 20px; border-radius: 8px;">
+                    <div>
+                        <h3 style="margin-top:0; font-size: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: var(--text-primary); margin-bottom: 16px;">1. PPM Sample Size Tool (Poisson)</h3>
+                        <div class="control-group" style="margin-bottom: 12px;">
+                            <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block; color: var(--text-secondary);">Target Defect Rate (PPM):</label>
+                            <input type="number" id="ppm" class="fmea-input" value="10" min="1" oninput="calculateSampleSize()" style="padding: 8px;">
+                        </div>
+                        <div class="control-group" style="margin-bottom: 12px;">
+                            <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block; color: var(--text-secondary);">Confidence Level (CL):</label>
+                            <select id="cl" class="fmea-select" onchange="calculateSampleSize()" style="padding: 8px; width: 100%;">
+                                <option value="0.90">90%</option>
+                                <option value="0.95" selected>95%</option>
+                                <option value="0.99">99%</option>
+                            </select>
+                        </div>
+                        <div class="control-group" style="margin-bottom: 12px;">
+                            <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block; color: var(--text-secondary);">Max Allowed Defects ($c$):</label>
+                            <select id="defects" class="fmea-select" onchange="calculateSampleSize()" style="padding: 8px; width: 100%;">
+                                <option value="0">c = 0 defects (Strict / Standard)</option>
+                                <option value="1">c = 1 defect</option>
+                                <option value="2">c = 2 defects</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="info-alert emerald-alert" style="margin-top: 15px; text-align: center; padding: 16px; border-radius: 8px;">
+                        <div style="font-weight: 600; font-size: 13px; color: var(--color-emerald);">Required Sample Size ($n$)</div>
+                        <div id="sampleSizeResult" class="metric-value" style="font-size: 28px; font-weight: 800; color: var(--color-emerald); margin: 6px 0;">299,574</div>
+                        <div id="resultDesc" style="font-size: 12px; color: var(--text-secondary);">Pull <b>299,574</b> units with &le; <b>0</b> errors to secure target limits.</div>
+                    </div>
+                </div>
+
+                <!-- 2. Chi-Square & Realized CL Display -->
+                <div class="panel" style="background-color: var(--bg-secondary); padding: 20px; border-radius: 8px;">
+                    <h3 style="margin-top:0; font-size: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: var(--text-primary); margin-bottom: 16px;">2. Chi-Square & Realized CL Display</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                        <div class="control-group">
+                            <label style="font-weight: 600; font-size: 12px; color: var(--color-blue); margin-bottom: 4px; display: block;">Group A (Old Baseline)</label>
+                            <input type="number" id="a-sample" class="fmea-input" value="500000000" placeholder="Size" oninput="runChiSquare()" style="padding: 8px;">
+                            <input type="number" id="a-defects" class="fmea-input" value="200000" placeholder="Defects" style="margin-top:5px; padding: 8px;" oninput="runChiSquare()">
+                        </div>
+                        <div class="control-group">
+                            <label style="font-weight: 600; font-size: 12px; color: var(--color-blue); margin-bottom: 4px; display: block;">Group B (New Run)</label>
+                            <input type="number" id="b-sample" class="fmea-input" value="50000" placeholder="Size" oninput="runChiSquare()" style="padding: 8px;">
+                            <input type="number" id="b-defects" class="fmea-input" value="11" placeholder="Defects" style="margin-top:5px; padding: 8px;" oninput="runChiSquare()">
+                        </div>
+                    </div>
+
+                    <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block; color: var(--text-secondary);">Expected Counts Feasibility:</label>
+                    <div style="width: 100%; overflow-x: auto; margin-bottom: 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                            <thead>
+                                <tr style="background-color: var(--bg-tertiary);">
+                                    <th style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">Category</th>
+                                    <th style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">A Expected</th>
+                                    <th style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">B Expected</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 6px; border: 1px solid var(--border-color); font-weight: bold; color: var(--text-primary);">Defects</td>
+                                    <td id="exp-a-def" style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">200011.00</td>
+                                    <td id="exp-b-def" style="padding: 6px; border: 1px solid var(--border-color); color: var(--text-primary);">19.98</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="chi-warning" class="info-alert warning" style="margin-top: 8px; display: none; padding: 12px; border-radius: 6px; font-size: 12px;">
+                        <h4 style="margin: 0 0 4px 0; font-size: 13px;">⚠️ Mathematical Validity Flagged!</h4>
+                        <span>Expected cell counts drop below 5.0. Chi-Square curve becomes highly unstable.</span>
+                    </div>
+
+                    <div id="chi-success" class="info-alert" style="margin-top: 12px; padding: 16px; border-radius: 8px; text-align: center;">
+                        <div style="font-weight: 600; font-size: 13px;">Realized Analysis Breakdown</div>
+                        <div id="chi-val-display" style="font-size: 18px; font-weight:800; margin:3px 0;">&Chi;&sup2; = 4.041</div>
+                        <div id="chi-cl-display" style="font-size: 22px; font-weight: 800; color: var(--color-red); margin: 5px 0;">Realized CL: 95.56%</div>
+                        <div id="chi-p-display" style="font-size: 12px; color: var(--text-secondary);">p-value ≈ 0.0444</div>
+                    </div>
+                </div>
+
+                <!-- 3. TTR Run Size Automated Planner -->
+                <div class="panel" style="background-color: var(--bg-secondary); grid-column: 1 / -1; padding: 20px; border-radius: 8px;">
+                    <h3 style="margin-top:0; font-size: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; color: var(--color-purple); margin-bottom: 16px;">3. TTR Run Size Automated Planner (Inverse Chi-Square Engine)</h3>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-top:-5px; margin-bottom: 16px;">Lock Group A baseline metrics, input your target defect capability for Group B, and let the engine <strong>automatically calculate</strong> the required sample size.</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px;">
+                        <div class="control-group">
+                            <label style="font-weight: 600; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Group A Baseline Size ($n_A$)</label>
+                            <input type="number" id="inv-a-size" class="fmea-input" value="500000000" oninput="predictRequiredNB()" style="padding: 8px;">
+                        </div>
+                        <div class="control-group">
+                            <label style="font-weight: 600; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Group A Baseline Defects ($d_A$)</label>
+                            <input type="number" id="inv-a-def" class="fmea-input" value="200000" oninput="predictRequiredNB()" style="padding: 8px;">
+                        </div>
+                        <div class="control-group">
+                            <label style="font-weight: 600; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Group B Expected Defects ($d_B$)</label>
+                            <input type="number" id="inv-b-def" class="fmea-input" value="0" min="0" oninput="predictRequiredNB()" style="padding: 8px;">
+                        </div>
+                        <div class="control-group">
+                            <label style="font-weight: 600; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; display: block;">Target Confidence Level ($CL$)</label>
+                            <select id="inv-target-cl" class="fmea-select" onchange="predictRequiredNB()" style="padding: 8px; width: 100%;">
+                                <option value="0.90">90% (Critical Chi2 = 2.706)</option>
+                                <option value="0.95" selected>95% (Critical Chi2 = 3.841)</option>
+                                <option value="0.99">99% (Critical Chi2 = 6.635)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="info-alert purple-alert" style="padding: 16px; border-radius: 8px; text-align: center;">
+                        <div style="font-weight: 600; font-size: 14px; color: var(--color-purple);">Required Target Run Size for Group B ($n_B$)</div>
+                        <div id="predictResultVal" style="font-size: 32px; font-weight: 800; color: var(--color-purple); margin: 6px 0;">9,602</div>
+                        <div id="predictResultDesc" style="font-size: 12px; color: var(--text-secondary);">To mathematically confirm an optimization shift with a target <b>95% Confidence Level</b>, Group B's evaluation sample run <b>must run at least 9,602 units</b> while generating exactly <b>0 defect(s)</b>.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="panel hidden" id="helpPanel">
             <div class="help-container">
                 <div class="help-section collapsible open">
@@ -2943,6 +3206,7 @@
         document.getElementById('mscPanel').classList.add('hidden');
         document.getElementById('driftPanel').classList.add('hidden');
         document.getElementById('helpPanel').classList.add('hidden');
+        document.getElementById('qshPanel').classList.add('hidden');
  
         // Hide/Show Sidebars
         document.getElementById('cpkControls').classList.add('hidden');
@@ -2955,7 +3219,14 @@
         document.getElementById('sidebarControls').classList.remove('hidden');
         document.getElementById('specLimitsSection').classList.remove('hidden');
  
-        if (tabId === 'd8') {
+        if (tabId === 'qsh') {
+            document.getElementById('qshPanel').classList.remove('hidden');
+            document.getElementById('sidebarControls').classList.add('hidden');
+            document.getElementById('mainContainer').classList.add('full-width');
+            calculateSampleSize();
+            runChiSquare();
+            predictRequiredNB();
+        } else if (tabId === 'd8') {
             document.getElementById('d8Panel').classList.remove('hidden');
             document.getElementById('sidebarControls').classList.add('hidden');
             document.getElementById('mainContainer').classList.add('full-width');
@@ -3018,7 +3289,273 @@
         }
     }
 
-    function switch8dTab(tabId) {
+    
+    // -------------------------------------------------------------
+    // FMEA RISK ASSESSMENT MODULE
+    // -------------------------------------------------------------
+    function scoreSelectFmea(){
+        let html='<select class="fmea-select" onchange="updateFmeaAP(this)">';
+        for(let i=1;i<=10;i++){
+            html+=`<option>${i}</option>`;
+        }
+        html+='</select>';
+        return html;
+    }
+    
+    function calculateFmeaAP(s,o,d){
+        s=parseInt(s);
+        o=parseInt(o);
+        d=parseInt(d);
+        if(s>=9 || (s>=8 && o>=5) || (s>=8 && d>=7)){
+            return "HIGH";
+        }
+        if(s>=6 || o>=5 || d>=5){
+            return "MEDIUM";
+        }
+        return "LOW";
+    }
+    
+    function addFmeaRow(fn='', fm='', ef='', s=1, c='', o=1, d=1, a='', owner=''){
+        const tbody=document.getElementById("fmeaBody");
+        if (!tbody) return;
+        const tr=document.createElement("tr");
+        tr.innerHTML=`
+            <td><input class="fmea-input" value="${fn}"></td>
+            <td><input class="fmea-input" value="${fm}"></td>
+            <td><input class="fmea-input" value="${ef}"></td>
+            <td>${dropdownFmeaVal(s)}</td>
+            <td><input class="fmea-input" value="${c}"></td>
+            <td>${dropdownFmeaVal(o)}</td>
+            <td>${dropdownFmeaVal(d)}</td>
+            <td class="fmea-ap-cell ap-low">${calculateFmeaAP(s,o,d)}</td>
+            <td><input class="fmea-input" value="${a}"></td>
+            <td><input class="fmea-input" value="${owner}"></td>
+            <td style="text-align: center;"><button class="delete-btn-icon" onclick="deleteFmeaRow(this)">&times;</button></td>
+        `;
+        tbody.appendChild(tr);
+        updateFmeaAP(tr.querySelector('select'));
+        updateFmeaDashboard();
+    }
+    
+    function deleteFmeaRow(button) {
+        const row = button.closest("tr");
+        row.remove();
+        updateFmeaDashboard();
+    }
+    
+    function updateFmeaAP(el){
+        if (!el) return;
+        const row=el.closest("tr");
+        const selects=row.querySelectorAll("select");
+        const s=selects[0].value;
+        const o=selects[1].value;
+        const d=selects[2].value;
+        const ap=calculateFmeaAP(s,o,d);
+        const cell=row.cells[7];
+        cell.innerHTML=ap;
+        cell.className='fmea-ap-cell';
+        if(ap==="HIGH") cell.classList.add("ap-high");
+        else if(ap==="MEDIUM") cell.classList.add("ap-medium");
+        else cell.classList.add("ap-low");
+        updateFmeaDashboard();
+    }
+    
+    function updateFmeaDashboard(){
+        const rows=document.querySelectorAll("#fmeaBody tr");
+        let high=0;
+        let medium=0;
+        let low=0;
+        rows.forEach(r=>{
+            const ap_cell = r.querySelector('.fmea-ap-cell');
+            if (ap_cell) {
+                const ap = ap_cell.innerText;
+                if(ap==="HIGH") high++;
+                else if(ap==="MEDIUM") medium++;
+                else low++;
+            }
+        });
+        const total = rows.length;
+        if(document.getElementById("fmeaTotalItems")) document.getElementById("fmeaTotalItems").innerText=total;
+        if(document.getElementById("fmeaHighCount")) document.getElementById("fmeaHighCount").innerText=high;
+        if(document.getElementById("fmeaMediumCount")) document.getElementById("fmeaMediumCount").innerText=medium;
+        if(document.getElementById("fmeaLowCount")) document.getElementById("fmeaLowCount").innerText=low;
+    }
+    
+    function loadFmeaDemo(){
+        const tbody=document.getElementById("fmeaBody");
+        if (!tbody) return;
+        tbody.innerHTML='';
+        addFmeaRow('SSD Read', 'ECC Failure', 'Data Corruption', 10, 'Firmware Defect', 2, 3, 'Improve ECC Validation', 'FW Team');
+        addFmeaRow('Power On', 'Initialization Timeout', 'Drive Not Detected', 8, 'Power Sequence', 4, 5, 'Timing Verification', 'HW Team');
+        addFmeaRow('Factory Test', 'Wrong Jig', 'False Failure', 6, 'Operator Error', 5, 4, 'Poka-Yoke', 'PE Team');
+        updateFmeaDashboard();
+    }
+    
+    function dropdownFmeaVal(value){
+        let html='<select class="fmea-select" onchange="updateFmeaAP(this)">';
+        for(let i=1;i<=10;i++){
+            html+=`<option ${i==value?'selected':''}>${i}</option>`;
+        }
+        html+='</select>';
+        return html;
+    }
+    
+    function exportFmeaMD(){
+        let project = document.getElementById('fmeaProject').value || 'Unnamed FMEA';
+        let item = document.getElementById('fmeaItem').value || '';
+        let rev = document.getElementById('fmeaRevision').value || '';
+        let md = `# FMEA Report: ${project}\n`;
+        md += `* **Focus Element**: ${item}\n`;
+        md += `* **Revision**: ${rev}\n\n`;
+        md += `| Function | Failure Mode | Effect | S | Cause | O | D | AP | Action | Owner |\n`;
+        md += `| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n`;
+        document.querySelectorAll('#fmeaBody tr').forEach(r=>{
+            let inputs = r.querySelectorAll('.fmea-input');
+            let selects = r.querySelectorAll('.fmea-select');
+            let ap = r.querySelector('.fmea-ap-cell') ? r.querySelector('.fmea-ap-cell').innerText : 'LOW';
+            if (inputs.length >= 6) {
+                md += `| ${inputs[0].value} | ${inputs[1].value} | ${inputs[2].value} | ${selects[0].value} | ${inputs[3].value} | ${selects[1].value} | ${selects[2].value} | ${ap} | ${inputs[4].value} | ${inputs[5].value} |\n`;
+            }
+        });
+        const blob = new Blob([md], {type: 'text/markdown'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `${project.replace(/\\s+/g, '_')}_FMEA.md`;
+        a.click();
+    }
+    
+    function importFmeaMD(event){
+        const file = event.target.files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e){
+            const text = e.target.result;
+            const lines = text.split('\n');
+            const tbody = document.getElementById("fmeaBody");
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            lines.forEach(line => {
+                const trimmed = line.trim();
+                if (trimmed.startsWith('# FMEA Report:')) {
+                    document.getElementById('fmeaProject').value = trimmed.replace('# FMEA Report:', '').trim();
+                } else if (trimmed.includes('**Focus Element**:')) {
+                    document.getElementById('fmeaItem').value = trimmed.split('**Focus Element**:')[1].replace(/\\*/g, '').trim();
+                } else if (trimmed.includes('**Revision**:')) {
+                    document.getElementById('fmeaRevision').value = trimmed.split('**Revision**:')[1].replace(/\\*/g, '').trim();
+                } else if (trimmed.startsWith('|') && !trimmed.includes('---') && !trimmed.includes('Function |')) {
+                    let parts = trimmed.split('|').map(p => p.trim());
+                    if (parts.length >= 11) {
+                        let fn = parts[1];
+                        let fm = parts[2];
+                        let ef = parts[3];
+                        let s = parseInt(parts[4]) || 1;
+                        let c = parts[5];
+                        let o = parseInt(parts[6]) || 1;
+                        let d = parseInt(parts[7]) || 1;
+                        let a = parts[9];
+                        let owner = parts[10];
+                        addFmeaRow(fn, fm, ef, s, c, o, d, a, owner);
+                    }
+                }
+            });
+            updateFmeaDashboard();
+            alert('FMEA Markdown imported successfully.');
+        };
+        reader.readAsText(file);
+    }
+
+    // -------------------------------------------------------------
+    // QUALITY STATISTICS HUB CALCULATORS
+    // -------------------------------------------------------------
+    function chisqr_1dof_pvalue(chiSq) {
+        if (chiSq <= 0) return 1.0;
+        let x = Math.sqrt(chiSq / 2);
+        let t = 1.0 / (1.0 + 0.5 * x);
+        let ans = t * Math.exp(-x * x - 1.26551223 + t * (1.00002368 + t * (0.37409196 + t * (0.09678418 + t * (-0.18628806 + t * (0.27886807 + t * (-1.13520398 + t * (1.48851587 + t * (-0.82215223 + t * 0.17087277)))))))));
+        return ans;
+    }
+    
+    function calculateSampleSize() {
+        const ppm = parseFloat(document.getElementById('ppm').value) || 10;
+        const cl = parseFloat(document.getElementById('cl').value);
+        const c = parseInt(document.getElementById('defects').value);
+        let factor = -Math.log(1 - cl);
+        if (c === 1) factor = cl === 0.90 ? 3.89 : cl === 0.95 ? 4.74 : 6.64;
+        if (c === 2) factor = cl === 0.90 ? 5.32 : cl === 0.95 ? 6.30 : 8.41;
+        const n = Math.ceil(factor / (ppm / 1000000));
+        document.getElementById('sampleSizeResult').innerText = n.toLocaleString();
+        document.getElementById('resultDesc').innerHTML = `Pull <b>${n.toLocaleString()}</b> units with &le; <b>${c}</b> errors to secure target limits.`;
+    }
+    
+    function computeRawChiSquare(nA, dA, nB, dB) {
+        const totalSamples = nA + nB;
+        const totalDefects = dA + dB;
+        if (totalSamples === 0 || totalDefects === 0) return 0;
+        const expDA = (nA * totalDefects) / totalSamples;
+        const expDB = (nB * totalDefects) / totalSamples;
+        const expPA = (nA * (totalSamples - totalDefects)) / totalSamples;
+        const expPB = (nB * (totalSamples - totalDefects)) / totalSamples;
+        return Math.pow(dA - expDA, 2)/expDA + Math.pow(dB - expDB, 2)/expDB + 
+               Math.pow((nA-dA) - expPA, 2)/expPA + Math.pow((nB-dB) - expPB, 2)/expPB;
+    }
+    
+    function runChiSquare() {
+        const nA = parseInt(document.getElementById('a-sample').value) || 0;
+        const dA = parseInt(document.getElementById('a-defects').value) || 0;
+        const nB = parseInt(document.getElementById('b-sample').value) || 0;
+        const dB = parseInt(document.getElementById('b-defects').value) || 0;
+        const totalSamples = nA + nB;
+        const totalDefects = dA + dB;
+        if (totalSamples === 0 || totalDefects === 0) return;
+        const expDA = (nA * totalDefects) / totalSamples;
+        const expDB = (nB * totalDefects) / totalSamples;
+        document.getElementById('exp-a-def').innerText = expDA.toFixed(2);
+        document.getElementById('exp-b-def').innerText = expDB.toFixed(2);
+        const invalid = expDA < 5 || expDB < 5;
+        document.getElementById('exp-a-def').className = expDA < 5 ? "bg-alert" : "";
+        document.getElementById('exp-b-def').className = expDB < 5 ? "bg-alert" : "";
+        document.getElementById('chi-warning').style.display = invalid ? "block" : "none";
+        const chiSq = computeRawChiSquare(nA, dA, nB, dB);
+        const pVal = chisqr_1dof_pvalue(chiSq);
+        const realizedCL = (1 - pVal) * 100;
+        document.getElementById('chi-val-display').innerHTML = `&Chi;&sup2; = ${chiSq.toFixed(3)}`;
+        document.getElementById('chi-cl-display').innerText = `Realized CL: ${realizedCL.toFixed(2)}%`;
+        document.getElementById('chi-p-display').innerText = `p-value ≈ ${pVal.toFixed(4)}`;
+    }
+    
+    function predictRequiredNB() {
+        const nA = parseInt(document.getElementById('inv-a-size').value) || 0;
+        const dA = parseInt(document.getElementById('inv-a-def').value) || 0;
+        const dB = parseInt(document.getElementById('inv-b-def').value) || 0;
+        const targetCL = parseFloat(document.getElementById('inv-target-cl').value);
+        let criticalChi2 = 3.841;
+        if (targetCL === 0.90) criticalChi2 = 2.706;
+        if (targetCL === 0.99) criticalChi2 = 6.635;
+        const baselineRate = dA / nA;
+        let requiredNB = -1;
+        let startNB = dB + 1;
+        if (baselineRate > 0) {
+            startNB = Math.max(startNB, Math.ceil(dB / baselineRate));
+        }
+        for (let nB = startNB; nB < nA; nB++) {
+            let currentChi2 = computeRawChiSquare(nA, dA, nB, dB);
+            if (currentChi2 >= criticalChi2) {
+                requiredNB = nB;
+                break;
+            }
+        }
+        const displayVal = document.getElementById('predictResultVal');
+        const displayDesc = document.getElementById('predictResultDesc');
+        if (requiredNB === -1) {
+            displayVal.innerText = "No Solution";
+            displayDesc.innerHTML = `Unable to establish a valid run size under current constraint profiles. Lower your confidence requirements or check your input baselines.`;
+        } else {
+            displayVal.innerText = requiredNB.toLocaleString();
+            displayDesc.innerHTML = `To mathematically confirm an optimization shift with a target <b>${targetCL*100}% Confidence Level</b>, Group B's evaluation sample run <b>must run at least ${requiredNB.toLocaleString()} units</b> while generating exactly <b>${dB} defect(s)</b>.`;
+        }
+    }
+
+function switch8dTab(tabId) {
         active8dTab = tabId;
         document.querySelectorAll('.sub-tab-btn').forEach(btn => {
             btn.classList.toggle('active', btn.getAttribute('data-subtab') === tabId);
@@ -3654,6 +4191,32 @@
             whyChains.push(row);
         }
 
+        
+        const fmeaItems = [];
+        document.querySelectorAll('#fmeaBody tr').forEach(r => {
+            let inputs = r.querySelectorAll('.fmea-input');
+            let selects = r.querySelectorAll('.fmea-select');
+            let ap_cell = r.querySelector('.fmea-ap-cell');
+            let ap = ap_cell ? ap_cell.innerText : 'LOW';
+            if (inputs.length >= 6) {
+                fmeaItems.push({
+                    function: inputs[0].value,
+                    mode: inputs[1].value,
+                    effect: inputs[2].value,
+                    s: parseInt(selects[0].value) || 1,
+                    cause: inputs[3].value,
+                    o: parseInt(selects[1].value) || 1,
+                    d: parseInt(selects[2].value) || 1,
+                    ap: ap,
+                    action: inputs[4].value,
+                    owner: inputs[5].value
+                });
+            }
+        });
+        const fmeaProject = document.getElementById('fmeaProject') ? document.getElementById('fmeaProject').value : '';
+        const fmeaItem = document.getElementById('fmeaItem') ? document.getElementById('fmeaItem').value : '';
+        const fmeaRevision = document.getElementById('fmeaRevision') ? document.getElementById('fmeaRevision').value : '';
+        
         const exportData = {
             d8: d8Data,
             why: {
@@ -3663,6 +4226,7 @@
             fishbone: fishboneData,
             tasks: kanbanTasks,
             team: teamMembers,
+        fmea: { project: fmeaProject, item: fmeaItem, revision: fmeaRevision, items: fmeaItems },
             d1Notes: document.getElementById('d1Notes') ? document.getElementById('d1Notes').value : ''
         };
 
@@ -3793,7 +4357,43 @@
                     kanbanTasks = [];
                 }
 
-                event.target.value = '';
+                
+            if (data.fmea) {
+                document.getElementById('fmeaProject').value = data.fmea.project || '';
+                document.getElementById('fmeaItem').value = data.fmea.item || '';
+                document.getElementById('fmeaRevision').value = data.fmea.revision || '';
+                const tbody = document.getElementById("fmeaBody");
+                if (tbody) {
+                    tbody.innerHTML = '';
+                    if (data.fmea.items) {
+                        data.fmea.items.forEach(item => {
+                            addFmeaRow(
+                                item.function || '',
+                                item.mode || '',
+                                item.effect || '',
+                                item.s || 1,
+                                item.cause || '',
+                                item.o || 1,
+                                item.d || 1,
+                                item.action || '',
+                                item.owner || ''
+                            );
+                        });
+                    }
+                }
+            } else {
+                if (document.getElementById('fmeaProject')) document.getElementById('fmeaProject').value = '';
+                if (document.getElementById('fmeaItem')) document.getElementById('fmeaItem').value = '';
+                if (document.getElementById('fmeaRevision')) document.getElementById('fmeaRevision').value = '';
+                const tbody = document.getElementById("fmeaBody");
+                if (tbody) {
+                    tbody.innerHTML = '';
+                    addFmeaRow();
+                }
+            }
+            updateFmeaDashboard();
+        
+            event.target.value = '';
 
                 syncProblemText();
                 renderFishboneInputs();
