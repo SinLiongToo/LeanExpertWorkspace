@@ -54,6 +54,19 @@ A dedicated module to simulate and evaluate the quality and trustworthiness of y
 - **AIAG Compliance Cards**: Categorizes the gage as *Acceptable*, *Marginal*, or *Unacceptable* based on %StudyVar and number of distinct categories ($ndc$).
 - **Interactive Visualizations**: Gage component variance comparison bar chart and Operator-by-Part run chart.
 
+### 6. ⏳ Device Drift & Shift
+Evaluate parametric stability and repeatability of devices across multiple stress loops or runs:
+- **Interactive Drift Simulator**: Customize device offset variation ($\sigma_{\text{device}}$), repeatability noise ($\sigma_{\text{repeatability}}$), systematic intrinsic drift ($\beta$ per run), sudden stress shift (DSA jump), number of devices (ECIDs), and run count ($R$).
+- **Visualizations**: Run Chart tracking device-specific measurements across runs with USL/LSL lines, and Boxplot Chart summarizing distribution spread per run.
+- **Repeatability %Tolerance**: Computes measurement error relative to tolerance using two-way random-effects ANOVA:
+  $$\text{Repeatability \%Tolerance} = \frac{6 \sigma_{\text{repeatability}}}{USL - LSL} \times 100\%$$
+- **NPI Repeatability Metrics**: Real-time evaluation of median-normalized repeatability metrics:
+  1. **SD / Median Ratio**: $\left|\frac{SD}{P_{50}}\right| \times 100\%$ (Excellent $\le 2\%$, Acceptable $\le 5\%$, Poor $> 5\%$)
+  2. **Range / Median Ratio**: $\left|\frac{\text{Max} - \text{Min}}{P_{50}}\right| \times 100\%$ (Excellent $\le 5\%$, Acceptable $\le 10\%$, Poor $> 10\%$)
+  3. **Robust Sigma / Median Ratio**: $\left|\frac{1.4826 \times \text{MAD}}{P_{50}}\right| \times 100\%$ (Excellent $\le 2\%$, Acceptable $\le 5\%$, Poor $> 5\%$)
+  4. **Drift Repeatability (Rpt)**: $Rpt = 3 \times \sigma_{\text{drift}}$ (Excellent $\le 0.5$, Acceptable $\le 1.0$, Poor $> 1.0$)
+- **Device Qualification Status**: Evaluates whether a device qualifies based on repeatability and statistical significance.
+
 ---
 
 ## 📐 Mathematical Reference for MSC (Gage R&R)
@@ -125,3 +138,11 @@ $$\sigma^2_{\text{Reproducibility}} = \sigma^2_{\text{Operator}} + \sigma^2_{\te
 ### 2026-07-04 (Q-Q Plot Integration)
 - **Q-Q Plot in Distribution Comparison**: Added a Quantile-Quantile (Q-Q) Plot comparing Dataset A and Dataset B quantiles to help engineers diagnose shape, center, and variance differences in a 2x2 grid.
 - **Added CDF vs. Q-Q Documentation**: Documented the physical and mathematical difference between CDF plots and Q-Q plots in both the Help tab and README.md.
+
+### 2026-07-06 (Implemented Device Drift & Shift Tab & Layout Optimizations)
+- **Device Drift & Shift Tab**: Developed a complete interactive module to simulate and qualify device drift over stress loops. Integrates random-effects ANOVA for repeatability assessment, Welch's t-test for run-to-run drift significance, and boxplot distribution analysis.
+- **NPI Repeatability Metrics**: Added real-time calculation and grading (Excellent, Acceptable, Poor) for SD/Median, Range/Median, Robust Sigma/Median, and Drift Repeatability (Rpt) metrics.
+- **Dynamic Spec Limit Ranges**: Implemented automatic slider scaling for spec limits (LSL and USL) based on the chosen distribution (Normal, Log-normal, Weibull, etc.) to prevent squashed charts and over-expanded axes.
+- **Bold Formatting Refactoring**: Replaced all raw markdown bold markers (`**`) with standard HTML `<strong>` tags in help sections and diagnostics for clean, web-standards rendering.
+- **CSS Arrow Fixes**: Replaced ASCII unicode characters in CSS accordion collapse arrows with native UTF-8 minus signs (`−`) to resolve character literal rendering issues.
+
