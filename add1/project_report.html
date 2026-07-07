@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9f9f9;
+            --bg-tertiary: #f5f5f5;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border-color: #ddd;
+            --accent: #F5A623;
+            --navy: #0F1B2D;
+            --sage: #7FB5A0;
+            --heading-text: #B5730E;
+        }
+
+        body.dark-mode {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #252525;
+            --bg-tertiary: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-color: #444;
+            --navy: #1E3A5F;
+            --sage: #7FB5A0;
+            --heading-text: #F5A623;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-tertiary);
+            padding: 20px;
+            color: var(--text-primary);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .report-header {
+            padding: 24px;
+            border-bottom: 2px solid var(--navy);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .report-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--heading-text);
+            margin-bottom: 8px;
+        }
+
+        .report-meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-btn {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        .control-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 12px 16px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab-button:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-button.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .content {
+            padding: 24px;
+            min-height: 600px;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--heading-text);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--heading-text);
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 6px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+            font-size: 13px;
+            background: var(--bg-primary);
+        }
+
+        th {
+            background: var(--navy);
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .highlight {
+            background: rgba(245, 166, 35, 0.15);
+            padding: 12px;
+            border-left: 3px solid var(--accent);
+            margin: 16px 0;
+            color: var(--text-primary);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-green {
+            background: rgba(127, 181, 160, 0.3);
+            color: var(--sage);
+        }
+
+        .status-yellow {
+            background: rgba(245, 166, 35, 0.3);
+            color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 13px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(245, 166, 35, 0.1);
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: #f59410;
+            border-color: #f59410;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent);
+        }
+
+        .compact-table th,
+        .compact-table td {
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+
+        .compact-table {
+            margin-bottom: 20px;
+        }
+
+        .add-btn {
+            margin-top: 12px;
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .delete-btn {
+            background: #dc6464;
+            color: white;
+            border-color: #dc6464;
+            padding: 4px 8px;
+            font-size: 11px;
+        }
+
+        .delete-btn:hover {
+            background: #d04040;
+            border-color: #d04040;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .inline-input {
+            padding: 6px 8px;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .info-row {
+                grid-template-columns: 1fr;
+            }
+
+            .report-header {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .header-controls {
+                flex-wrap: wrap;
+            }
+
+            .tab-button {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .tabs, .header-controls {
+                display: none;
+            }
+
+            .tab-panel {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="report-header">
+            <div class="header-left">
+                <div class="report-title">PROJECT STATUS REPORT</div>
+                <div class="report-meta">Generated: <span id="date"></span></div>
+            </div>
+            <div class="header-controls">
+                <button class="control-btn" id="loadDemoBtn">📋 Demo</button>
+                <button class="control-btn" id="newProjectBtn">✨ Clean</button>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="overview">Overview</button>
+            <button class="tab-button" data-tab="milestones">Milestones</button>
+            <button class="tab-button" data-tab="actions">Actions</button>
+            <button class="tab-button" data-tab="edit">Edit</button>
+            <button class="tab-button" data-tab="help">Help</button>
+        </div>
+
+        <div class="content">
+            <!-- OVERVIEW TAB -->
+            <div class="tab-panel active" id="overview">
+                <h2>Project Information</h2>
+                <div class="info-row">
+                    <div class="info-item">
+                        <div class="info-label">Project Name</div>
+                        <div class="info-value" id="displayProjectName">—</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Status</div>
+                        <div class="info-value"><span class="status-badge" id="displayStatus">—</span></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Project Manager</div>
+                        <div class="info-value" id="displayProjManager">—</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">BL/PL</div>
+                        <div class="info-value" id="displayBLPL">—</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">DRI</div>
+                        <div class="info-value" id="displayDRI">—</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Business Owner</div>
+                        <div class="info-value" id="displayBusinessOwner">—</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Objective</div>
+                        <div class="info-value" id="displayObjective">—</div>
+                    </div>
+                </div>
+
+                <h3>Background</h3>
+                <div class="highlight" id="displayBackground">
+                    No data
+                </div>
+
+                <div class="highlight" id="displayHighlight">
+                    <strong>Lowlights / Issues:</strong> No data
+                </div>
+
+                <h3>Milestones</h3>
+                <table id="overviewMilestones" class="compact-table">
+                    <thead>
+                        <tr>
+                            <th>Milestone</th>
+                            <th>Week</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+                <h3>Actions & Recommendations</h3>
+                <table id="overviewActions" class="compact-table">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Owner</th>
+                            <th>Due</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- MILESTONES TAB -->
+            <div class="tab-panel" id="milestones">
+                <h2>All Milestones</h2>
+                <table id="milestonesTable">
+                    <thead>
+                        <tr>
+                            <th>Milestone</th>
+                            <th>Week</th>
+                            <th>Status</th>
+                            <th style="width: 80px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <button class="btn-secondary add-btn" id="addMilestoneBtn">+ Add Milestone</button>
+            </div>
+
+            <!-- ACTIONS TAB -->
+            <div class="tab-panel" id="actions">
+                <h2>Actions & Recommendations</h2>
+                <table id="actionsTable">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Owner</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th style="width: 80px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <button class="btn-secondary add-btn" id="addActionBtn">+ Add Action</button>
+            </div>
+
+            <!-- EDIT TAB -->
+            <div class="tab-panel" id="edit">
+                <h2>Edit Project Information</h2>
+                <form id="editForm">
+                    <div class="info-row">
+                        <div class="form-group">
+                            <label>Project Name</label>
+                            <input type="text" id="editProjectName">
+                        </div>
+                        <div class="form-group">
+                            <label>Project Manager</label>
+                            <input type="text" id="editProjManager">
+                        </div>
+                        <div class="form-group">
+                            <label>BL/PL</label>
+                            <input type="text" id="editBLPL">
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="form-group">
+                            <label>Business Owner</label>
+                            <input type="text" id="editBusinessOwner">
+                        </div>
+                        <div class="form-group">
+                            <label>DRI</label>
+                            <input type="text" id="editDRI">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Objective</label>
+                        <textarea id="editObjective"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Background</label>
+                        <textarea id="editBackground" placeholder="Project background, context, why it started..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="editStatusSelect">
+                            <option value="Running">Running</option>
+                            <option value="At Risk">At Risk</option>
+                            <option value="Paused">Paused</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lowlights / Issues</label>
+                        <textarea id="editHighlight"></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn-primary" id="saveBtn">Save Changes</button>
+                        <button type="button" class="btn-secondary" id="exportBtn">📥 Export JSON</button>
+                        <button type="button" class="btn-secondary" id="importBtn">📤 Import JSON</button>
+                    </div>
+                </form>
+
+                <input type="file" id="fileInput" accept=".json">
+            </div>
+
+            <!-- HELP TAB -->
+            <div class="tab-panel" id="help">
+                <h2>How to Use This Report</h2>
+
+                <h3>Top Right Buttons</h3>
+                <div class="highlight">
+                    <strong>📋 Demo</strong> — Loads sample project data so you can see how the report looks when filled in.<br><br>
+                    <strong>✨ Clean</strong> — Wipes all current data and gives you a blank project to start fresh. Use this before entering your own data.<br><br>
+                    <strong>🌙 / ☀️</strong> — Toggles dark/light mode. Your choice is remembered.
+                </div>
+
+                <h3>Tabs</h3>
+                <div class="highlight">
+                    <strong>Overview</strong> — Read-only summary of everything: project info, status, background, lowlights/issues, all milestones, and all actions. This is the page to review or print.<br><br>
+                    <strong>Milestones</strong> — Add or delete milestone entries (name, week, status).<br><br>
+                    <strong>Actions</strong> — Add or delete action/recommendation entries (action, owner, due date).<br><br>
+                    <strong>Edit</strong> — Update core project fields (name, manager, BL/PL, owner, DRI, objective, background, status, lowlights).<br><br>
+                    <strong>Help</strong> — This page.
+                </div>
+
+                <h3>Typical Workflow</h3>
+                <div class="highlight">
+                    1. Click <strong>✨ Clean</strong> to start a new project.<br>
+                    2. Go to <strong>Edit</strong> and fill in project details, then click <strong>Save Changes</strong>.<br>
+                    3. Go to <strong>Milestones</strong> and click <strong>+ Add Milestone</strong> for each milestone.<br>
+                    4. Go to <strong>Actions</strong> and click <strong>+ Add Action</strong> for each action item.<br>
+                    5. Check <strong>Overview</strong> to review the full report.<br>
+                    6. Click <strong>Export JSON</strong> (in Edit tab) to save a backup file.
+                </div>
+
+                <h3>Saving & Loading Old Projects</h3>
+                <div class="highlight">
+                    <strong>Export JSON</strong> — Downloads your current project as a .json file. Keep this file safe as your backup.<br><br>
+                    <strong>Import JSON</strong> — Upload a previously exported .json file to restore that project. This replaces whatever is currently loaded, so export first if you want to keep it.<br><br>
+                    Your data also auto-saves to this browser via localStorage, so closing and reopening the page keeps your data — but only on the same browser/device. Use Export/Import to move data between devices or keep permanent backups.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'project_report_data';
+
+        const demoData = {
+            projectName: 'STRX OC package new process qualification',
+            projManager: 'Ted Chen',
+            blpl: 'NS RS',
+            status: 'Running',
+            businessOwner: 'Christian Schabmüller',
+            objective: 'Qualification',
+            dri: 'Masa Tu',
+            highlight: 'Comes from CQC / DDE issue & contact via issue. Also defined in PP&P with customer.',
+            background: 'This qualification project was initiated after CQC flagged a DDE (Design/Dimension Evaluation) cure time issue during standard contact checks. The customer requires this new process to be formally qualified and documented as part of the PP&P (Production Part Approval Process) before it can be released for mass production.',
+            milestones: [
+                { name: 'Project kick-off', week: 'W622', status: 'Complete' },
+                { name: 'Feasibility / release planning trigger', week: 'W628', status: 'Complete' },
+                { name: 'D0 data collection complete', week: 'W632', status: 'Complete' },
+                { name: 'PreCon data collection complete', week: 'W637', status: 'Complete' },
+                { name: 'ITC100C qualification complete', week: 'W643', status: 'In Progress' },
+                { name: 'Phase 1 Greenlight', week: 'W644', status: 'Pending' },
+                { name: 'ITC150C data analysis & final report', week: 'W646', status: 'Pending' },
+                { name: 'Phase 2 start decision', week: 'W647', status: 'Pending' },
+                { name: 'Closure meeting / Final release', week: 'W702', status: 'Pending' }
+            ],
+            actions: [
+                { action: 'Follow up with Denso on ITC100C data submission', owner: 'Ted Chen', dueDate: '2026-07-15', status: 'Pending' },
+                { action: 'Finalize PP&P documentation with customer', owner: 'Christian Schabmüller', dueDate: '2026-07-20', status: 'Pending' },
+                { action: 'Prepare Phase 1 Greenlight review deck', owner: 'Masa Tu', dueDate: '2026-07-25', status: 'Pending' }
+            ]
+        };
+
+        let projectData = loadData();
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const savedTheme = localStorage.getItem('project_theme') || 'light';
+
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('project_theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        // Set date
+        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        function loadData() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            return saved ? JSON.parse(saved) : { 
+                projectName: '', 
+                projManager: '', 
+                blpl: '',
+                businessOwner: '', 
+                objective: '', 
+                dri: '',
+                highlight: '',
+                background: '',
+                milestones: [],
+                actions: []
+            };
+        }
+
+        function saveData() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(projectData));
+        }
+
+        function updateDisplay() {
+            document.getElementById('displayProjectName').textContent = projectData.projectName || '—';
+            document.getElementById('displayProjManager').textContent = projectData.projManager || '—';
+            document.getElementById('displayBLPL').textContent = projectData.blpl || '—';
+            document.getElementById('displayBusinessOwner').textContent = projectData.businessOwner || '—';
+            document.getElementById('displayObjective').textContent = projectData.objective || '—';
+            document.getElementById('displayDRI').textContent = projectData.dri || '—';
+            document.getElementById('displayHighlight').innerHTML = `<strong>Lowlights / Issues:</strong> ${projectData.highlight || 'No data'}`;
+            document.getElementById('displayBackground').textContent = projectData.background || 'No data';
+            
+            const statusEl = document.getElementById('displayStatus');
+            const status = projectData.status || 'Running';
+            statusEl.textContent = status;
+            statusEl.className = 'status-badge ' + (status === 'Completed' || status === 'Running' ? 'status-green' : 'status-yellow');
+            
+            renderMilestones();
+            renderOverviewMilestones();
+            renderActions();
+            renderOverviewActions();
+        }
+
+        function populateForm() {
+            document.getElementById('editProjectName').value = projectData.projectName || '';
+            document.getElementById('editProjManager').value = projectData.projManager || '';
+            document.getElementById('editBLPL').value = projectData.blpl || '';
+            document.getElementById('editBusinessOwner').value = projectData.businessOwner || '';
+            document.getElementById('editObjective').value = projectData.objective || '';
+            document.getElementById('editDRI').value = projectData.dri || '';
+            document.getElementById('editHighlight').value = projectData.highlight || '';
+            document.getElementById('editBackground').value = projectData.background || '';
+            document.getElementById('editStatusSelect').value = projectData.status || 'Running';
+        }
+
+        function renderMilestones() {
+            const tbody = document.querySelector('#milestonesTable tbody');
+            tbody.innerHTML = '';
+            
+            if (projectData.milestones && projectData.milestones.length > 0) {
+                projectData.milestones.forEach((m, idx) => {
+                    const tr = document.createElement('tr');
+                    const statusClass = m.status === 'Complete' ? 'status-green' : 'status-yellow';
+                    tr.innerHTML = `
+                        <td>${m.name}</td>
+                        <td>${m.week}</td>
+                        <td><span class="status-badge ${statusClass}">${m.status}</span></td>
+                        <td><button class="delete-btn" onclick="deleteMilestone(${idx})">Delete</button></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        function renderOverviewMilestones() {
+            const tbody = document.querySelector('#overviewMilestones tbody');
+            tbody.innerHTML = '';
+            
+            if (projectData.milestones && projectData.milestones.length > 0) {
+                projectData.milestones.forEach(m => {
+                    const tr = document.createElement('tr');
+                    const statusClass = m.status === 'Complete' ? 'status-green' : 'status-yellow';
+                    tr.innerHTML = `
+                        <td>${m.name}</td>
+                        <td>${m.week}</td>
+                        <td><span class="status-badge ${statusClass}">${m.status}</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        function renderOverviewActions() {
+            const tbody = document.querySelector('#overviewActions tbody');
+            tbody.innerHTML = '';
+            
+            if (projectData.actions && projectData.actions.length > 0) {
+                projectData.actions.forEach(a => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${a.action}</td>
+                        <td>${a.owner}</td>
+                        <td>${a.dueDate}</td>
+                        <td><span class="status-badge status-yellow">${a.status}</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        function renderActions() {
+            const tbody = document.querySelector('#actionsTable tbody');
+            tbody.innerHTML = '';
+            
+            if (projectData.actions && projectData.actions.length > 0) {
+                projectData.actions.forEach((action, index) => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${action.action}</td>
+                        <td>${action.owner}</td>
+                        <td>${action.dueDate}</td>
+                        <td><span class="status-badge status-yellow">${action.status}</span></td>
+                        <td><button class="delete-btn" onclick="deleteAction(${index})">Delete</button></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        // Tab switching
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                document.querySelectorAll('.tab-panel').forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                document.getElementById(tabId).classList.add('active');
+                button.classList.add('active');
+            });
+        });
+
+        // Load Demo
+        document.getElementById('loadDemoBtn').addEventListener('click', () => {
+            projectData = JSON.parse(JSON.stringify(demoData));
+            saveData();
+            updateDisplay();
+            populateForm();
+            document.querySelectorAll('.tab-button')[0].click();
+            alert('✓ Demo data loaded!');
+        });
+
+        // New Project
+        document.getElementById('newProjectBtn').addEventListener('click', () => {
+            projectData = { 
+                projectName: '', 
+                projManager: '', 
+                blpl: '',
+                businessOwner: '', 
+                objective: '', 
+                dri: '',
+                highlight: '',
+                background: '',
+                milestones: [],
+                actions: []
+            };
+            saveData();
+            updateDisplay();
+            populateForm();
+            document.querySelectorAll('.tab-button')[3].click();
+            alert('✓ Clean project created!');
+        });
+
+        // Add Milestone
+        document.getElementById('addMilestoneBtn').addEventListener('click', () => {
+            const name = prompt('Milestone name:');
+            if (name) {
+                const week = prompt('Week (e.g., W622):') || '';
+                const status = prompt('Status (Complete/In Progress/Pending):') || 'Pending';
+                
+                if (!projectData.milestones) projectData.milestones = [];
+                projectData.milestones.push({ name, week, status });
+                saveData();
+                renderMilestones();
+                renderOverviewMilestones();
+            }
+        });
+
+        function deleteMilestone(idx) {
+            if (confirm('Delete this milestone?')) {
+                projectData.milestones.splice(idx, 1);
+                saveData();
+                renderMilestones();
+                renderOverviewMilestones();
+            }
+        }
+
+        // Add Action
+        document.getElementById('addActionBtn').addEventListener('click', () => {
+            const action = prompt('Enter action description:');
+            if (action) {
+                const owner = prompt('Owner:') || '';
+                const dueDate = prompt('Due date (YYYY-MM-DD):') || '';
+                
+                if (!projectData.actions) projectData.actions = [];
+                projectData.actions.push({ action, owner, dueDate, status: 'Pending' });
+                saveData();
+                renderActions();
+            }
+        });
+
+        function deleteAction(idx) {
+            if (confirm('Delete this action?')) {
+                projectData.actions.splice(idx, 1);
+                saveData();
+                renderActions();
+            }
+        }
+
+        // Save changes
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            projectData.projectName = document.getElementById('editProjectName').value;
+            projectData.projManager = document.getElementById('editProjManager').value;
+            projectData.blpl = document.getElementById('editBLPL').value;
+            projectData.businessOwner = document.getElementById('editBusinessOwner').value;
+            projectData.objective = document.getElementById('editObjective').value;
+            projectData.dri = document.getElementById('editDRI').value;
+            projectData.highlight = document.getElementById('editHighlight').value;
+            projectData.background = document.getElementById('editBackground').value;
+            projectData.status = document.getElementById('editStatusSelect').value;
+            
+            saveData();
+            updateDisplay();
+            alert('✓ Changes saved');
+        });
+
+        // Export JSON
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            const dataStr = JSON.stringify(projectData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `project_${projectData.projectName || 'export'}_${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // Import JSON
+        document.getElementById('importBtn').addEventListener('click', () => {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const imported = JSON.parse(event.target.result);
+                        projectData = imported;
+                        saveData();
+                        updateDisplay();
+                        populateForm();
+                        alert('✓ Project imported successfully!');
+                    } catch (err) {
+                        alert('✗ Invalid JSON file');
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        // Initialize
+        updateDisplay();
+        populateForm();
+    </script>
+</body>
+</html>

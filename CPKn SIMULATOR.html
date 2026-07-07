@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,6 +41,37 @@
             --color-orange: #f59e0b;
             --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        /* Light Theme Overrides */
+        :root[data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f5f9;
+            --border-color: #cbd5e1;
+            --text-primary: #0f172a;
+            --text-muted: #64748b;
+            --color-blue-glow: rgba(56, 189, 248, 0.08);
+            --color-emerald-glow: rgba(52, 211, 153, 0.08);
+            --color-purple-glow: rgba(167, 139, 250, 0.08);
+            --color-red-glow: rgba(248, 113, 113, 0.08);
+        }
+
+        [data-theme="light"] .sc-scope {
+            --sc-bg: #f8fafc;
+            --sc-surface: #ffffff;
+            --sc-surface2: #f1f5f9;
+            --sc-border: #cbd5e1;
+            --sc-text: #0f172a;
+            --sc-text2: #64748b;
+            --sc-accent-light: rgba(56, 189, 248, 0.08);
+            --sc-tab-active-bg: #ffffff;
+            --sc-tab-inactive-bg: #f8fafc;
+            --sc-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        [data-theme="light"] .pr-scope {
+            --pr-navy: var(--bg-tertiary);
         }
 
         * {
@@ -1392,6 +1423,1060 @@
             color: white !important;
         }
 
+        /* ------------------------------------------------------------- */
+        /* SCOPED CSS FOR PROJECT REPORT (pr-scope)                      */
+        /* ------------------------------------------------------------- */
+        .pr-scope {
+            --pr-bg-primary: var(--bg-secondary);     /* #151c2c */
+            --pr-bg-secondary: var(--bg-tertiary);   /* #1e293b */
+            --pr-bg-tertiary: var(--bg-primary);     /* #0b0f19 */
+            --pr-text-primary: var(--text-primary);   /* #f8fafc */
+            --pr-text-secondary: var(--text-muted);  /* #94a3b8 */
+            --pr-border-color: var(--border-color);   /* #26354a */
+            --pr-accent: #f59e0b;                     /* orange/gold */
+            --pr-navy: #1e293b;
+            --pr-sage: var(--color-emerald);          /* #34d399 */
+            --pr-heading-text: var(--color-orange);   /* #f59e0b */
+        }
+
+        .pr-scope .pr-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--pr-bg-primary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            border: 1px solid var(--pr-border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .pr-scope .pr-report-header {
+            padding: 20px 24px;
+            border-bottom: 2px solid var(--pr-navy);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pr-scope .pr-header-left {
+            flex: 1;
+        }
+
+        .pr-scope .pr-report-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--pr-heading-text);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .pr-scope .pr-report-meta {
+            font-size: 12px;
+            color: var(--pr-text-secondary);
+        }
+
+        .pr-scope .pr-header-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .pr-scope .pr-control-btn {
+            padding: 8px 12px;
+            border: 1px solid var(--pr-border-color);
+            background: var(--pr-bg-secondary);
+            color: var(--pr-text-primary);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        .pr-scope .pr-control-btn:hover {
+            background: var(--pr-accent);
+            color: #0b0f19;
+            border-color: var(--pr-accent);
+        }
+
+        .pr-scope .pr-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--pr-border-color);
+            background: var(--pr-bg-secondary);
+            flex-wrap: wrap;
+        }
+
+        .pr-scope .pr-tab-button {
+            padding: 12px 16px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--pr-text-secondary);
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .pr-scope .pr-tab-button:hover {
+            color: var(--pr-text-primary);
+        }
+
+        .pr-scope .pr-tab-button.active {
+            color: var(--pr-accent);
+            border-bottom-color: var(--pr-accent);
+        }
+
+        .pr-scope .pr-content {
+            padding: 24px;
+            min-height: 450px;
+        }
+
+        .pr-scope .pr-tab-panel {
+            display: none;
+        }
+
+        .pr-scope .pr-tab-panel.active {
+            display: block;
+        }
+
+        .pr-scope h2 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--pr-heading-text);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--pr-accent);
+        }
+
+        .pr-scope h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--pr-heading-text);
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .pr-scope .pr-info-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px 24px;
+            margin-bottom: 20px;
+        }
+
+        .pr-scope .pr-info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pr-scope .pr-info-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--pr-sage);
+            margin-bottom: 4px;
+        }
+
+        .pr-scope .pr-info-value {
+            font-size: 13px;
+            color: var(--pr-text-primary);
+            font-weight: 500;
+        }
+
+        .pr-scope table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+            font-size: 13px;
+            background: var(--pr-bg-primary);
+        }
+
+        .pr-scope th {
+            background: var(--pr-navy);
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--pr-border-color);
+        }
+
+        .pr-scope td {
+            padding: 10px;
+            border-bottom: 1px solid var(--pr-border-color);
+            color: var(--pr-text-primary);
+        }
+
+        .pr-scope tr:hover {
+            background: var(--pr-bg-secondary);
+        }
+
+        .pr-scope .pr-highlight {
+            background: rgba(245, 166, 35, 0.08);
+            padding: 12px;
+            border-left: 3px solid var(--pr-accent);
+            margin: 16px 0;
+            color: var(--pr-text-primary);
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .pr-scope .pr-status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .pr-scope .pr-status-green {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--pr-sage);
+        }
+
+        .pr-scope .pr-status-yellow {
+            background: rgba(245, 166, 35, 0.15);
+            color: var(--pr-accent);
+        }
+
+        .pr-scope .pr-form-group {
+            margin-bottom: 16px;
+        }
+
+        .pr-scope label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--pr-sage);
+            margin-bottom: 6px;
+        }
+
+        .pr-scope input[type="text"],
+        .pr-scope input[type="date"],
+        .pr-scope textarea,
+        .pr-scope select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--pr-border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 13px;
+            background: var(--pr-bg-primary);
+            color: var(--pr-text-primary);
+            transition: all 0.2s;
+        }
+
+        .pr-scope input:focus,
+        .pr-scope textarea:focus,
+        .pr-scope select:focus {
+            outline: none;
+            border-color: var(--pr-accent);
+            box-shadow: 0 0 0 2px rgba(245, 166, 35, 0.15);
+        }
+
+        .pr-scope textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .pr-scope .pr-button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pr-scope .pr-delete-btn {
+            padding: 4px 8px;
+            background: rgba(248, 113, 113, 0.15);
+            color: var(--color-red);
+            border: 1px solid var(--color-red);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.2s;
+        }
+
+        .pr-scope .pr-delete-btn:hover {
+            background: var(--color-red);
+            color: white;
+        }
+
+        .pr-scope .compact-table th,
+        .pr-scope .compact-table td {
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+
+        .pr-scope .compact-table {
+            margin-bottom: 20px;
+        }
+
+        .pr-scope .add-btn {
+            margin-top: 12px;
+            padding: 6px 12px;
+            font-size: 12px;
+            background: var(--pr-bg-secondary);
+            border: 1px solid var(--pr-border-color);
+            color: var(--pr-text-primary);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .pr-scope .add-btn:hover {
+            border-color: var(--pr-accent);
+            color: var(--pr-accent);
+        }
+
+        /* ------------------------------------------------------------- */
+        /* SCOPED CSS FOR SEMICONDUCTOR YIELD CALCULATOR (sc-scope)      */
+        /* ------------------------------------------------------------- */
+        .sc-scope {
+            --sc-bg: #0b0f19;
+            --sc-surface: #151c2c;
+            --sc-surface2: #1e293b;
+            --sc-border: #26354a;
+            --sc-text: #f8fafc;
+            --sc-text2: #94a3b8;
+            --sc-accent: #38bdf8;
+            --sc-accent-light: rgba(56, 189, 248, 0.15);
+            --sc-accent2: #a78bfa;
+            --sc-good: #34d399;
+            --sc-warn: #f59e0b;
+            --sc-bad: #f87171;
+            --sc-tab-active-bg: #151c2c;
+            --sc-tab-inactive-bg: #0b0f19;
+            --sc-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            --sc-radius: 12px;
+            --sc-radius-sm: 8px;
+            --sc-mono: 'JetBrains Mono', monospace;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .sc-scope .sc-tab-bar {
+            background: var(--sc-tab-inactive-bg);
+            border: 1px solid var(--sc-border);
+            border-radius: 8px;
+            padding: 4px;
+            display: flex;
+            gap: 4px;
+            margin-bottom: 20px;
+        }
+
+        .sc-scope .sc-tab-btn {
+            background: none;
+            border: none;
+            color: var(--sc-text2);
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .sc-scope .sc-tab-btn.active {
+            color: var(--sc-text);
+            background-color: var(--sc-tab-active-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            border: 1px solid var(--sc-border);
+        }
+
+        .sc-scope .sc-tab-btn:hover:not(.active) {
+            color: var(--sc-text);
+            background-color: var(--sc-surface2);
+        }
+
+        .sc-scope .sc-tab-panel {
+            display: none;
+        }
+
+        .sc-scope .sc-tab-panel.active {
+            display: block;
+        }
+
+        .sc-scope .sc-card {
+            background: var(--sc-surface);
+            border: 1px solid var(--sc-border);
+            border-radius: var(--sc-radius);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--sc-shadow);
+        }
+
+        .sc-scope .sc-card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--sc-text2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sc-scope .sc-card-title span {
+            font-size: 16px;
+        }
+
+        .sc-scope .sc-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .sc-scope .sc-form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sc-scope .sc-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sc-scope .sc-field label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--sc-text);
+        }
+
+        .sc-scope .sc-field-desc {
+            font-size: 11px;
+            color: var(--sc-text2);
+        }
+
+        .sc-scope .sc-model-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .sc-scope .sc-model-btn {
+            background: var(--sc-surface2);
+            border: 1px solid var(--sc-border);
+            color: var(--sc-text2);
+            padding: 10px 8px;
+            border-radius: var(--sc-radius-sm);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.15s;
+            text-align: center;
+        }
+
+        .sc-scope .sc-model-btn.active {
+            border-color: var(--sc-accent);
+            color: var(--sc-accent);
+            background: var(--sc-accent-light);
+        }
+
+        .sc-scope .sc-calc-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--sc-accent) 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            border-radius: var(--sc-radius);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+            transition: all 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .sc-scope .sc-calc-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(37,99,235,0.3);
+        }
+
+        .sc-scope .sc-results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .sc-scope .sc-results-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .sc-scope .sc-result-item {
+            background: var(--sc-surface2);
+            border: 1px solid var(--sc-border);
+            border-radius: var(--sc-radius-sm);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .sc-scope .sc-result-label {
+            font-size: 11px;
+            color: var(--sc-text2);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .sc-scope .sc-result-value {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 6px 0;
+            font-family: var(--sc-mono);
+        }
+
+        .sc-scope .sc-result-value.good { color: var(--sc-good); }
+        .sc-scope .sc-result-value.warn { color: var(--sc-warn); }
+        .sc-scope .sc-result-value.bad  { color: var(--sc-bad); }
+
+        .sc-scope .sc-result-unit {
+            font-size: 11px;
+            color: var(--sc-text2);
+        }
+
+        .sc-scope .sc-yield-bar-wrap {
+            margin: 16px 0 12px 0;
+        }
+
+        .sc-scope .sc-yield-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--sc-text);
+            margin-bottom: 6px;
+        }
+
+        .sc-scope .sc-yield-bar-track {
+            height: 8px;
+            background: var(--sc-surface2);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--sc-border);
+        }
+
+        .sc-scope .sc-yield-bar-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease-out;
+        }
+
+        .sc-scope .sc-formula-box {
+            background: var(--sc-surface2);
+            border: 1px dashed var(--sc-border);
+            border-radius: var(--sc-radius-sm);
+            padding: 12px;
+            font-family: var(--sc-mono);
+            font-size: 12px;
+            color: var(--sc-text);
+            white-space: pre-wrap;
+            margin-top: 14px;
+            line-height: 1.5;
+        }
+
+        .sc-scope .sc-tip {
+            background: rgba(245,158,11,0.1);
+            border: 1px solid var(--sc-warn);
+            color: var(--sc-text);
+            padding: 12px;
+            border-radius: var(--sc-radius-sm);
+            font-size: 12.5px;
+            margin: 14px 0;
+            line-height: 1.5;
+        }
+
+        .sc-scope .sc-fml-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        @media (max-width: 600px) {
+            .sc-scope .sc-fml-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sc-scope .sc-fml-card {
+            border: 1.5px solid var(--sc-border);
+            border-radius: var(--sc-radius);
+            padding: 16px 14px;
+            background: var(--sc-surface2);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sc-scope .sc-fml-nb   { border-top: 3px solid #2a78d6; }
+        .sc-scope .sc-fml-murphy { border-top: 3px solid #1baf7a; }
+        .sc-scope .sc-fml-poisson { border-top: 3px solid #e34948; }
+
+        .sc-scope .sc-fml-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 99px;
+            letter-spacing: 0.3px;
+            width: fit-content;
+        }
+
+        .sc-scope .sc-fml-badge-m { background: #d1fae5; color: #065f46; }
+        .sc-scope .sc-fml-badge-p { background: #fee2e2; color: #991b1b; }
+
+        .sc-scope .sc-fml-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--sc-text);
+        }
+
+        .sc-scope .sc-fml-eq {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            min-height: 56px;
+            flex-wrap: wrap;
+        }
+
+        .sc-scope .sc-fml-y {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--sc-text);
+            font-style: italic;
+            line-height: 1;
+            margin-top: 10px;
+        }
+
+        .sc-scope .sc-fml-op {
+            font-size: 20px;
+            color: var(--sc-text2);
+            margin-top: 10px;
+        }
+
+        .sc-scope .sc-fml-var {
+            color: var(--sc-accent);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .sc-scope .sc-fml-frac {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .sc-scope .sc-fml-num {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--sc-text);
+            border-bottom: 1.5px solid var(--sc-text2);
+            padding: 0 6px 3px;
+            white-space: nowrap;
+        }
+
+        .sc-scope .sc-fml-den {
+            font-size: 13px;
+            color: var(--sc-text);
+            padding: 3px 4px 0;
+            white-space: nowrap;
+        }
+
+        .sc-scope .sc-fml-exp {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--sc-accent);
+            margin-top: -4px;
+        }
+
+        .sc-scope .sc-fml-outer-sq {
+            display: flex;
+            align-items: flex-start;
+            gap: 1px;
+            margin-top: 4px;
+        }
+
+        .sc-scope .sc-fml-bracket {
+            font-size: 36px;
+            color: var(--sc-text2);
+            line-height: 1;
+            margin-top: -4px;
+            font-weight: 200;
+        }
+
+        .sc-scope .sc-fml-params {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            border-top: 1px solid var(--sc-border);
+            padding-top: 8px;
+        }
+
+        .sc-scope .sc-fml-param {
+            display: flex;
+            gap: 6px;
+            align-items: baseline;
+        }
+
+        .sc-scope .sc-fml-pk {
+            font-family: var(--sc-mono);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--sc-accent);
+            min-width: 20px;
+        }
+
+        .sc-scope .sc-fml-pv {
+            font-size: 11px;
+            color: var(--sc-text2);
+        }
+
+        .sc-scope .sc-fml-note {
+            font-size: 11px;
+            color: var(--sc-text2);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .sc-scope .sc-alpha-visual {
+            background: var(--sc-surface2);
+            border: 1px solid var(--sc-border);
+            border-radius: var(--sc-radius);
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .sc-scope .sc-alpha-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .sc-scope .sc-alpha-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sc-scope .sc-alpha-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sc-scope .sc-alpha-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--sc-text);
+            text-align: center;
+        }
+
+        .sc-scope .sc-alpha-desc {
+            font-size: 11px;
+            color: var(--sc-text2);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .sc-scope .wafer-mini {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--sc-surface);
+            border: 2px solid var(--sc-border);
+            position: relative;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .sc-scope .defect-dot {
+            position: absolute;
+            border-radius: 50%;
+            background: #e34948;
+            opacity: 0.85;
+        }
+
+        .sc-scope .sc-viz-card {
+            background: var(--sc-surface2);
+            border: 1px solid var(--sc-border);
+            border-radius: var(--sc-radius);
+            padding: 16px;
+            margin: 14px 0;
+        }
+
+        .sc-scope .sc-viz-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .sc-scope .sc-viz-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sc-scope .sc-viz-ctrl label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--sc-text2);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .sc-scope .sc-viz-slider-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sc-scope .sc-viz-slider-row input[type=range] {
+            flex: 1;
+            accent-color: var(--sc-accent);
+        }
+
+        .sc-scope .sc-viz-slider-row span {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--sc-accent);
+            min-width: 36px;
+            font-family: var(--sc-mono);
+        }
+
+        .sc-scope .sc-viz-legend {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .sc-scope .sc-viz-leg-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--sc-text2);
+        }
+
+        .sc-scope .sc-viz-leg-item span {
+            width: 24px;
+            height: 3px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .sc-scope .sc-viz-readout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .sc-scope .sc-viz-ro-item {
+            background: var(--sc-surface);
+            border: 1px solid var(--sc-border);
+            border-radius: 6px;
+            padding: 8px;
+        }
+
+        .sc-scope .sc-viz-ro-label {
+            color: var(--sc-text2);
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .sc-scope .sc-viz-ro-val {
+            font-size: 18px;
+            font-weight: 700;
+            font-family: var(--sc-mono);
+        }
+
+        .sc-scope .sc-worked-example {
+            border: 1px solid var(--sc-border);
+            border-radius: var(--sc-radius);
+            overflow: hidden;
+            margin: 14px 0;
+        }
+
+        .sc-scope .sc-we-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--sc-border);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .sc-scope .sc-we-row:last-child {
+            border-bottom: none;
+        }
+
+        .sc-scope .sc-we-nb { border-left: 3px solid #2a78d6; }
+        .sc-scope .sc-we-mu { border-left: 3px solid #1baf7a; }
+        .sc-scope .sc-we-po { border-left: 3px solid #e34948; }
+
+        .sc-scope .sc-we-model {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--sc-text2);
+            min-width: 90px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .sc-scope .sc-we-steps {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .sc-scope .sc-we-step {
+            font-family: var(--sc-mono);
+            font-size: 12px;
+            color: var(--sc-text);
+            background: var(--sc-surface2);
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--sc-border);
+            white-space: nowrap;
+        }
+
+        .sc-scope .sc-we-arrow {
+            color: var(--sc-text2);
+            font-size: 14px;
+        }
+
+        .sc-scope .sc-we-result {
+            font-family: var(--sc-mono);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--sc-good);
+        }
+
+        .sc-scope .sc-footnote {
+            text-align: center;
+            font-size: 11px;
+            color: var(--sc-text2);
+            margin-top: 24px;
+            line-height: 1.6;
+        }
+
+        .sc-scope .sc-card.readme h2 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--sc-accent);
+            margin-top: 20px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--sc-border);
+            padding-bottom: 6px;
+        }
+
+        .sc-scope .sc-card.readme h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--sc-accent2);
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        .sc-scope .sc-card.readme p {
+            font-size: 13px;
+            color: var(--sc-text);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .sc-scope .sc-card.readme ul, .sc-scope .sc-card.readme ol {
+            padding-left: 20px;
+            font-size: 13px;
+            color: var(--sc-text);
+            margin-bottom: 12px;
+        }
+
+        .sc-scope .sc-card.readme li {
+            margin-bottom: 6px;
+        }
+
+        /* Scoped Glossary Styles */
+        .sc-scope .sc-glossary-item {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .sc-scope .sc-glossary-term {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            user-select: none;
+        }
+        .sc-scope .sc-glossary-term .sc-abbr {
+            color: var(--sc-accent);
+            font-family: monospace;
+            margin-right: 10px;
+            font-size: 13px;
+        }
+        .sc-scope .sc-glossary-term .sc-chevron {
+            color: var(--text-secondary);
+            font-size: 12px;
+            transition: transform 0.2s;
+        }
+        .sc-scope .sc-glossary-body {
+            display: none;
+            padding: 14px 16px;
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.7;
+            border-top: 1px solid var(--border-color);
+        }
+        .sc-scope .sc-glossary-body.open {
+            display: block;
+        }
+        .sc-scope .sc-glossary-term.open .sc-chevron {
+            transform: rotate(180deg);
+        }
+
+        .theme-toggle-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            border-color: var(--color-blue) !important;
+        }
+        .theme-toggle-btn:active {
+            transform: translateY(0);
+        }
+
 </style>
 </head>
 <body>
@@ -1402,6 +2487,11 @@
             <h1 id="mainTitleHeader">8D Problem Solving & Process Capability Dashboard</h1>
             <p id="subTitleHeader">Interactive engineering simulation & structured task management for quality teaching</p>
         </div>
+        <div class="header-actions" style="display: flex; gap: 8px; align-items: center;">
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleDashboardTheme()" style="background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+                ☀️ Light Mode
+            </button>
+        </div>
         <div class="tab-navigation">
         <button class="tab-btn active" data-tab="d8" onclick="switchTab('d8')">📋 8D Problem Solving</button>
         <button class="tab-btn" data-tab="cpk" onclick="switchTab('cpk')">📈 Process Cpk</button>
@@ -1410,6 +2500,8 @@
         <button class="tab-btn" data-tab="msc" onclick="switchTab('msc')">🔍 Gage R&R (MSA)</button>
         <button class="tab-btn" data-tab="drift" onclick="switchTab('drift')">⏳ Device Drift & Shift</button>
         <button class="tab-btn" data-tab="qsh" onclick="switchTab('qsh')">📊 Quality Statistics Hub</button>
+        <button class="tab-btn" data-tab="report" onclick="switchTab('report')">📋 Project Report</button>
+        <button class="tab-btn" data-tab="yield" onclick="switchTab('yield')">💎 Wafer Yield Calc</button>
         <button class="tab-btn" data-tab="help" onclick="switchTab('help')">📖 Help / Readme</button>
         </div>
     </header>
@@ -2783,6 +3875,648 @@
             </div>
         </div>
 
+        <!-- PANEL 7: PROJECT REPORT -->
+        <div class="panel hidden pr-scope" id="reportPanel">
+            <div class="pr-container">
+                <div class="pr-report-header">
+                    <div class="pr-header-left">
+                        <div class="pr-report-title">PROJECT STATUS REPORT</div>
+                        <div class="pr-report-meta">Generated: <span id="prDate"></span></div>
+                    </div>
+                    <div class="pr-header-controls">
+                        <button class="pr-control-btn" id="prLoadDemoBtn">📋 Demo</button>
+                        <button class="pr-control-btn" id="prNewProjectBtn">✨ Clean</button>
+                    </div>
+                </div>
+
+                <div class="pr-tabs">
+                    <button class="pr-tab-button active" data-tab="prTabOverview">Overview</button>
+                    <button class="pr-tab-button" data-tab="prTabMilestones">Milestones</button>
+                    <button class="pr-tab-button" data-tab="prTabActions">Actions</button>
+                    <button class="pr-tab-button" data-tab="prTabEdit">Edit</button>
+                    <button class="pr-tab-button" data-tab="prTabHelp">Help</button>
+                </div>
+
+                <div class="pr-content">
+                    <!-- OVERVIEW TAB -->
+                    <div class="pr-tab-panel active" id="prTabOverview">
+                        <h2>Project Information</h2>
+                        <div class="pr-info-row">
+                            <div class="pr-info-item">
+                                <div class="pr-info-label">Project Name</div>
+                                <div class="pr-info-value" id="prDisplayProjectName">—</div>
+                            </div>
+                            <div class="pr-info-item">
+                                <div class="pr-info-label">Status</div>
+                                <div class="pr-info-value"><span class="pr-status-badge" id="prDisplayStatus">—</span></div>
+                            </div>
+                            <div class="pr-info-item">
+                                <div class="pr-info-label">Project Manager</div>
+                                <div class="pr-info-value" id="prDisplayProjManager">—</div>
+                            </div>
+                            <div class="pr-info-item">
+                                <div class="pr-info-label">BL/PL</div>
+                                <div class="pr-info-value" id="prDisplayBLPL">—</div>
+                            </div>
+                            <div class="pr-info-item">
+                                <div class="pr-info-label">DRI</div>
+                                <div class="pr-info-value" id="prDisplayDRI">—</div>
+                            </div>
+                            <div class="pr-info-item">
+                                <div class="pr-info-label">Business Owner</div>
+                                <div class="pr-info-value" id="prDisplayBusinessOwner">—</div>
+                            </div>
+                            <div class="pr-info-item">
+                                <div class="pr-info-label">Objective</div>
+                                <div class="pr-info-value" id="prDisplayObjective">—</div>
+                            </div>
+                        </div>
+
+                        <h3>Background</h3>
+                        <div class="pr-highlight" id="prDisplayBackground">
+                            No data
+                        </div>
+
+                        <div class="pr-highlight" id="prDisplayHighlight">
+                            <strong>Lowlights / Issues:</strong> No data
+                        </div>
+
+                        <h3>Milestones</h3>
+                        <table id="prOverviewMilestones" class="compact-table">
+                            <thead>
+                                <tr>
+                                    <th>Milestone</th>
+                                    <th>Week</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                        <h3>Actions & Recommendations</h3>
+                        <table id="prOverviewActions" class="compact-table">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Owner</th>
+                                    <th>Due</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- MILESTONES TAB -->
+                    <div class="pr-tab-panel" id="prTabMilestones">
+                        <h2>All Milestones</h2>
+                        <table id="prMilestonesTable">
+                            <thead>
+                                <tr>
+                                    <th>Milestone</th>
+                                    <th>Week</th>
+                                    <th>Status</th>
+                                    <th style="width: 80px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <button class="add-btn" id="prAddMilestoneBtn">+ Add Milestone</button>
+                    </div>
+
+                    <!-- ACTIONS TAB -->
+                    <div class="pr-tab-panel" id="prTabActions">
+                        <h2>Actions & Recommendations</h2>
+                        <table id="prActionsTable">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Owner</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th style="width: 80px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <button class="add-btn" id="prAddActionBtn">+ Add Action</button>
+                    </div>
+
+                    <!-- EDIT TAB -->
+                    <div class="pr-tab-panel" id="prTabEdit">
+                        <h2>Edit Project Information</h2>
+                        <form id="prEditForm">
+                            <div class="pr-info-row">
+                                <div class="pr-form-group">
+                                    <label>Project Name</label>
+                                    <input type="text" id="prEditProjectName">
+                                </div>
+                                <div class="pr-form-group">
+                                    <label>Project Manager</label>
+                                    <input type="text" id="prEditProjManager">
+                                </div>
+                                <div class="pr-form-group">
+                                    <label>BL/PL</label>
+                                    <input type="text" id="prEditBLPL">
+                                </div>
+                            </div>
+
+                            <div class="pr-info-row">
+                                <div class="pr-form-group">
+                                    <label>Business Owner</label>
+                                    <input type="text" id="prEditBusinessOwner">
+                                </div>
+                                <div class="pr-form-group">
+                                    <label>DRI</label>
+                                    <input type="text" id="prEditDRI">
+                                </div>
+                            </div>
+
+                            <div class="pr-form-group">
+                                <label>Objective</label>
+                                <textarea id="prEditObjective"></textarea>
+                            </div>
+
+                            <div class="pr-form-group">
+                                <label>Background</label>
+                                <textarea id="prEditBackground" placeholder="Project background, context, why it started..."></textarea>
+                            </div>
+
+                            <div class="pr-form-group">
+                                <label>Status</label>
+                                <select id="prEditStatusSelect">
+                                    <option value="Running">Running</option>
+                                    <option value="At Risk">At Risk</option>
+                                    <option value="Paused">Paused</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+
+                            <div class="pr-form-group">
+                                <label>Lowlights / Issues</label>
+                                <textarea id="prEditHighlight"></textarea>
+                            </div>
+
+                            <div class="pr-button-group">
+                                <button type="button" class="pr-control-btn pr-btn-primary" id="prSaveBtn" style="background: var(--pr-accent); color: #0b0f19;">Save Changes</button>
+                                <button type="button" class="pr-control-btn" id="prExportBtn">📥 Export JSON</button>
+                                <button type="button" class="pr-control-btn" id="prImportBtn">📤 Import JSON</button>
+                            </div>
+                        </form>
+                        <input type="file" id="prFileInput" accept=".json" style="display:none;">
+                    </div>
+
+                    <!-- HELP TAB -->
+                    <div class="pr-tab-panel" id="prTabHelp">
+                        <h2>How to Use This Report</h2>
+                        <h3>Top Right Buttons</h3>
+                        <div class="pr-highlight">
+                            <strong>📋 Demo</strong> — Loads sample project data so you can see how the report looks when filled in.<br><br>
+                            <strong>✨ Clean</strong> — Wipes all current data and gives you a blank project to start fresh. Use this before entering your own data.
+                        </div>
+
+                        <h3>Tabs</h3>
+                        <div class="pr-highlight">
+                            <strong>Overview</strong> — Read-only summary of everything: project info, status, background, lowlights/issues, all milestones, and all actions. This is the page to review or print.<br><br>
+                            <strong>Milestones</strong> — Add or delete milestone entries (name, week, status).<br><br>
+                            <strong>Actions</strong> — Add or delete action/recommendation entries (action, owner, due date).<br><br>
+                            <strong>Edit</strong> — Update core project fields (name, manager, BL/PL, owner, DRI, objective, background, status, lowlights).<br><br>
+                            <strong>Help</strong> — This page.
+                        </div>
+
+                        <h3>Typical Workflow</h3>
+                        <div class="pr-highlight">
+                            1. Click <strong>✨ Clean</strong> to start a new project.<br>
+                            2. Go to <strong>Edit</strong> and fill in project details, then click <strong>Save Changes</strong>.<br>
+                            3. Go to <strong>Milestones</strong> and click <strong>+ Add Milestone</strong> for each milestone.<br>
+                            4. Go to <strong>Actions</strong> and click <strong>+ Add Action</strong> for each action item.<br>
+                            5. Check <strong>Overview</strong> to review the full report.<br>
+                            6. Click <strong>Export JSON</strong> (in Edit tab) to save a backup file.
+                        </div>
+
+                        <h3>Saving & Loading Old Projects</h3>
+                        <div class="pr-highlight">
+                            <strong>Export JSON</strong> — Downloads your current project as a .json file. Keep this file safe as your backup.<br><br>
+                            <strong>Import JSON</strong> — Upload a previously exported .json file to restore that project. This replaces whatever is currently loaded, so export first if you want to keep it.<br><br>
+                            Your data also auto-saves to this browser via localStorage, so closing and reopening the page keeps your data — but only on the same browser/device. Use Export/Import to move data between devices or keep permanent backups.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL 8: WAFER YIELD CALCULATOR -->
+        <div class="panel hidden sc-scope" id="yieldPanel">
+            <div class="sc-tab-bar">
+                <button class="sc-tab-btn active" onclick="scSwitchTab('calc', this)">⚙️ Calculator</button>
+                <button class="sc-tab-btn" onclick="scSwitchTab('readme', this)">📖 Guide</button>
+                <button class="sc-tab-btn" onclick="scSwitchTab('glossary', this)">📚 Glossary</button>
+            </div>
+
+            <!-- CALCULATOR TAB -->
+            <div class="sc-tab-panel active" id="scTab-calc">
+                <div class="sc-card">
+                    <div class="sc-card-title"><span>🏭</span> Wafer Parameters</div>
+                    <div class="sc-form-grid">
+                        <div class="sc-field">
+                            <label>Wafer Diameter</label>
+                            <select id="scWaferSize" onchange="scUpdateWaferRadius()">
+                                <option value="100">4 inch (100 mm)</option>
+                                <option value="150">6 inch (150 mm)</option>
+                                <option value="200">8 inch (200 mm)</option>
+                                <option value="300" selected>12 inch (300 mm)</option>
+                                <option value="450">18 inch (450 mm)</option>
+                            </select>
+                            <div class="sc-field-desc">Standard industry wafer size</div>
+                        </div>
+                        <div class="sc-field">
+                            <label>Edge Exclusion (mm)</label>
+                            <input type="number" id="scEdgeExcl" value="3" min="0" max="20" step="0.5">
+                            <div class="sc-field-desc">Unusable edge margin (typically 2–5 mm)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sc-card">
+                    <div class="sc-card-title"><span>🔲</span> Die Parameters</div>
+                    <div class="sc-form-grid">
+                        <div class="sc-field">
+                            <label>Die Width (mm)</label>
+                            <input type="number" id="scDieW" value="15" min="0.1" max="100" step="0.1">
+                            <div class="sc-field-desc">Single die width on wafer</div>
+                        </div>
+                        <div class="sc-field">
+                            <label>Die Height (mm)</label>
+                            <input type="number" id="scDieH" value="15" min="0.1" max="100" step="0.1">
+                            <div class="sc-field-desc">Single die height on wafer</div>
+                        </div>
+                        <div class="sc-field">
+                            <label>Scribe Lane Width (µm)</label>
+                            <input type="number" id="scScribe" value="80" min="10" max="300" step="10">
+                            <div class="sc-field-desc">Saw cut gap between dies</div>
+                        </div>
+                        <div class="sc-field">
+                            <label>Process Node (nm)</label>
+                            <input type="number" id="scNode" value="7" min="1" max="350" step="1">
+                            <div class="sc-field-desc">Min. feature size (affects D₀)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sc-card">
+                    <div class="sc-card-title"><span>🦠</span> Defect Parameters</div>
+                    <div class="sc-form-grid">
+                        <div class="sc-field">
+                            <label>D₀ — Defect Density (def/cm²)</label>
+                            <input type="number" id="scD0" value="0.1" min="0.001" max="10" step="0.001">
+                            <div class="sc-field-desc">Fab-level random defect density</div>
+                        </div>
+                        <div class="sc-field">
+                            <label>α — Clustering Factor</label>
+                            <input type="number" id="scAlpha" value="3" min="0.1" max="20" step="0.1">
+                            <div class="sc-field-desc">Defect clustering (higher = more clustered; 2–5 typical)</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:16px">
+                        <div class="sc-card-title" style="margin-bottom:10px"><span>📐</span> Yield Model</div>
+                        <div class="sc-model-selector">
+                            <button class="sc-model-btn active" id="scModelBtn-nb" onclick="scSetModel('nb',this)">Negative Binomial<br><small style="font-weight:400;font-size:10px">Industry standard</small></button>
+                            <button class="sc-model-btn" id="scModelBtn-murphy" onclick="scSetModel('murphy',this)">Murphy's<br><small style="font-weight:400;font-size:10px">Empirical classic</small></button>
+                            <button class="sc-model-btn" id="scModelBtn-poisson" onclick="scSetModel('poisson',this)">Poisson<br><small style="font-weight:400;font-size:10px">Worst-case bound</small></button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="sc-calc-btn" onclick="scCalculate()">⚡ Calculate Yield & GPPW</button>
+
+                <div class="sc-card" id="scResultsCard" style="display:none">
+                    <div class="sc-card-title"><span>📊</span> Results</div>
+                    <div class="sc-results-grid">
+                        <div class="sc-result-item">
+                            <div class="sc-result-label">Die Area</div>
+                            <div class="sc-result-value" id="scRDieArea" style="color:var(--sc-accent2)">—</div>
+                            <div class="sc-result-unit">mm²</div>
+                        </div>
+                        <div class="sc-result-item">
+                            <div class="sc-result-label">Dies / Wafer (gross)</div>
+                            <div class="sc-result-value" id="scRDpw" style="color:var(--sc-accent)">—</div>
+                            <div class="sc-result-unit">DPW</div>
+                        </div>
+                        <div class="sc-result-item">
+                            <div class="sc-result-label">Yield</div>
+                            <div class="sc-result-value" id="scRYield">—</div>
+                            <div class="sc-result-unit">%</div>
+                        </div>
+                        <div class="sc-result-item">
+                            <div class="sc-result-label">Good Parts / Wafer</div>
+                            <div class="sc-result-value" id="scRGppw">—</div>
+                            <div class="sc-result-unit">GPPW</div>
+                        </div>
+                    </div>
+
+                    <div class="sc-yield-bar-wrap">
+                        <div class="sc-yield-bar-label">
+                            <span>Yield Health</span>
+                            <span id="scRYieldPct">—</span>
+                        </div>
+                        <div class="sc-yield-bar-track">
+                            <div class="sc-yield-bar-fill" id="scYieldBar" style="width:0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="sc-formula-box" id="scFormulaDisplay"></div>
+                </div>
+            </div>
+
+            <!-- README TAB -->
+            <div class="sc-tab-panel" id="scTab-readme">
+                <div class="sc-card readme">
+                    <h2>What Is This Tool?</h2>
+                    <p>This calculator estimates how many good, working chips (dies) come off a silicon wafer after manufacturing. It models the real-world relationship between wafer size, die dimensions, defect density, and yield — the key economics of semiconductor manufacturing.</p>
+
+                    <div class="sc-tip">💡 <strong>Tip:</strong> Start with the Calculator tab. Enter your parameters and hit Calculate. Use this Guide tab to understand what each value means.</div>
+
+                    <h2>How to Use</h2>
+                    <ol>
+                        <li>Choose your <strong>Wafer Diameter</strong> — larger wafers hold more dies and lower per-die cost.</li>
+                        <li>Set your <strong>Die Width & Height</strong> in millimeters — your chip's physical footprint.</li>
+                        <li>Set <strong>Scribe Lane Width</strong> — the gap cut between dies (typically 60–100 µm).</li>
+                        <li>Enter <strong>D₀ (Defect Density)</strong> — how many random defects per cm² your fab produces.</li>
+                        <li>Enter <strong>α (Clustering Factor)</strong> — how clustered defects are (2–5 is typical).</li>
+                        <li>Pick a <strong>Yield Model</strong> — Negative Binomial is the industry standard.</li>
+                        <li>Click <strong>Calculate</strong> — results show instantly.</li>
+                    </ol>
+
+                    <h2>Understanding the Inputs</h2>
+                    <h3>Wafer Size</h3>
+                    <p>Silicon wafers come in standard diameters. Larger wafers have more usable area and lower per-die manufacturing cost because fixed costs (lithography, cleaning, inspection) are spread over more dies. The semiconductor industry transitioned from 8" (200 mm) to 12" (300 mm) wafers in the 2000s. 18" (450 mm) wafers exist but are not yet in mass production.</p>
+
+                    <h3>Die Size (Width × Height)</h3>
+                    <p>This is the physical size of one chip on the wafer. Bigger dies cost more because:</p>
+                    <ul>
+                        <li>Fewer fit on a wafer → fewer units per wafer</li>
+                        <li>Larger area = higher chance of hitting a defect → lower yield</li>
+                    </ul>
+                    <p>GPU dies are often 400–800 mm². Mobile SoCs are typically 60–120 mm².</p>
+
+                    <h3>Scribe Lane Width</h3>
+                    <p>The narrow street between dies where a diamond saw cuts them apart. This space is "wasted" area — not a die, not useful. Reducing it reclaims area for more dies, but requires precision cutting. Typical values: 60–100 µm.</p>
+
+                    <h3>Process Node (nm)</h3>
+                    <p>The minimum feature size of the transistors. Smaller nodes pack more transistors per mm² but have higher D₀ initially (process immaturity), higher mask costs, and require advanced lithography (EUV below 7nm). This field is informational — used in the formula display for context.</p>
+
+                    <h3>D₀ — Defect Density</h3>
+                    <p>The number of random, fatal defects per cm² the fab produces. This is the single most important fab quality metric. Mature processes have D₀ around 0.01–0.05 def/cm². New processes can start at 0.5–2.0+ def/cm² until they stabilize.</p>
+
+                    <table>
+                        <tr><th>D₀ Range</th><th>Interpretation</th></tr>
+                        <tr><td><code>&lt; 0.05</code></td><td>Excellent — mature, high-volume process</td></tr>
+                        <tr><td><code>0.05 – 0.2</code></td><td>Good — established process</td></tr>
+                        <tr><td><code>0.2 – 0.5</code></td><td>Fair — ramping or aging process</td></tr>
+                        <tr><td><code>&gt; 0.5</code></td><td>Poor — early development or process issues</td></tr>
+                    </table>
+
+                    <h3>α — Clustering Factor</h3>
+                    <p>Real-world defects don't spread randomly — they cluster around contamination events, equipment faults, or edge effects. The α parameter in the Negative Binomial model captures this:</p>
+                    <ul>
+                        <li><strong>Low α (0.5–1)</strong>: defects are highly clustered — one bad spot kills many dies together but leaves others untouched → better yield than Poisson predicts</li>
+                        <li><strong>High α (10–20)</strong>: defects are nearly random → approaches Poisson model</li>
+                        <li><strong>Typical: 2–5</strong> for most production processes</li>
+                    </ul>
+
+                    <h2>Yield Models Explained</h2>
+                    <p>Three models exist for estimating yield. Each makes a different assumption about how defects are distributed across a wafer.</p>
+
+                    <div class="sc-fml-grid">
+                        <div class="sc-fml-card sc-fml-nb">
+                            <div class="sc-fml-badge">Industry standard</div>
+                            <div class="sc-fml-name">Negative Binomial</div>
+                            <div class="sc-fml-eq">
+                                <span class="sc-fml-y">Y</span>
+                                <span class="sc-fml-op">=</span>
+                                <div class="sc-fml-frac">
+                                    <div class="sc-fml-num">1</div>
+                                    <div class="sc-fml-den">
+                                        <span>(1 + </span>
+                                        <span class="sc-fml-var">D₀</span>
+                                        <span> × </span>
+                                        <span class="sc-fml-var">A</span>
+                                        <span> / </span>
+                                        <span class="sc-fml-var">α</span>
+                                        <span>)</span>
+                                        <sup class="sc-fml-var">α</sup>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-fml-params">
+                                <div class="sc-fml-param"><span class="sc-fml-pk">D₀</span><span class="sc-fml-pv">defect density (def/cm²)</span></div>
+                                <div class="sc-fml-param"><span class="sc-fml-pk">A</span><span class="sc-fml-pv">die area (cm²)</span></div>
+                                <div class="sc-fml-param"><span class="sc-fml-pk">α</span><span class="sc-fml-pv">clustering factor (&gt; 0)</span></div>
+                            </div>
+                            <div class="sc-fml-note">Accounts for defect clustering. α → ∞ converges to Poisson.</div>
+                        </div>
+
+                        <div class="sc-fml-card sc-fml-murphy">
+                            <div class="sc-fml-badge sc-fml-badge-m">Empirical classic</div>
+                            <div class="sc-fml-name">Murphy's Model</div>
+                            <div class="sc-fml-eq">
+                                <span class="sc-fml-y">Y</span>
+                                <span class="sc-fml-op">=</span>
+                                <div class="sc-fml-outer-sq">
+                                    <div class="sc-fml-bracket">[</div>
+                                    <div class="sc-fml-frac">
+                                        <div class="sc-fml-num">1 − e<sup>−<span class="sc-fml-var">D₀</span>·<span class="sc-fml-var">A</span></sup></div>
+                                        <div class="sc-fml-den"><span class="sc-fml-var">D₀</span> × <span class="sc-fml-var">A</span></div>
+                                    </div>
+                                    <div class="sc-fml-bracket">]</div>
+                                    <sup class="sc-fml-exp">2</sup>
+                                </div>
+                            </div>
+                            <div class="sc-fml-params">
+                                <div class="sc-fml-param"><span class="sc-fml-pk">D₀</span><span class="sc-fml-pv">defect density (def/cm²)</span></div>
+                                <div class="sc-fml-param"><span class="sc-fml-pk">A</span><span class="sc-fml-pv">die area (cm²)</span></div>
+                            </div>
+                            <div class="sc-fml-note">Triangular D₀ distribution. No clustering param — useful when α is unknown.</div>
+                        </div>
+
+                        <div class="sc-fml-card sc-fml-poisson">
+                            <div class="sc-fml-badge sc-fml-badge-p">Worst-case bound</div>
+                            <div class="sc-fml-name">Poisson Model</div>
+                            <div class="sc-fml-eq" style="align-items:center">
+                                <span class="sc-fml-y">Y</span>
+                                <span class="sc-fml-op">=</span>
+                                <span style="font-size:26px;letter-spacing:-1px">e<sup style="font-size:13px">−<span class="sc-fml-var">D₀</span>·<span class="sc-fml-var">A</span></sup></span>
+                            </div>
+                            <div class="sc-fml-params">
+                                <div class="sc-fml-param"><span class="sc-fml-pk">D₀</span><span class="sc-fml-pv">defect density (def/cm²)</span></div>
+                                <div class="sc-fml-param"><span class="sc-fml-pk">A</span><span class="sc-fml-pv">die area (cm²)</span></div>
+                            </div>
+                            <div class="sc-fml-note">Fully random defects assumed. Pessimistic — gives a lower-bound on yield.</div>
+                        </div>
+                    </div>
+
+                    <h3 style="color:var(--sc-accent2);margin-top:24px">📐 Deep Dive: The Negative Binomial Model</h3>
+                    <p>The NB model is the industry standard because it matches what engineers actually observe on real wafers. Its core insight: defects don't scatter randomly — they <em>cluster</em>.</p>
+
+                    <h3>Why Poisson falls short</h3>
+                    <p>Poisson assumes each wafer point has an equal, independent defect probability. That's statistically clean but physically wrong. Defects come from discrete events — a contaminated bath, a worn machine part, an ESD spike — each damaging a localized region. One event can kill 5–20 adjacent dies while the rest of the wafer stays clean. Poisson can't model this, so it underestimates yield.</p>
+
+                    <h3>The statistical foundation</h3>
+                    <p>NB is best understood as a <strong>Poisson-Gamma mixture</strong>: D₀ isn't a fixed constant — it varies region-to-region following a Gamma distribution. Some zones have very high local D₀ (contaminated), most have near-zero. The α parameter controls how wide that Gamma spread is. Integrating over all possible local densities yields the Negative Binomial distribution naturally.</p>
+
+                    <!-- ALPHA VISUAL -->
+                    <div class="sc-alpha-visual">
+                        <div class="sc-alpha-row">
+                            <div class="sc-alpha-col">
+                                <div class="sc-alpha-label">Low α (0.5–1) — highly clustered</div>
+                                <div class="wafer-mini" id="scWmLow"></div>
+                                <div class="sc-alpha-desc">Defects bunch together in a few hot zones. Most dies are untouched → yield higher than Poisson predicts</div>
+                            </div>
+                            <div class="sc-alpha-col">
+                                <div class="sc-alpha-label">High α (10+) — nearly random</div>
+                                <div class="wafer-mini" id="scWmHigh"></div>
+                                <div class="sc-alpha-desc">Defects spread evenly. Every die faces roughly equal risk → converges to Poisson</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Understanding α — the clustering factor</h3>
+                    <table>
+                        <tr><th>α range</th><th>Pattern</th><th>Typical root cause</th><th>vs. Poisson</th></tr>
+                        <tr><td><code>0.5–1</code></td><td>Highly clustered</td><td>Particle bursts, CMP slurry events, ESD</td><td>Significantly higher</td></tr>
+                        <tr><td><code>1–3</code></td><td>Moderately clustered</td><td>Mixed contamination, edge effects</td><td>Noticeably higher</td></tr>
+                        <tr><td><code>3–6</code></td><td>Mildly clustered</td><td>Stable equipment, mature process</td><td>Moderately higher</td></tr>
+                        <tr><td><code>10–20</code></td><td>Nearly random</td><td>Diffusion-limited defects, cosmic rays</td><td>≈ Same</td></tr>
+                        <tr><td><code>∞</code></td><td>Fully random</td><td>Theoretical limit</td><td>Identical to Poisson</td></tr>
+                    </table>
+                    <p style="margin-top:10px">As α → ∞, the NB formula converges to Poisson. Mathematically: <code>lim(α→∞) [1/(1+x/α)]^α = e^(−x)</code> where <code>x = D₀ × A</code>.</p>
+
+                    <!-- INTERACTIVE CHART -->
+                    <h3>Live model comparison</h3>
+                    <p>Adjust D₀ and α to see how the three models diverge as die size grows.</p>
+
+                    <div class="sc-viz-card">
+                        <div class="sc-viz-controls">
+                            <div class="sc-viz-ctrl">
+                                <label>D₀ (def/cm²)</label>
+                                <div class="sc-viz-slider-row">
+                                    <input type="range" id="scVD0" min="0.01" max="0.5" step="0.01" value="0.1" oninput="scUpdateViz()">
+                                    <span id="scVD0out">0.10</span>
+                                </div>
+                            </div>
+                            <div class="sc-viz-ctrl">
+                                <label>α (clustering)</label>
+                                <div class="sc-viz-slider-row">
+                                    <input type="range" id="scVAlpha" min="0.5" max="15" step="0.5" value="3" oninput="scUpdateViz()">
+                                    <span id="scVAlphaout">3.0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc-viz-legend">
+                            <span class="sc-viz-leg-item"><span style="background:#2a78d6"></span>Negative Binomial</span>
+                            <span class="sc-viz-leg-item"><span style="background:#1baf7a"></span>Murphy's</span>
+                            <span class="sc-viz-leg-item"><span style="background:#e34948"></span>Poisson</span>
+                        </div>
+                        <div style="position:relative;width:100%;height:260px;margin-bottom:12px;">
+                            <canvas id="scVizChart" role="img" aria-label="Yield vs die area for three semiconductor yield models">Interactive chart showing yield curves for Negative Binomial, Murphy's, and Poisson models.</canvas>
+                        </div>
+                        <div class="sc-viz-readout" id="scVizReadout"></div>
+                    </div>
+
+                    <h3>Worked example</h3>
+                    <p>D₀ = 0.1 def/cm², die = 15 × 15 mm = 2.25 cm², α = 3:</p>
+
+                    <div class="sc-worked-example">
+                        <div class="sc-we-row sc-we-nb">
+                            <div class="sc-we-model">Neg. Binomial</div>
+                            <div class="sc-we-steps">
+                                <span class="sc-we-step">1 / (1 + 0.1 × 2.25 / 3)³</span>
+                                <span class="sc-we-arrow">→</span>
+                                <span class="sc-we-step">1 / (1.075)³</span>
+                                <span class="sc-we-arrow">→</span>
+                                <span class="sc-we-result">75.9%</span>
+                            </div>
+                        </div>
+                        <div class="sc-we-row sc-we-mu">
+                            <div class="sc-we-model">Murphy's</div>
+                            <div class="sc-we-steps">
+                                <span class="sc-we-step">[(1−e^−0.225) / 0.225]²</span>
+                                <span class="sc-we-arrow">→</span>
+                                <span class="sc-we-result">78.1%</span>
+                            </div>
+                        </div>
+                        <div class="sc-we-row sc-we-po">
+                            <div class="sc-we-model">Poisson</div>
+                            <div class="sc-we-steps">
+                                <span class="sc-we-step">e^(−0.1 × 2.25)</span>
+                                <span class="sc-we-arrow">→</span>
+                                <span class="sc-we-step">e^(−0.225)</span>
+                                <span class="sc-we-arrow">→</span>
+                                <span class="sc-we-result">79.9%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sc-tip">⚠️ <strong>NB isn't always the highest.</strong> At α = 3 above, NB actually gives the lowest yield. The clustering advantage is strongest when α &lt; 1 and D₀ × A is large — meaning many defects hitting a small fraction of the wafer area. Try α = 0.5 in the chart above to see this flip.</div>
+
+                    <h3>How to extract α in practice</h3>
+                    <ol>
+                        <li>Collect yield data (Y) across multiple lots, with known D₀ and die area A per lot.</li>
+                        <li>Rearrange the NB formula or use nonlinear least-squares fitting to solve for α per lot.</li>
+                        <li>Average across lots to characterize the process.</li>
+                    </ol>
+                    <p>New nodes often show high α (random-looking defects) during development. As the process matures and contamination sources are isolated, α drops — paradoxically meaning defects become <em>more</em> clustered but <em>fewer</em>, which improves yield.</p>
+
+                    <h3>NB vs. Murphy's: which to use?</h3>
+                    <ul>
+                        <li>NB has a physically motivated basis (Poisson-Gamma mixture); Murphy's is purely empirical</li>
+                        <li>α is tunable and extractable; Murphy's has no equivalent knob</li>
+                        <li>NB fits modern fabs better, especially at D₀ &lt; 0.05 def/cm²</li>
+                        <li>NB handles extreme clustering (α &lt; 1); Murphy's cannot</li>
+                    </ul>
+                    <p>Murphy's is still a fast sanity check when α is unknown, sitting between Poisson (pessimistic) and NB (realistic).</p>
+
+                    <h2>Reading the Results</h2>
+                    <ul>
+                        <li><strong>Die Area</strong> — total area of one die including scribe lanes</li>
+                        <li><strong>DPW (Dies Per Wafer)</strong> — gross count of dies that physically fit, before yield</li>
+                        <li><strong>Yield %</strong> — probability a random die is functional</li>
+                        <li><strong>GPPW</strong> — Good Parts Per Wafer = DPW × Yield — actual sellable chips</li>
+                    </ul>
+
+                    <div class="sc-tip">📈 <strong>Cost insight:</strong> Die cost ≈ (Wafer cost) / GPPW + Test cost. Doubling yield halves die cost — yield improvement is often more valuable than shrinking to a smaller node.</div>
+
+                    <h2>Typical Values Reference</h2>
+                    <table>
+                        <tr><th>Product</th><th>Die Size</th><th>Node</th><th>Wafer</th><th>Est. Yield</th></tr>
+                        <tr><td>Mobile SoC</td><td>~80 mm²</td><td>4–5 nm</td><td>300 mm</td><td>70–85%</td></tr>
+                        <tr><td>High-end GPU</td><td>500–800 mm²</td><td>4–5 nm</td><td>300 mm</td><td>40–65%</td></tr>
+                        <tr><td>MCU</td><td>5–20 mm²</td><td>28–40 nm</td><td>200 mm</td><td>90–98%</td></tr>
+                        <tr><td>Server CPU</td><td>200–400 mm²</td><td>4–7 nm</td><td>300 mm</td><td>60–80%</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- GLOSSARY TAB -->
+            <div class="sc-tab-panel" id="scTab-glossary">
+                <div class="sc-card">
+                    <div class="sc-card-title"><span>📚</span> Terms & Definitions</div>
+                    <p style="font-size:13px;color:var(--sc-text2);margin-bottom:16px">Tap any term to expand its explanation.</p>
+
+                    <div id="scGlossaryList"></div>
+                </div>
+            </div>
+
+            <div class="sc-footnote">
+                Formulas based on industry-standard semiconductor yield models.<br>
+                All calculations are client-side. No data is transmitted.
+            </div>
+        </div>
+
         <div class="panel hidden" id="helpPanel">
             <div class="help-container">
                 <div class="help-section collapsible open">
@@ -3058,6 +4792,41 @@
                     </div>
                 </div>
 
+                <!-- Project Status Report Collapsible -->
+                <div class="help-section collapsible">
+                    <button class="help-section-btn" onclick="toggleSection(this)">📋 Project Status Report Tool</button>
+                    <div class="help-section-content">
+                        <div class="help-section-body">
+                            <p>
+                                The <strong>Project Status Report</strong> tool provides a standardized format to document and share the status of qualification and quality engineering projects (such as PPAP, process improvements, or containment qualification).
+                            </p>
+                            <p>
+                                It is fully independent and features local browser auto-save, custom milestones tracking, action items with DRI assignment, and JSON export/import support.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wafer Yield Calculator Collapsible -->
+                <div class="help-section collapsible">
+                    <button class="help-section-btn" onclick="toggleSection(this)">💎 Wafer Yield Calculator Tool</button>
+                    <div class="help-section-content">
+                        <div class="help-section-body">
+                            <p>
+                                The <strong>Wafer Yield Calculator</strong> is a tool to model the economics and defects of silicon wafer manufacturing.
+                            </p>
+                            <p>
+                                It computes the theoretical Dies Per Wafer (DPW) and expected Good Parts Per Wafer (GPPW) based on die dimensions, scribe lane widths, edge exclusion, and defect density ($D_0$) using standard models:
+                            </p>
+                            <ul>
+                                <li><strong>Negative Binomial:</strong> The industry standard model. Incorporates the defect clustering factor ($\alpha$).</li>
+                                <li><strong>Murphy's Model:</strong> An empirical classic with triangular defect density distribution.</li>
+                                <li><strong>Poisson Model:</strong> A worst-case lower-bound assuming fully random defect distribution.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="help-section">
                     <h2>Frequently Asked Questions & Q&A</h2>
 
@@ -3323,6 +5092,8 @@
         document.getElementById('driftPanel').classList.add('hidden');
         document.getElementById('helpPanel').classList.add('hidden');
         document.getElementById('qshPanel').classList.add('hidden');
+        document.getElementById('reportPanel').classList.add('hidden');
+        document.getElementById('yieldPanel').classList.add('hidden');
  
         // Hide/Show Sidebars
         document.getElementById('cpkControls').classList.add('hidden');
@@ -3392,12 +5163,21 @@
             } else {
                 redrawDriftChartsOnly();
             }
+        } else if (tabId === 'report') {
+            document.getElementById('reportPanel').classList.remove('hidden');
+            document.getElementById('sidebarControls').classList.add('hidden');
+            document.getElementById('mainContainer').classList.add('full-width');
+        } else if (tabId === 'yield') {
+            document.getElementById('yieldPanel').classList.remove('hidden');
+            document.getElementById('sidebarControls').classList.add('hidden');
+            document.getElementById('mainContainer').classList.add('full-width');
+            scUpdateViz();
+            scDrawMiniWafers();
         } else if (tabId === 'help') {
             document.getElementById('helpPanel').classList.remove('hidden');
             document.getElementById('sidebarControls').classList.add('hidden');
             document.getElementById('mainContainer').classList.add('full-width');
         }
-
         syncSpecLimitRange();
         // Trigger mathjax formatting
         if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
@@ -3930,7 +5710,7 @@ function switch8dTab(tabId) {
         // Fish Head
         const head = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
         head.setAttribute("points", "540,115 540,235 600,175");
-        head.setAttribute("fill", "#151c2c");
+        head.setAttribute("fill", "var(--bg-secondary)");
         head.setAttribute("stroke", "#38bdf8");
         head.setAttribute("stroke-width", "2");
         svg.appendChild(head);
@@ -3942,7 +5722,7 @@ function switch8dTab(tabId) {
         rect.setAttribute("width", "110");
         rect.setAttribute("height", "100");
         rect.setAttribute("rx", "6");
-        rect.setAttribute("fill", "#151c2c");
+        rect.setAttribute("fill", "var(--bg-secondary)");
         rect.setAttribute("stroke", "#f87171");
         rect.setAttribute("stroke-width", "2");
         svg.appendChild(rect);
@@ -3951,7 +5731,7 @@ function switch8dTab(tabId) {
         const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
         textElement.setAttribute("x", "635");
         textElement.setAttribute("y", "145");
-        textElement.setAttribute("fill", "#f8fafc");
+        textElement.setAttribute("fill", "var(--text-primary)");
         textElement.setAttribute("font-size", "10");
         textElement.setAttribute("font-weight", "bold");
         textElement.setAttribute("text-anchor", "middle");
@@ -4020,14 +5800,14 @@ function switch8dTab(tabId) {
                 branchLine.setAttribute("y1", py);
                 branchLine.setAttribute("x2", px - 40);
                 branchLine.setAttribute("y2", py);
-                branchLine.setAttribute("stroke", "#4b5563");
+                branchLine.setAttribute("stroke", "var(--border-color)");
                 branchLine.setAttribute("stroke-width", "1");
                 svg.appendChild(branchLine);
 
                 const causeText = document.createElementNS("http://www.w3.org/2000/svg", "text");
                 causeText.setAttribute("x", px - 44);
                 causeText.setAttribute("y", py + 3);
-                causeText.setAttribute("fill", "#cbd5e1");
+                causeText.setAttribute("fill", "var(--text-primary)");
                 causeText.setAttribute("font-size", "9.5");
                 causeText.setAttribute("text-anchor", "end");
                 
@@ -6228,8 +8008,770 @@ function handleCpkDistChange() {
         Plotly.newPlot('driftBoxplotChart', tracesBox, layoutBox, { displayModeBar: false, responsive: true });
     }
 
+    // =========================================================================
+    // PROJECT STATUS REPORT MODULE
+    // =========================================================================
+    const PR_STORAGE_KEY = 'cpkn_project_report_data';
+
+    const prDefaultData = {
+        name: "New Qualification Project",
+        manager: "Quality Engineer",
+        blpl: "Automotive Products",
+        owner: "Operations Director",
+        dri: "Supplier Quality",
+        status: "Running",
+        date: new Date().toLocaleDateString(),
+        objective: "Define project objectives here...",
+        background: "Define project background/context here...",
+        highlight: "Lowlights or issues to note...",
+        milestones: [],
+        actions: []
+    };
+
+    const prDemoData = {
+        name: "Next-Gen Automotive ASIC Qual",
+        manager: "Jane Doe (QRA)",
+        blpl: "Automotive Business Unit",
+        owner: "VP of Engineering",
+        dri: "John Smith (FAB/Assembly)",
+        status: "At Risk",
+        date: new Date().toLocaleDateString(),
+        objective: "Complete AEC-Q100 Grade 1 qualification for the next-generation automotive ASIC before production ramp in Q4.",
+        background: "The project was initiated to qualify our new 7nm automotive controller. Early silicon showed minor thermal drift issues which required a metal mask change. We are currently tracking the reliability stress testing phase (TC, HAST, HTOL) across three assembly lots.",
+        highlight: "1. ESD HBM failed at 2000V on assembly Lot 2 (target 2000V pass). Under investigation; might require ESD diode layout modification in next revision.\n2. Assembly package substrate delivery delayed by 2 weeks due to vendor logistics.",
+        milestones: [
+            { text: "Tapeout (Rev B)", week: "W12", status: "Completed" },
+            { text: "Silicon Delivery", week: "W20", status: "Completed" },
+            { text: "ESD/LU Pre-test", week: "W24", status: "At Risk" },
+            { text: "HTOL Stress Start", week: "W26", status: "Pending" },
+            { text: "Qual Board Assembly", week: "W25", status: "Running" },
+            { text: "Final Qualification Report", week: "W36", status: "Pending" }
+        ],
+        actions: [
+            { text: "Investigate ESD Lot 2 failures", owner: "John Smith", due: "2026-08-15", status: "Open" },
+            { text: "Expedite substrate delivery with vendor", owner: "Jane Doe", due: "2026-07-28", status: "Open" },
+            { text: "Setup reliability test chambers for HTOL", owner: "Reliability Lab", due: "2026-08-01", status: "Closed" }
+        ]
+    };
+
+    let prProjectData = {};
+
+    function prInit() {
+        prLoadData();
+        prInitTabs();
+        prInitButtons();
+        prUpdateDisplay();
+    }
+
+    function prLoadData() {
+        const saved = localStorage.getItem(PR_STORAGE_KEY);
+        if (saved) {
+            try {
+                prProjectData = JSON.parse(saved);
+            } catch (e) {
+                prProjectData = JSON.parse(JSON.stringify(prDefaultData));
+            }
+        } else {
+            prProjectData = JSON.parse(JSON.stringify(prDemoData));
+        }
+        // Safeguard to prevent crashes if old schema was stored
+        prProjectData.milestones = prProjectData.milestones || [];
+        prProjectData.actions = prProjectData.actions || [];
+    }
+
+    function prSaveData() {
+        localStorage.setItem(PR_STORAGE_KEY, JSON.stringify(prProjectData));
+    }
+
+    function prUpdateDisplay() {
+        // Date
+        document.getElementById('prDate').innerText = prProjectData.date || new Date().toLocaleDateString();
+
+        // Info Overview
+        document.getElementById('prDisplayProjectName').innerText = prProjectData.name;
+        document.getElementById('prDisplayProjManager').innerText = prProjectData.manager;
+        document.getElementById('prDisplayBLPL').innerText = prProjectData.blpl;
+        document.getElementById('prDisplayDRI').innerText = prProjectData.dri;
+        document.getElementById('prDisplayBusinessOwner').innerText = prProjectData.owner;
+        document.getElementById('prDisplayObjective').innerText = prProjectData.objective;
+        document.getElementById('prDisplayBackground').innerText = prProjectData.background || "No background data.";
+
+        const statusBadge = document.getElementById('prDisplayStatus');
+        statusBadge.innerText = prProjectData.status;
+        statusBadge.className = 'pr-status-badge';
+        if (prProjectData.status === 'Running') statusBadge.classList.add('pr-status-green');
+        else if (prProjectData.status === 'At Risk') statusBadge.classList.add('pr-status-yellow');
+        else if (prProjectData.status === 'Paused') statusBadge.classList.add('pr-status-red');
+        else if (prProjectData.status === 'Completed') statusBadge.classList.add('pr-status-green');
+
+        // Lowlights
+        const highlightDiv = document.getElementById('prDisplayHighlight');
+        if (prProjectData.highlight) {
+            highlightDiv.innerHTML = `<strong>Lowlights / Issues:</strong><br>${prProjectData.highlight.replace(/\n/g, '<br>')}`;
+            highlightDiv.style.display = 'block';
+        } else {
+            highlightDiv.style.display = 'none';
+        }
+
+        // Overview Tables
+        const overviewMilestonesBody = document.querySelector('#prOverviewMilestones tbody');
+        overviewMilestonesBody.innerHTML = '';
+        prProjectData.milestones.forEach(m => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${m.text}</td>
+                <td>${m.week}</td>
+                <td><span class="pr-status-badge ${prGetStatusClass(m.status)}">${m.status}</span></td>
+            `;
+            overviewMilestonesBody.appendChild(tr);
+        });
+
+        const overviewActionsBody = document.querySelector('#prOverviewActions tbody');
+        overviewActionsBody.innerHTML = '';
+        prProjectData.actions.forEach(a => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${a.text}</td>
+                <td>${a.owner}</td>
+                <td>${a.due}</td>
+                <td><span class="pr-status-badge ${prGetStatusClass(a.status)}">${a.status}</span></td>
+            `;
+            overviewActionsBody.appendChild(tr);
+        });
+
+        // Edit Form Inputs
+        document.getElementById('prEditProjectName').value = prProjectData.name;
+        document.getElementById('prEditProjManager').value = prProjectData.manager;
+        document.getElementById('prEditBLPL').value = prProjectData.blpl;
+        document.getElementById('prEditBusinessOwner').value = prProjectData.owner;
+        document.getElementById('prEditDRI').value = prProjectData.dri;
+        document.getElementById('prEditObjective').value = prProjectData.objective;
+        document.getElementById('prEditBackground').value = prProjectData.background || '';
+        document.getElementById('prEditStatusSelect').value = prProjectData.status;
+        document.getElementById('prEditHighlight').value = prProjectData.highlight || '';
+
+        // Milestones Table (Edit tab)
+        const msTableBody = document.querySelector('#prMilestonesTable tbody');
+        msTableBody.innerHTML = '';
+        prProjectData.milestones.forEach((m, idx) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input type="text" value="${m.text}" onchange="prUpdateMilestone(${idx}, 'text', this.value)"></td>
+                <td><input type="text" value="${m.week}" onchange="prUpdateMilestone(${idx}, 'week', this.value)" style="width:70px"></td>
+                <td>
+                    <select onchange="prUpdateMilestone(${idx}, 'status', this.value)">
+                        <option value="Pending" ${m.status==='Pending'?'selected':''}>Pending</option>
+                        <option value="Running" ${m.status==='Running'?'selected':''}>Running</option>
+                        <option value="Completed" ${m.status==='Completed'?'selected':''}>Completed</option>
+                        <option value="At Risk" ${m.status==='At Risk'?'selected':''}>At Risk</option>
+                    </select>
+                </td>
+                <td><button type="button" class="del-btn" onclick="prDeleteMilestone(${idx})">Delete</button></td>
+            `;
+            msTableBody.appendChild(tr);
+        });
+
+        // Actions Table (Edit tab)
+        const actTableBody = document.querySelector('#prActionsTable tbody');
+        actTableBody.innerHTML = '';
+        prProjectData.actions.forEach((a, idx) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input type="text" value="${a.text}" onchange="prUpdateAction(${idx}, 'text', this.value)"></td>
+                <td><input type="text" value="${a.owner}" onchange="prUpdateAction(${idx}, 'owner', this.value)" style="width:100px"></td>
+                <td><input type="date" value="${a.due}" onchange="prUpdateAction(${idx}, 'due', this.value)" style="width:130px"></td>
+                <td>
+                    <select onchange="prUpdateAction(${idx}, 'status', this.value)">
+                        <option value="Open" ${a.status==='Open'?'selected':''}>Open</option>
+                        <option value="Closed" ${a.status==='Closed'?'selected':''}>Closed</option>
+                    </select>
+                </td>
+                <td><button type="button" class="del-btn" onclick="prDeleteAction(${idx})">Delete</button></td>
+            `;
+            actTableBody.appendChild(tr);
+        });
+    }
+
+    function prGetStatusClass(status) {
+        if (status === 'Completed' || status === 'Closed') return 'pr-status-green';
+        if (status === 'At Risk') return 'pr-status-yellow';
+        if (status === 'Running') return 'pr-status-green';
+        if (status === 'Pending') return '';
+        return '';
+    }
+
+    function prUpdateMilestone(idx, field, val) {
+        prProjectData.milestones[idx][field] = val;
+        prSaveData();
+    }
+
+    function prDeleteMilestone(idx) {
+        prProjectData.milestones.splice(idx, 1);
+        prSaveData();
+        prUpdateDisplay();
+    }
+
+    function prUpdateAction(idx, field, val) {
+        prProjectData.actions[idx][field] = val;
+        prSaveData();
+    }
+
+    function prDeleteAction(idx) {
+        prProjectData.actions.splice(idx, 1);
+        prSaveData();
+        prUpdateDisplay();
+    }
+
+    function prInitTabs() {
+        const tabs = document.querySelectorAll('.pr-tab-button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const targetTab = tab.getAttribute('data-tab');
+                document.querySelectorAll('.pr-tab-panel').forEach(p => p.classList.remove('active'));
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+    }
+
+    function prInitButtons() {
+        document.getElementById('prAddMilestoneBtn').onclick = () => {
+            prProjectData.milestones.push({ text: "New Milestone", week: "W01", status: "Pending" });
+            prSaveData();
+            prUpdateDisplay();
+        };
+
+        document.getElementById('prAddActionBtn').onclick = () => {
+            prProjectData.actions.push({ text: "New Action Item", owner: "Owner", due: new Date().toISOString().substring(0,10), status: "Open" });
+            prSaveData();
+            prUpdateDisplay();
+        };
+
+        document.getElementById('prNewProjectBtn').onclick = () => {
+            if (confirm("Are you sure you want to clear all data and start a new project?")) {
+                prProjectData = JSON.parse(JSON.stringify(prDefaultData));
+                prSaveData();
+                prUpdateDisplay();
+            }
+        };
+
+        document.getElementById('prLoadDemoBtn').onclick = () => {
+            if (confirm("Load demo project report data? This will overwrite your current edits.")) {
+                prProjectData = JSON.parse(JSON.stringify(prDemoData));
+                prSaveData();
+                prUpdateDisplay();
+            }
+        };
+
+        document.getElementById('prSaveBtn').onclick = () => {
+            prProjectData.name = document.getElementById('prEditProjectName').value;
+            prProjectData.manager = document.getElementById('prEditProjManager').value;
+            prProjectData.blpl = document.getElementById('prEditBLPL').value;
+            prProjectData.owner = document.getElementById('prEditBusinessOwner').value;
+            prProjectData.dri = document.getElementById('prEditDRI').value;
+            prProjectData.objective = document.getElementById('prEditObjective').value;
+            prProjectData.background = document.getElementById('prEditBackground').value;
+            prProjectData.status = document.getElementById('prEditStatusSelect').value;
+            prProjectData.highlight = document.getElementById('prEditHighlight').value;
+            prProjectData.date = new Date().toLocaleDateString();
+
+            prSaveData();
+            prUpdateDisplay();
+            alert("Project details saved successfully!");
+        };
+
+        // Export JSON
+        document.getElementById('prExportBtn').onclick = () => {
+            const json = JSON.stringify(prProjectData, null, 2);
+            const blob = new Blob([json], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `ProjectReport_${prProjectData.name.replace(/\s+/g, '_')}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        };
+
+        // Import JSON
+        const fileInput = document.getElementById('prFileInput');
+        document.getElementById('prImportBtn').onclick = () => fileInput.click();
+        fileInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+                try {
+                    const parsed = JSON.parse(evt.target.result);
+                    if (parsed.name && Array.isArray(parsed.milestones) && Array.isArray(parsed.actions)) {
+                        prProjectData = parsed;
+                        prSaveData();
+                        prUpdateDisplay();
+                        alert("Project report imported successfully!");
+                    } else {
+                        alert("Invalid file format. Make sure it's a valid project report JSON.");
+                    }
+                } catch (err) {
+                    alert("Failed to parse JSON file.");
+                }
+            };
+            reader.readAsText(file);
+        };
+    }
+
+    // =========================================================================
+    // WAFER YIELD CALCULATOR MODULE
+    // =========================================================================
+    let scActiveModel = 'nb';
+
+    function scSwitchTab(id, btn) {
+        const panel = document.getElementById('yieldPanel');
+        panel.querySelectorAll('.sc-tab-panel').forEach(p => p.classList.remove('active'));
+        panel.querySelectorAll('.sc-tab-btn').forEach(b => b.classList.remove('active'));
+        
+        panel.querySelector('#scTab-' + id).classList.add('active');
+        btn.classList.add('active');
+        
+        if (id === 'readme') {
+            scUpdateViz();
+            scDrawMiniWafers();
+        }
+    }
+
+    function scSetModel(m, btn) {
+        scActiveModel = m;
+        document.querySelectorAll('.sc-model-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+
+    function scUpdateWaferRadius() {
+        scCalculate();
+    }
+
+    function scCalculate() {
+        const waferD  = parseFloat(document.getElementById('scWaferSize').value);
+        const edge    = parseFloat(document.getElementById('scEdgeExcl').value) || 3;
+        const dieW    = parseFloat(document.getElementById('scDieW').value);
+        const dieH    = parseFloat(document.getElementById('scDieH').value);
+        const scribe  = parseFloat(document.getElementById('scScribe').value) / 1000;
+        const d0      = parseFloat(document.getElementById('scD0').value);
+        const alpha   = parseFloat(document.getElementById('scAlpha').value);
+
+        if ([waferD, edge, dieW, dieH, scribe, d0, alpha].some(isNaN) || dieW <= 0 || dieH <= 0 || d0 <= 0 || alpha <= 0) {
+            alert('Please check all inputs are valid positive numbers.');
+            return;
+        }
+
+        const effRadius = waferD / 2 - edge;
+        const pitchW    = dieW + scribe;
+        const pitchH    = dieH + scribe;
+        const dieArea   = dieW * dieH;
+        const dieAreaCm = dieArea / 100;
+
+        const dpw = Math.max(0, Math.floor(
+            (Math.PI * effRadius * effRadius) / (pitchW * pitchH) -
+            (Math.PI * 2 * effRadius) / Math.sqrt(pitchW * pitchH)
+        ));
+
+        let Y, formulaStr;
+        if (scActiveModel === 'nb') {
+            Y = Math.pow(1 / (1 + d0 * dieAreaCm / alpha), alpha);
+            formulaStr = `Model: Negative Binomial\nY = 1 / (1 + D₀×A/α)^α\n  = 1 / (1 + ${d0}×${dieAreaCm.toFixed(4)}/${alpha})^${alpha}\n  = ${(Y*100).toFixed(2)}%`;
+        } else if (scActiveModel === 'murphy') {
+            const x = d0 * dieAreaCm;
+            Y = Math.pow((1 - Math.exp(-x)) / x, 2);
+            formulaStr = `Model: Murphy's\nY = [(1−e^(−D₀A)) / (D₀A)]²\n  = [(1−e^(−${x.toFixed(4)})) / ${x.toFixed(4)}]²\n  = ${(Y*100).toFixed(2)}%`;
+        } else {
+            Y = Math.exp(-d0 * dieAreaCm);
+            formulaStr = `Model: Poisson\nY = e^(−D₀×A)\n  = e^(−${d0}×${dieAreaCm.toFixed(4)})\n  = ${(Y*100).toFixed(2)}%`;
+        }
+
+        const yPct  = Y * 100;
+        const gppw  = Math.floor(dpw * Y);
+
+        document.getElementById('scRDieArea').textContent = dieArea.toFixed(1);
+        document.getElementById('scRDpw').textContent     = dpw;
+
+        const yEl = document.getElementById('scRYield');
+        yEl.textContent = yPct.toFixed(1);
+        yEl.className   = 'sc-result-value ' + (yPct >= 70 ? 'good' : yPct >= 40 ? 'warn' : 'bad');
+
+        const gEl = document.getElementById('scRGppw');
+        gEl.textContent = gppw;
+        gEl.className   = 'sc-result-value ' + (yPct >= 70 ? 'good' : yPct >= 40 ? 'warn' : 'bad');
+
+        document.getElementById('scRYieldPct').textContent = yPct.toFixed(1) + '%';
+        const bar = document.getElementById('scYieldBar');
+        bar.style.width      = Math.min(yPct, 100) + '%';
+        bar.style.background = yPct >= 70
+            ? 'linear-gradient(90deg,#16a34a,#22c55e)'
+            : yPct >= 40
+            ? 'linear-gradient(90deg,#d97706,#f59e0b)'
+            : 'linear-gradient(90deg,#dc2626,#f87171)';
+
+        document.getElementById('scFormulaDisplay').textContent =
+            formulaStr + `\n\nDPW = ${dpw}  ×  Yield ${(Y*100).toFixed(1)}%  =  GPPW ${gppw}`;
+
+        const rc = document.getElementById('scResultsCard');
+        rc.style.display = 'block';
+        rc.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function scDrawMiniWafers() {
+        const drawWafer = (elementId, alphaVal) => {
+            const container = document.getElementById(elementId);
+            if (!container) return;
+            container.innerHTML = '';
+            
+            const canvas = document.createElement('canvas');
+            canvas.width = 110;
+            canvas.height = 110;
+            canvas.style.width = '110px';
+            canvas.style.height = '110px';
+            container.appendChild(canvas);
+
+            const ctx = canvas.getContext('2d');
+            const xc = 55;
+            const yc = 55;
+            const rWafer = 45;
+
+            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+            ctx.fillStyle = isLight ? '#e2e8f0' : '#1e293b';
+            ctx.beginPath();
+            ctx.arc(xc, yc, rWafer, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.strokeStyle = isLight ? '#94a3b8' : '#475569';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            ctx.fillStyle = isLight ? '#f8fafc' : '#0f172a';
+            ctx.beginPath();
+            ctx.arc(xc, yc + rWafer, 3, 0, 2 * Math.PI);
+            ctx.fill();
+
+            const dieSize = 6;
+            ctx.strokeStyle = isLight ? '#cbd5e1' : '#334155';
+            ctx.lineWidth = 0.5;
+            for (let x = xc - rWafer; x < xc + rWafer; x += dieSize) {
+                for (let y = yc - rWafer; y < yc + rWafer; y += dieSize) {
+                    const corners = [
+                        [x, y], [x + dieSize, y], [x, y + dieSize], [x + dieSize, y + dieSize]
+                    ];
+                    const inside = corners.every(([cx, cy]) => {
+                        return Math.sqrt(Math.pow(cx - xc, 2) + Math.pow(cy - yc, 2)) < rWafer - 2;
+                    });
+                    if (inside) {
+                        ctx.strokeRect(x, y, dieSize, dieSize);
+                    }
+                }
+            }
+
+            const numDefects = 20;
+            ctx.fillStyle = '#ef4444';
+            
+            if (alphaVal < 1.0) {
+                const centers = [
+                    [xc - 15 + Math.random() * 30, yc - 15 + Math.random() * 30],
+                    [xc - 15 + Math.random() * 30, yc - 15 + Math.random() * 30]
+                ];
+                for (let i = 0; i < numDefects; i++) {
+                    const center = centers[i % centers.length];
+                    const u1 = Math.random() || 0.0001;
+                    const u2 = Math.random() || 0.0001;
+                    const radius = 6 * Math.sqrt(-2 * Math.log(u1));
+                    const angle = 2 * Math.PI * u2;
+                    const dx = radius * Math.cos(angle);
+                    const dy = radius * Math.sin(angle);
+                    const px = center[0] + dx;
+                    const py = center[1] + dy;
+
+                    if (Math.sqrt(Math.pow(px - xc, 2) + Math.pow(py - yc, 2)) < rWafer - 1) {
+                        ctx.beginPath();
+                        ctx.arc(px, py, 1.5, 0, 2 * Math.PI);
+                        ctx.fill();
+                    }
+                }
+            } else {
+                let count = 0;
+                while (count < numDefects) {
+                    const px = xc - rWafer + Math.random() * (2 * rWafer);
+                    const py = yc - rWafer + Math.random() * (2 * rWafer);
+                    if (Math.sqrt(Math.pow(px - xc, 2) + Math.pow(py - yc, 2)) < rWafer - 1) {
+                        ctx.beginPath();
+                        ctx.arc(px, py, 1.5, 0, 2 * Math.PI);
+                        ctx.fill();
+                        count++;
+                    }
+                }
+            }
+        };
+
+        drawWafer('scWmLow', 0.5);
+        drawWafer('scWmHigh', 10.0);
+    }
+
+    function scUpdateViz() {
+        const d0Val = parseFloat(document.getElementById('scVD0').value);
+        const alphaVal = parseFloat(document.getElementById('scVAlpha').value);
+
+        document.getElementById('scVD0out').textContent = d0Val.toFixed(2);
+        document.getElementById('scVAlphaout').textContent = alphaVal.toFixed(1);
+
+        const canvas = document.getElementById('scVizChart');
+        if (!canvas) return;
+        
+        const rect = canvas.parentNode.getBoundingClientRect();
+        canvas.width = rect.width * window.devicePixelRatio;
+        canvas.height = 260 * window.devicePixelRatio;
+        canvas.style.width = '100%';
+        canvas.style.height = '260px';
+
+        const ctx = canvas.getContext('2d');
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+        const width = rect.width;
+        const height = 260;
+
+        const padLeft = 45;
+        const padRight = 15;
+        const padTop = 20;
+        const padBottom = 30;
+        
+        const plotW = width - padLeft - padRight;
+        const plotH = height - padTop - padBottom;
+
+        ctx.clearRect(0, 0, width, height);
+
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        ctx.strokeStyle = isLight ? '#cbd5e1' : '#1e293b';
+        ctx.lineWidth = 1;
+        ctx.fillStyle = isLight ? '#64748b' : '#94a3b8';
+        ctx.font = '10px Outfit, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+
+        for (let yPct = 0; yPct <= 100; yPct += 20) {
+            const y = padTop + plotH * (1.0 - yPct / 100);
+            ctx.beginPath();
+            ctx.moveTo(padLeft, y);
+            ctx.lineTo(width - padRight, y);
+            ctx.stroke();
+            ctx.fillText(yPct + '%', padLeft - 6, y);
+        }
+
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        for (let area = 0; area <= 6.0; area += 1.0) {
+            const x = padLeft + plotW * (area / 6.0);
+            ctx.beginPath();
+            ctx.moveTo(x, padTop);
+            ctx.lineTo(x, height - padBottom);
+            ctx.stroke();
+            ctx.fillText(area.toFixed(0), x, height - padBottom + 6);
+        }
+
+        ctx.fillText('Die Area (cm²)', padLeft + plotW / 2, height - padBottom + 18);
+
+        const drawCurve = (color, calculateY) => {
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            
+            let first = true;
+            for (let area = 0.05; area <= 6.0; area += 0.05) {
+                const Y = calculateY(area);
+                const x = padLeft + plotW * (area / 6.0);
+                const y = padTop + plotH * (1.0 - Y);
+                if (first) {
+                    ctx.moveTo(x, y);
+                    first = false;
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+        };
+
+        drawCurve('#2a78d6', (a) => Math.pow(1 / (1 + d0Val * a / alphaVal), alphaVal));
+        drawCurve('#1baf7a', (a) => {
+            const x = d0Val * a;
+            return Math.pow((1 - Math.exp(-x)) / x, 2);
+        });
+        drawCurve('#e34948', (a) => Math.exp(-d0Val * a));
+
+        const indicatorArea = 2.0;
+        const indX = padLeft + plotW * (indicatorArea / 6.0);
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(indX, padTop);
+        ctx.lineTo(indX, height - padBottom);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        const yNb = Math.pow(1 / (1 + d0Val * indicatorArea / alphaVal), alphaVal);
+        const xMu = d0Val * indicatorArea;
+        const yMu = Math.pow((1 - Math.exp(xMu * -1)) / xMu, 2);
+        const yPo = Math.exp(-d0Val * indicatorArea);
+
+        const drawPoint = (color, Y) => {
+            const py = padTop + plotH * (1.0 - Y);
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(indX, py, 4, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        };
+
+        drawPoint('#2a78d6', yNb);
+        drawPoint('#1baf7a', yMu);
+        drawPoint('#e34948', yPo);
+
+        const readout = document.getElementById('scVizReadout');
+        if (readout) {
+            readout.innerHTML = `
+                <div style="font-weight:600; color:#cbd5e1; margin-bottom:4px; text-align:center;">Yield comparison at <b>2.0 cm²</b> die area:</div>
+                <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:8px;">
+                    <span style="color:#2a78d6">Negative Binomial: ${(yNb*100).toFixed(1)}%</span>
+                    <span style="color:#1baf7a">Murphy's: ${(yMu*100).toFixed(1)}%</span>
+                    <span style="color:#e34948">Poisson: ${(yPo*100).toFixed(1)}%</span>
+                </div>
+            `;
+        }
+    }
+
+    const SC_GLOSSARY = [
+        { abbr:'D₀',  term:'Defect Density',       body:'Defects per unit area (defects/cm²). Measures how many random, killer defects the fab introduces per wafer. Lower is better. Mature fabs achieve D₀ < 0.05. New process nodes typically start above 0.5 until the process matures.' },
+        { abbr:'DPW', term:'Dies Per Wafer',       body:'The gross number of dies that geometrically fit on a wafer — before considering yield. Calculated using die pitch and wafer radius. Includes edge dies that may be partially outside the usable area.' },
+        { abbr:'GPPW',term:'Good Parts Per Wafer', body:'Good Parts Per Wafer = DPW × Yield. This is the real output of a fab run — how many working, sellable chips come off one wafer. It directly determines die cost: Cost ≈ (Wafer cost) / GPPW.' },
+        { abbr:'Y',   term:'Yield',                body:'The fraction (or percentage) of dies on a wafer that are electrically functional. A yield of 80% means 80 out of every 100 dies pass electrical testing. Yield depends on die area, defect density, and how clustered the defects are.' },
+        { abbr:'α',   term:'Clustering Factor',    body:'Used in the Negative Binomial yield model. Describes how clustered defects are spatially. Low α (e.g. 1) = highly clustered (one event kills many adjacent dies). High α (e.g. 10–20) = nearly random distribution. Typical production values: 2–5.' },
+        { abbr:'nm',  term:'Process Node',         body:'The nominal minimum feature size of transistors (e.g. 7nm, 3nm). Smaller = denser, faster, lower power per transistor. However, smaller nodes have higher initial D₀, more expensive lithography (EUV), and harder process control.' },
+        { abbr:'µm',  term:'Scribe Lane Width',    body:'The gap between adjacent dies on a wafer, reserved for the dicing saw to cut through. Typically 60–100 µm wide. Reducing scribe lane width reclaims wafer area for more dies but requires more precise cutting.' },
+        { abbr:'EUV', term:'Extreme UV Lithography', body:'Lithography using 13.5 nm wavelength light, required for process nodes below ~7nm. EUV machines (made by ASML) cost ~$150–200M each and require strict vacuum and plasma conditions. Key to enabling 5nm, 3nm, and 2nm nodes.' },
+        { abbr:'NB',  term:'Negative Binomial Model', body:'The industry-standard yield model: Y = 1/(1 + D₀A/α)^α. More accurate than Poisson because it accounts for defect clustering via the α parameter. A better fit to empirical fab data across a wide range of process nodes.' },
+        { abbr:'SoC', term:'System on a Chip',     body:'A die that integrates CPU, GPU, memory controller, I/O, and other subsystems onto a single piece of silicon. Examples: Apple A-series chips, Qualcomm Snapdragon, MediaTek Dimensity. Typically moderate die size with high yield due to design maturity.' },
+        { abbr:'mm²', term:'Die Area (mm²)',       body:'The physical area of one die in square millimeters. A larger die = fewer per wafer and lower yield. A GPU might be 500–800 mm²; a mobile SoC 60–120 mm²; a simple MCU under 20 mm².' }
+    ];
+
+    function scInitGlossary() {
+        const gl = document.getElementById('scGlossaryList');
+        if (!gl) return;
+        gl.innerHTML = '';
+        SC_GLOSSARY.forEach((g, i) => {
+            const item = document.createElement('div');
+            item.className = 'sc-glossary-item';
+            item.innerHTML = `
+                <div class="sc-glossary-term" onclick="scToggleGlossary(${i}, this)">
+                    <span><span class="sc-abbr">${g.abbr}</span>${g.term}</span>
+                    <span class="sc-chevron">▼</span>
+                </div>
+                <div class="sc-glossary-body" id="scgb-${i}">${g.body}</div>
+            `;
+            gl.appendChild(item);
+        });
+    }
+
+    function scToggleGlossary(i, termEl) {
+        const body = document.getElementById('scgb-' + i);
+        const open  = body.classList.toggle('open');
+        termEl.classList.toggle('open', open);
+    }
+
+    // --- Dynamic Theme Support ---
+    function getPlotlyColors() {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        return {
+            text: isLight ? '#0f172a' : '#f8fafc',
+            muted: isLight ? '#64748b' : '#94a3b8',
+            grid: isLight ? '#cbd5e1' : '#26354a'
+        };
+    }
+
+    function applyThemeColorsToPlotlyLayout(layout) {
+        const colors = getPlotlyColors();
+        if (!layout) return layout;
+        
+        // Deep clone layout to avoid mutating the original definition
+        const newLayout = JSON.parse(JSON.stringify(layout));
+        
+        const replaceColors = (obj) => {
+            if (!obj || typeof obj !== 'object') return;
+            for (let k in obj) {
+                if (obj[k] === '#26354a') {
+                    obj[k] = colors.grid;
+                } else if (obj[k] === '#94a3b8') {
+                    obj[k] = colors.muted;
+                } else if (obj[k] === '#f8fafc') {
+                    obj[k] = colors.text;
+                } else if (typeof obj[k] === 'object') {
+                    replaceColors(obj[k]);
+                }
+            }
+        };
+        
+        replaceColors(newLayout);
+        return newLayout;
+    }
+
+    // Wrap Plotly.newPlot to dynamically apply theme layout colors
+    if (typeof Plotly !== 'undefined' && Plotly.newPlot) {
+        const originalNewPlot = Plotly.newPlot;
+        Plotly.newPlot = function(divId, data, layout, config) {
+            const themedLayout = applyThemeColorsToPlotlyLayout(layout);
+            return originalNewPlot.call(Plotly, divId, data, themedLayout, config);
+        };
+    }
+
+    function initializeTheme() {
+        const savedTheme = localStorage.getItem('cpkn_dashboard_theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        const btn = document.getElementById('themeToggleBtn');
+        if (btn) {
+            btn.innerHTML = savedTheme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
+        }
+    }
+
+    function toggleDashboardTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('cpkn_dashboard_theme', newTheme);
+        
+        const btn = document.getElementById('themeToggleBtn');
+        if (btn) {
+            btn.innerHTML = newTheme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
+        }
+        
+        // Re-draw the active tab's layout components
+        if (activeTab === 'd8') {
+            drawFishbone();
+            update8dChart();
+        } else if (activeTab === 'cpk') {
+            runCpkSimulation();
+        } else if (activeTab === 'comparison') {
+            redrawPlotlyChartsOnly();
+        } else if (activeTab === 'significance') {
+            runSignificanceTests();
+        } else if (activeTab === 'msc') {
+            redrawMscChartsOnly();
+        } else if (activeTab === 'drift') {
+            redrawDriftChartsOnly();
+        } else if (activeTab === 'yield') {
+            scUpdateViz();
+            scDrawMiniWafers();
+        }
+    }
+
     // Bootstrap app
     window.onload = function() {
+        initializeTheme();
         syncProblemText();
 
         resetFishboneDataOnly();
@@ -6242,6 +8784,10 @@ function handleCpkDistChange() {
         handleCpkDistChange();
         
         runCpkSimulation();
+
+        // Initialize Project Report & Wafer Yield Calculator
+        prInit();
+        scInitGlossary();
 
         switchTab('d8');
     };

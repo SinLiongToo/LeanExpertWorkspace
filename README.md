@@ -74,6 +74,18 @@ An independent top-level tab providing tools for sample size estimation and math
 - **Chi-Square & Realized CL Display**: Compares Group A and Group B defect counts to compute the expected counts, $\chi^2$ statistic, $p$-value, and realized Confidence Level. Automatically flags calculations if expected counts fall below the mathematical limit of 5.0.
 - **TTR Run Planner (Inverse Chi-Square)**: Automatically predicts the minimum sample size ($n_B$) required for a validation run to achieve statistical significance given a baseline Group A performance.
 
+### 8. 📋 Project Status Report
+An executive status reporting utility integrated into the dashboard to summarize engineering developments:
+- Milestones and corrective action tracking tables with status drop-downs.
+- Executive summary fields including Manager, Objective, Business Impact, and Highlights.
+- Local storage persistence and independent JSON export/import.
+
+### 9. 💎 Wafer Yield Calculator
+A dedicated semiconductor manufacturing calculator to estimate silicon wafer productivity:
+- **DPW & GPPW Estimation**: Calculates Dies Per Wafer (DPW) and Good Parts Per Wafer (GPPW) based on wafer diameter, scribe lane width, edge exclusion margin, and die sizes.
+- **Yield Modeling**: Compares standard Poisson, Murphy, and Negative Binomial (industry-standard defect clustering) yield models.
+- **Interactive Defect Cluster Visualization**: Includes a 2D canvas curve graph of yield vs. die area, along with procedural mini wafer defect maps representing low and high clustering ($\alpha$) factors.
+
 ---
 
 ## 📐 Mathematical Reference for MSC (Gage R&R)
@@ -98,7 +110,7 @@ $$\sigma^2_{\text{Reproducibility}} = \sigma^2_{\text{Operator}} + \sigma^2_{\te
 ---
 
 ## 🎨 Technology Stack
-- **Structure & Styling**: HTML5, CSS3 (premium slate-dark palette, responsive layouts).
+- **Structure & Styling**: HTML5, CSS3 (premium slate-dark palette, responsive layouts, **Dark / Light theme toggle**).
 - **Interactive Charting**: Plotly.js (WebGL-backed rendering).
 - **Typesetting**: MathJax 3 (LaTeX parser).
 - **Statistical Engine**: Pure JavaScript (non-parametric percentiles, CDF calculations, t-distribution and F-distribution solvers, and numerical solvers for confidence intervals).
@@ -157,4 +169,11 @@ $$\sigma^2_{\text{Reproducibility}} = \sigma^2_{\text{Operator}} + \sigma^2_{\te
 - **Dynamic Spec Limit Ranges**: Implemented automatic slider scaling for spec limits (LSL and USL) based on the chosen distribution (Normal, Log-normal, Weibull, etc.) to prevent squashed charts and over-expanded axes.
 - **Bold Formatting Refactoring**: Replaced all raw markdown bold markers (`**`) with standard HTML `<strong>` tags in help sections and diagnostics for clean, web-standards rendering.
 - **CSS Arrow Fixes**: Replaced ASCII unicode characters in CSS accordion collapse arrows with native UTF-8 minus signs (`−`) to resolve character literal rendering issues.
+
+### 2026-07-08 (Combined Tools & Theme Customization)
+- **Integrated Project Status Report**: Merged executive status reporting with milestone tracking and action items list into the main dashboard.
+- **Integrated Wafer Yield Calculator**: Merged the semiconductor manufacturing productivity tool with 2D yield-vs-area curve canvas and Defect Clustering visualizations.
+- **Added Dark / Light Mode**: Implemented a responsive toggle button in the header with theme persistence (`localStorage`).
+- **Dynamic Chart & Canvas Themes**: Wrapped `Plotly.newPlot` to intercept layout configurations and auto-scale grid, font, and background colors to light/dark themes. Made fishbone SVG text and defect wafer canvas drawings theme-aware.
+- **Robust Schema Verification**: Patched local storage loading logic to handle corrupt or outdated data objects cleanly, avoiding Javascript compilation breaks.
 
