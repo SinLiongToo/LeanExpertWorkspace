@@ -177,3 +177,11 @@ $$\sigma^2_{\text{Reproducibility}} = \sigma^2_{\text{Operator}} + \sigma^2_{\te
 - **Dynamic Chart & Canvas Themes**: Wrapped `Plotly.newPlot` to intercept layout configurations and auto-scale grid, font, and background colors to light/dark themes. Made fishbone SVG text and defect wafer canvas drawings theme-aware.
 - **Robust Schema Verification**: Patched local storage loading logic to handle corrupt or outdated data objects cleanly, avoiding Javascript compilation breaks.
 
+### 2026-07-14 (Plot Layout Stabilization, Formula Char Fixing & Real-time Update Sync)
+- **Fixed Sidebar & Formula Encoding Errors**: Replaced garbled character artifacts (e.g. `?_` and `帣`) with standard symbols: standard deviation $\sigma$ and systematic drift $\delta$ across all tabs.
+- **Distribution Comparison Real-time Sync**: Hooked up real-time updates to all baseline and comparison sliders, enabling instant rendering changes on drag/input.
+- **Static reference coordinate system**: Locked the x-axis scale of the Process Cpk charts to a fixed range (`[50, 150]`), preventing the coordinate axis from moving or auto-zooming during adjustment.
+- **Eliminated Chart Overflow & Resize Loops**:
+  - Enforced `minmax(0, 1fr)` column constraints on `.charts-row-equal` in CSS to break Plotly's circular container-stretching loops.
+  - Added delayed resize triggers (`setTimeout` of 100ms) on tab switches to correctly recalculate visible dimensions after layout transitions.
+  - Shortened standard and ISO Cpk card sub-labels (`CPKL` and `CPKH`) to prevent cards from stretching the metrics grid.

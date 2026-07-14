@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -62,7 +62,7 @@
             max-width: 1440px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 360px 1fr;
+            grid-template-columns: 360px minmax(0, 1fr);
             gap: 24px;
             transition: grid-template-columns 0.3s ease;
         }
@@ -397,7 +397,7 @@
 
         .charts-row-equal {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             gap: 16px;
         }
 
@@ -1454,23 +1454,23 @@
             <div class="control-group">
                 <label for="compNA">Sample Size (N_A):</label>
                 <div class="slider-container">
-                    <input type="range" id="compNA" min="10" max="2000" step="10" value="500" oninput="document.getElementById('compNAVal').innerText = this.value">
+                    <input type="range" id="compNA" min="10" max="2000" step="10" value="500" oninput="document.getElementById('compNAVal').innerText = this.value; executeComparisonRun();">
                     <span id="compNAVal" class="value-display">500</span>
                 </div>
             </div>
 
             <div class="control-group">
-                <label for="compMeanA">Mean / Center (弮_A):</label>
+                <label for="compMeanA">Mean / Center (μ_A):</label>
                 <div class="slider-container">
-                    <input type="range" id="compMeanA" min="80" max="120" step="0.5" value="100" oninput="document.getElementById('compMeanAVal').innerText = this.value">
+                    <input type="range" id="compMeanA" min="80" max="120" step="0.5" value="100" oninput="document.getElementById('compMeanAVal').innerText = this.value; executeComparisonRun();">
                     <span id="compMeanAVal" class="value-display">100</span>
                 </div>
             </div>
 
             <div class="control-group">
-                <label for="compSigmaA">Std Dev / Scale (?_A):</label>
+                <label for="compSigmaA">Std Dev / Scale (σ_A):</label>
                 <div class="slider-container">
-                    <input type="range" id="compSigmaA" min="0.5" max="10" step="0.1" value="3.0" oninput="document.getElementById('compSigmaAVal').innerText = parseFloat(this.value).toFixed(1)">
+                    <input type="range" id="compSigmaA" min="0.5" max="10" step="0.1" value="3.0" oninput="document.getElementById('compSigmaAVal').innerText = parseFloat(this.value).toFixed(1); executeComparisonRun();">
                     <span id="compSigmaAVal" class="value-display">3.0</span>
                 </div>
             </div>
@@ -1490,23 +1490,23 @@
             <div class="control-group">
                 <label for="compNB">Sample Size (N_B):</label>
                 <div class="slider-container purple-sliders">
-                    <input type="range" id="compNB" min="10" max="2000" step="10" value="500" oninput="document.getElementById('compNBVal').innerText = this.value">
+                    <input type="range" id="compNB" min="10" max="2000" step="10" value="500" oninput="document.getElementById('compNBVal').innerText = this.value; executeComparisonRun();">
                     <span id="compNBVal" class="value-display">500</span>
                 </div>
             </div>
 
             <div class="control-group">
-                <label for="compMeanB">Mean / Center (弮_B):</label>
+                <label for="compMeanB">Mean / Center (μ_B):</label>
                 <div class="slider-container purple-sliders">
-                    <input type="range" id="compMeanB" min="80" max="120" step="0.5" value="103" oninput="document.getElementById('compMeanBVal').innerText = this.value">
+                    <input type="range" id="compMeanB" min="80" max="120" step="0.5" value="103" oninput="document.getElementById('compMeanBVal').innerText = this.value; executeComparisonRun();">
                     <span id="compMeanBVal" class="value-display">103</span>
                 </div>
             </div>
 
             <div class="control-group">
-                <label for="compSigmaB">Std Dev / Scale (?_B):</label>
+                <label for="compSigmaB">Std Dev / Scale (σ_B):</label>
                 <div class="slider-container purple-sliders">
-                    <input type="range" id="compSigmaB" min="0.5" max="10" step="0.1" value="2.1" oninput="document.getElementById('compSigmaBVal').innerText = parseFloat(this.value).toFixed(1)">
+                    <input type="range" id="compSigmaB" min="0.5" max="10" step="0.1" value="2.1" oninput="document.getElementById('compSigmaBVal').innerText = parseFloat(this.value).toFixed(1); executeComparisonRun();">
                     <span id="compSigmaBVal" class="value-display">2.1</span>
                 </div>
             </div>
@@ -1519,7 +1519,7 @@
             <div class="sidebar-section-title">Gage R&R Setup</div>
             
             <div class="control-group">
-                <label for="mscPartSigma">Part Variation (?_part):</label>
+                <label for="mscPartSigma">Part Variation (σ_part):</label>
                 <div class="slider-container">
                     <input type="range" id="mscPartSigma" min="0.1" max="5.0" step="0.1" value="1.5" oninput="document.getElementById('mscPartSigmaVal').innerText = parseFloat(this.value).toFixed(1)">
                     <span id="mscPartSigmaVal" class="value-display">1.5</span>
@@ -1527,7 +1527,7 @@
             </div>
 
             <div class="control-group">
-                <label for="mscEqSigma">Repeatability (?_equipment):</label>
+                <label for="mscEqSigma">Repeatability (σ_equipment):</label>
                 <div class="slider-container">
                     <input type="range" id="mscEqSigma" min="0.05" max="2.0" step="0.05" value="0.20" oninput="document.getElementById('mscEqSigmaVal').innerText = parseFloat(this.value).toFixed(2)">
                     <span id="mscEqSigmaVal" class="value-display">0.20</span>
@@ -1535,7 +1535,7 @@
             </div>
 
             <div class="control-group">
-                <label for="mscOpSigma">Reproducibility (?_operator):</label>
+                <label for="mscOpSigma">Reproducibility (σ_operator):</label>
                 <div class="slider-container">
                     <input type="range" id="mscOpSigma" min="0.05" max="2.0" step="0.05" value="0.15" oninput="document.getElementById('mscOpSigmaVal').innerText = parseFloat(this.value).toFixed(2)">
                     <span id="mscOpSigmaVal" class="value-display">0.15</span>
@@ -1574,7 +1574,7 @@
             <div class="sidebar-section-title">Drift & Shift Setup</div>
             
             <div class="control-group">
-                <label for="driftDevSigma">Device Offset Variation (?_device):</label>
+                <label for="driftDevSigma">Device Offset Variation (σ_device):</label>
                 <div class="slider-container">
                     <input type="range" id="driftDevSigma" min="0.1" max="5.0" step="0.1" value="1.5" oninput="document.getElementById('driftDevSigmaVal').innerText = parseFloat(this.value).toFixed(1)">
                     <span id="driftDevSigmaVal" class="value-display">1.5</span>
@@ -1582,7 +1582,7 @@
             </div>
 
             <div class="control-group">
-                <label for="driftRptSigma">Repeatability Noise (?_repeatability):</label>
+                <label for="driftRptSigma">Repeatability Noise (σ_repeatability):</label>
                 <div class="slider-container">
                     <input type="range" id="driftRptSigma" min="0.05" max="2.0" step="0.05" value="0.20" oninput="document.getElementById('driftRptSigmaVal').innerText = parseFloat(this.value).toFixed(2)">
                     <span id="driftRptSigmaVal" class="value-display">0.20</span>
@@ -1590,7 +1590,7 @@
             </div>
 
             <div class="control-group">
-                <label for="driftRate">Systematic Intrinsic Drift (帣 per run):</label>
+                <label for="driftRate">Systematic Intrinsic Drift (δ per run):</label>
                 <div class="slider-container">
                     <input type="range" id="driftRate" min="-0.5" max="0.5" step="0.02" value="0.05" oninput="document.getElementById('driftRateVal').innerText = parseFloat(this.value).toFixed(2)">
                     <span id="driftRateVal" class="value-display">0.05</span>
@@ -2155,10 +2155,12 @@
                 <div class="metric-card purple">
                     <div class="metric-label">Standard Parametric Cpk</div>
                     <div id="cpkStandardVal" class="metric-value">-</div>
+                    <div id="cpkStandardSub" style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">CPKL: - | CPKH: -</div>
                 </div>
                 <div class="metric-card red">
                     <div class="metric-label">ISO Percentile Cpk</div>
                     <div id="cpkIsoVal" class="metric-value">-</div>
+                    <div id="cpkIsoSub" style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">CPKL: - | CPKH: -</div>
                 </div>
             </div>
 
@@ -2542,28 +2544,28 @@
                             <tr style="border-bottom: 1px solid var(--border-color);">
                                                 <td style="padding: 8px 6px; font-weight: 600; color: var(--text-primary);">📈 SD / Median Ratio</td>
                                 <td style="padding: 8px 6px;">Standard deviation relative to the process center.</td>
-                                <td style="padding: 8px 6px; font-family: monospace;">|SD / P50| ? 100%</td>
+                                <td style="padding: 8px 6px; font-family: monospace;">|SD / P50| × 100%</td>
                                 <td id="driftMetric1Val" style="padding: 8px 6px; text-align: right; color: var(--text-primary); font-weight: 600;">-</td>
                                 <td id="driftMetric1Status" style="padding: 8px 6px; text-align: right; font-weight: 600;">-</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--border-color);">
                                                 <td style="padding: 8px 6px; font-weight: 600; color: var(--text-primary);">📈 Range / Median Ratio</td>
                                 <td style="padding: 8px 6px;">Max-Min spread relative to the process center (extremely sensitive to outliers).</td>
-                                <td style="padding: 8px 6px; font-family: monospace;">|(Max - Min) / P50| ? 100%</td>
+                                <td style="padding: 8px 6px; font-family: monospace;">|(Max - Min) / P50| × 100%</td>
                                 <td id="driftMetric2Val" style="padding: 8px 6px; text-align: right; color: var(--text-primary); font-weight: 600;">-</td>
                                 <td id="driftMetric2Status" style="padding: 8px 6px; text-align: right; font-weight: 600;">-</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--border-color);">
                                                 <td style="padding: 8px 6px; font-weight: 600; color: var(--text-primary);">📈 Robust Sigma / Median Ratio</td>
                                 <td style="padding: 8px 6px;">Robust standard deviation using MAD (Median Absolute Deviation), immune to outliers.</td>
-                                <td style="padding: 8px 6px; font-family: monospace;">|Robust ? / P50| ? 100%</td>
+                                <td style="padding: 8px 6px; font-family: monospace;">|Robust σ / P50| × 100%</td>
                                 <td id="driftMetric3Val" style="padding: 8px 6px; text-align: right; color: var(--text-primary); font-weight: 600;">-</td>
                                 <td id="driftMetric3Status" style="padding: 8px 6px; text-align: right; font-weight: 600;">-</td>
                             </tr>
                             <tr style="border-bottom: none;">
                                                 <td style="padding: 8px 6px; font-weight: 600; color: var(--text-primary);">📈 Drift Repeatability (Rpt)</td>
                                 <td style="padding: 8px 6px;">Twice the standard deviation equivalent of the drift reference range.</td>
-                                <td style="padding: 8px 6px; font-family: monospace;">Rpt = 翻 Rng_Drift_Ref = 3 ? ?_drift</td>
+                                <td style="padding: 8px 6px; font-family: monospace;">Rpt = 3 × σ_drift</td>
                                 <td id="driftMetric4Val" style="padding: 8px 6px; text-align: right; color: var(--text-primary); font-weight: 600;">-</td>
                                 <td id="driftMetric4Status" style="padding: 8px 6px; text-align: right; font-weight: 600;">-</td>
                             </tr>
@@ -3359,6 +3361,11 @@
             // If data is uninitialized, run once
             if (!document.getElementById('cpkChart').classList.contains('js-plotly-plot')) {
                 runCpkSimulation();
+            } else {
+                setTimeout(() => {
+                    Plotly.Plots.resize('cpkChart');
+                    Plotly.Plots.resize('cpkCdfChart');
+                }, 100);
             }
         } else if (tabId === 'comparison') {
             document.getElementById('comparisonPanel').classList.remove('hidden');
@@ -4659,15 +4666,15 @@ function switch8dTab(tabId) {
 
     const distParams = {
         normal: [
-            { id: 'normMean', label: 'Process Mean (弮)', min: 80, max: 120, step: 0.5, val: 100 },
-            { id: 'normSigma', label: 'Process Std Dev (?)', min: 0.5, max: 10, step: 0.1, val: 3.0 }
+            { id: 'normMean', label: 'Process Mean (μ)', min: 80, max: 120, step: 0.5, val: 100 },
+            { id: 'normSigma', label: 'Process Std Dev (σ)', min: 0.5, max: 10, step: 0.1, val: 3.0 }
         ],
         lognormal: [
-            { id: 'logMu', label: 'Location (弮-log)', min: 4.0, max: 4.8, step: 0.02, val: 4.6 },
-            { id: 'logSigma', label: 'Shape/Skew (?-log)', min: 0.05, max: 0.35, step: 0.01, val: 0.15 }
+            { id: 'logMu', label: 'Location (μ-log)', min: 4.0, max: 4.8, step: 0.02, val: 4.6 },
+            { id: 'logSigma', label: 'Shape/Skew (σ-log)', min: 0.05, max: 0.35, step: 0.01, val: 0.15 }
         ],
         weibull: [
-            { id: 'weiScale', label: 'Scale Parameter (弇)', min: 80, max: 120, step: 1, val: 100 },
+            { id: 'weiScale', label: 'Scale Parameter (λ)', min: 80, max: 120, step: 1, val: 100 },
             { id: 'weiShape', label: 'Shape Parameter (k)', min: 0.8, max: 8.0, step: 0.1, val: 1.8 }
         ],
         uniform: [
@@ -4675,9 +4682,9 @@ function switch8dTab(tabId) {
             { id: 'uniMax', label: 'Upper Bound (b)', min: 105, max: 130, step: 1, val: 115 }
         ],
         bimodal: [
-            { id: 'biCenter', label: 'Mixture Center (弮0)', min: 85, max: 115, step: 1, val: 100 },
-            { id: 'biSeparation', label: 'Peak Distance (?弮)', min: 2, max: 20, step: 0.5, val: 10 },
-            { id: 'biSigma', label: 'Peak Std Dev (?)', min: 0.5, max: 5.0, step: 0.1, val: 2.0 }
+            { id: 'biCenter', label: 'Mixture Center (μ₀)', min: 85, max: 115, step: 1, val: 100 },
+            { id: 'biSeparation', label: 'Peak Distance (Δμ)', min: 2, max: 20, step: 0.5, val: 10 },
+            { id: 'biSigma', label: 'Peak Std Dev (σ)', min: 0.5, max: 5.0, step: 0.1, val: 2.0 }
         ]
     };
 
@@ -4773,6 +4780,7 @@ function handleCpkDistChange() {
             input.value = param.val;
             input.oninput = function() {
                 document.getElementById(param.id + 'Val').innerText = this.value;
+                runCpkSimulation();
             };
 
             const span = document.createElement('span');
@@ -4872,11 +4880,13 @@ function handleCpkDistChange() {
         const cplStd = (mean - LSL) / (3 * stdDev);
         const cpkStd = Math.min(cpuStd, cplStd);
         document.getElementById('cpkStandardVal').innerText = cpkStd.toFixed(2);
+        document.getElementById('cpkStandardSub').innerHTML = `CPKL: ${cplStd.toFixed(2)} &nbsp;|&nbsp; CPKH: ${cpuStd.toFixed(2)}`;
 
         const cpuIso = (USL - median) / (x99865 - median);
         const cplIso = (median - LSL) / (median - x0135);
         const cpkIso = Math.min(cpuIso, cplIso);
         document.getElementById('cpkIsoVal').innerText = cpkIso.toFixed(2);
+        document.getElementById('cpkIsoSub').innerHTML = `CPKL: ${cplIso.toFixed(2)} &nbsp;|&nbsp; CPKH: ${cpuIso.toFixed(2)}`;
 
         const isNonNormal = Math.abs(skewness) > 0.5 || Math.abs(kurtosis) > 0.8 || dist !== 'normal';
         document.getElementById('cpkWarningAlert').style.display = isNonNormal ? 'flex' : 'none';
@@ -4894,7 +4904,7 @@ function handleCpkDistChange() {
             plot_bgcolor: 'rgba(0,0,0,0)',
             title: { text: 'Process Output Distribution & Spec Limits', font: { color: '#f8fafc', size: 14 } },
             font: { color: '#94a3b8' },
-            xaxis: { gridcolor: '#26354a', title: 'Measured Parameter' },
+            xaxis: { gridcolor: '#26354a', title: 'Measured Parameter', range: [50, 150] },
             yaxis: { gridcolor: '#26354a', title: 'Frequency' },
             margin: { t: 50, b: 50, l: 50, r: 20 },
             hovermode: 'closest',
@@ -4942,7 +4952,7 @@ function handleCpkDistChange() {
             plot_bgcolor: 'rgba(0,0,0,0)',
             title: { text: 'Cumulative Output Distribution (CDF)', font: { color: '#f8fafc', size: 14 } },
             font: { color: '#94a3b8' },
-            xaxis: { gridcolor: '#26354a', title: 'Measured Parameter' },
+            xaxis: { gridcolor: '#26354a', title: 'Measured Parameter', range: [50, 150] },
             yaxis: { gridcolor: '#26354a', title: 'Cumulative Probability', range: [-0.05, 1.05] },
             margin: { t: 50, b: 50, l: 50, r: 20 },
             hovermode: 'closest',
@@ -6130,7 +6140,7 @@ function handleCpkDistChange() {
         const varDrift = runMeans.reduce((a, b) => a + Math.pow(b - meanRunMeans, 2), 0) / (R - 1 || 1);
         const sigDrift = Math.sqrt(varDrift);
         const rpt = 3 * sigDrift;
-        document.getElementById('driftMetric4Val').innerText = `Rpt = ${rpt.toFixed(4)} (3 ? ?_drift = ${rpt.toFixed(4)})`;
+        document.getElementById('driftMetric4Val').innerText = `Rpt = ${rpt.toFixed(4)} (3 × σ_drift = ${rpt.toFixed(4)})`;
         let m4Status = rpt <= 0.5 ? '⏳ Excellent' : (rpt <= 1.0 ? 'ℹ️ Acceptable' : '❌ Poor');
         let m4Color = rpt <= 0.5 ? '#34d399' : (rpt <= 1.0 ? '#fbbf24' : '#f87171');
         document.getElementById('driftMetric4Status').innerText = m4Status;
