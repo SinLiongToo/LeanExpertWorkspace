@@ -17,3 +17,8 @@ CPKn SIMULATOR - *.html
 .idea/
 .DS_Store
 Thumbs.db
+
+# User ignored folders
+add/
+add1/
+
