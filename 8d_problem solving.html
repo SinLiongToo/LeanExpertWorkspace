@@ -1424,6 +1424,420 @@
             color: white !important;
         }
 
+
+        /* ------------------------------------------------------------- */
+        /* SMART PRINCIPLES MODULE (.smart-scope)                        */
+        /* ------------------------------------------------------------- */
+        .smart-scope {
+            --smart-bg: var(--bg-secondary);
+            --smart-surface: var(--bg-tertiary);
+            --smart-border: var(--border-color);
+            --smart-text: var(--text-primary);
+            --smart-muted: var(--text-muted);
+            --smart-accent-s: #38bdf8;
+            --smart-accent-m: #34d399;
+            --smart-accent-a: #f59e0b;
+            --smart-accent-r: #a78bfa;
+            --smart-accent-t: #ec4899;
+            font-family: var(--font-main);
+            color: var(--smart-text);
+        }
+
+        .smart-scope .smart-tab-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--smart-border);
+            padding-bottom: 8px;
+            overflow-x: auto;
+        }
+
+        .smart-scope .smart-tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--smart-muted);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .smart-scope .smart-tab-btn:hover {
+            background: var(--smart-surface);
+            color: var(--smart-text);
+            border-color: var(--smart-border);
+        }
+
+        .smart-scope .smart-tab-btn.active {
+            background: var(--color-blue);
+            color: #0f172a;
+            border-color: var(--color-blue);
+            font-weight: 700;
+            box-shadow: 0 2px 8px var(--color-blue-glow);
+        }
+
+        .smart-scope .smart-tab-panel {
+            display: none;
+        }
+
+        .smart-scope .smart-tab-panel.active {
+            display: block;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        .smart-scope .smart-card {
+            background: var(--smart-bg);
+            border: 1px solid var(--smart-border);
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        }
+
+        .smart-scope .smart-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--smart-text);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--smart-border);
+        }
+
+        .smart-scope .smart-grid-2 {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 1080px) {
+            .smart-scope .smart-grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .smart-scope .dim-card {
+            background: var(--smart-surface);
+            border: 1px solid var(--smart-border);
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--smart-border);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .smart-scope .dim-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .smart-scope .dim-card.card-s { border-left-color: var(--smart-accent-s); }
+        .smart-scope .dim-card.card-m { border-left-color: var(--smart-accent-m); }
+        .smart-scope .dim-card.card-a { border-left-color: var(--smart-accent-a); }
+        .smart-scope .dim-card.card-r { border-left-color: var(--smart-accent-r); }
+        .smart-scope .dim-card.card-t { border-left-color: var(--smart-accent-t); }
+
+        .smart-scope .dim-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .smart-scope .dim-badge {
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        .smart-scope .dim-badge.badge-s { background: rgba(56, 189, 248, 0.15); color: var(--smart-accent-s); border: 1px solid rgba(56, 189, 248, 0.3); }
+        .smart-scope .dim-badge.badge-m { background: rgba(52, 211, 153, 0.15); color: var(--smart-accent-m); border: 1px solid rgba(52, 211, 153, 0.3); }
+        .smart-scope .dim-badge.badge-a { background: rgba(245, 158, 11, 0.15); color: var(--smart-accent-a); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .smart-scope .dim-badge.badge-r { background: rgba(167, 139, 250, 0.15); color: var(--smart-accent-r); border: 1px solid rgba(167, 139, 250, 0.3); }
+        .smart-scope .dim-badge.badge-t { background: rgba(236, 72, 153, 0.15); color: var(--smart-accent-t); border: 1px solid rgba(236, 72, 153, 0.3); }
+
+        .smart-scope .dim-score-pill {
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--smart-border);
+            font-family: var(--font-mono);
+        }
+
+        .smart-scope .smart-input, .smart-scope .smart-select, .smart-scope .smart-textarea {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 1px solid var(--smart-border);
+            color: var(--smart-text);
+            padding: 7px 10px;
+            border-radius: 5px;
+            font-size: 12.5px;
+            font-family: inherit;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .smart-scope .smart-input:focus, .smart-scope .smart-select:focus, .smart-scope .smart-textarea:focus {
+            outline: none;
+            border-color: var(--color-blue);
+            box-shadow: 0 0 6px var(--color-blue-glow);
+        }
+
+        .smart-scope .smart-btn {
+            background: var(--smart-surface);
+            border: 1px solid var(--smart-border);
+            color: var(--smart-text);
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .smart-scope .smart-btn:hover {
+            background: var(--bg-primary);
+            border-color: var(--color-blue);
+            transform: translateY(-1px);
+        }
+
+        .smart-scope .smart-btn.primary {
+            background: linear-gradient(135deg, var(--color-blue) 0%, #1d4ed8 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 2px 8px var(--color-blue-glow);
+        }
+
+        .smart-scope .smart-btn.primary:hover {
+            opacity: 0.95;
+            box-shadow: 0 4px 14px var(--color-blue-glow);
+        }
+
+        .smart-scope .smart-btn.success {
+            background: linear-gradient(135deg, var(--color-emerald) 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+        }
+
+        .smart-scope .smart-form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .smart-scope .smart-checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 6px;
+            font-size: 12px;
+        }
+
+        .smart-scope .smart-checkbox-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            color: var(--smart-muted);
+        }
+
+        .smart-scope .smart-checkbox-group label:hover {
+            color: var(--smart-text);
+        }
+
+        .smart-scope .smart-score-box {
+            background: var(--smart-surface);
+            border: 1px solid var(--smart-border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .smart-scope .smart-score-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            border: 4px solid var(--color-blue);
+            box-shadow: 0 0 16px var(--color-blue-glow);
+            margin: 0 auto 10px auto;
+        }
+
+        .smart-scope .smart-score-val {
+            font-size: 28px;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            line-height: 1;
+            color: var(--color-blue);
+        }
+
+        .smart-scope .smart-score-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--smart-muted);
+            margin-top: 2px;
+        }
+
+        .smart-scope .smart-progress-item {
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .smart-scope .smart-progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+
+        .smart-scope .smart-progress-track {
+            height: 6px;
+            background: var(--bg-primary);
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid var(--smart-border);
+        }
+
+        .smart-scope .smart-progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        .smart-scope .demo-card {
+            background: var(--smart-surface);
+            border: 1px solid var(--smart-border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .smart-scope .demo-card:hover {
+            border-color: var(--color-blue);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .smart-scope .demo-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--color-blue);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            display: inline-block;
+        }
+
+        .smart-scope .demo-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        @media (max-width: 768px) {
+            .smart-scope .demo-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .smart-scope .demo-box {
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 12.5px;
+            line-height: 1.5;
+        }
+
+        .smart-scope .demo-box.bad {
+            background: rgba(248, 113, 113, 0.08);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            color: var(--smart-text);
+        }
+
+        .smart-scope .demo-box.good {
+            background: rgba(52, 211, 153, 0.08);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            color: var(--smart-text);
+        }
+
+        .smart-scope .help-accordion-item {
+            border: 1px solid var(--smart-border);
+            border-radius: 6px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            background: var(--smart-surface);
+        }
+
+        .smart-scope .help-accordion-header {
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 13.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .smart-scope .help-accordion-header:hover {
+            background: var(--bg-primary);
+        }
+
+        .smart-scope .help-accordion-body {
+            display: none;
+            padding: 14px 16px;
+            border-top: 1px solid var(--smart-border);
+            background: var(--smart-bg);
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--smart-text);
+        }
+
+        .smart-scope .help-accordion-body.open {
+            display: block;
+        }
+
+        /* Light Theme Overrides for SMART Scope */
+        [data-theme="light"] .smart-scope {
+            --smart-bg: #ffffff;
+            --smart-surface: #f8fafc;
+            --smart-border: #cbd5e1;
+            --smart-text: #0f172a;
+            --smart-muted: #64748b;
+        }
+        [data-theme="light"] .smart-scope .smart-score-circle {
+            background: #ffffff;
+        }
+        [data-theme="light"] .smart-scope .smart-input,
+        [data-theme="light"] .smart-scope .smart-select,
+        [data-theme="light"] .smart-scope .smart-textarea {
+            background: #ffffff;
+            border-color: #cbd5e1;
+            color: #0f172a;
+        }
+
 </style>
 </head>
 <body>
@@ -1435,6 +1849,19 @@
             <p id="mottoHeader" style="font-size: 11.5px; color: var(--color-blue); font-weight: 500; margin-top: 2px; letter-spacing: 0.2px;">M 挑戰精進 (Mastery Challenge) · A 目標對齊 (Align & Adjust) · S 解決問題 (Solve Problems) · A 迅速行動 (Act Swiftly)   ·   T 團隊協作 (Team Up) · U 成就他人 (Uplift Others) </p>
             <p id="subTitleHeader">Interactive engineering simulation & structured task management for quality teaching</p>
         </div>
+        <div class="header-actions" style="display: flex; gap: 10px; align-items: center;">
+            <div class="version-badge" style="display: flex; align-items: center; gap: 8px; font-size: 11.5px; font-family: var(--font-mono, monospace); background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-muted); padding: 7px 12px; border-radius: 6px; user-select: none; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                <span style="display: inline-flex; align-items: center; gap: 4px; color: var(--color-blue); font-weight: 700;">
+                    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-emerald); box-shadow: 0 0 6px var(--color-emerald);"></span>
+                    v1.3.0
+                </span>
+                <span style="opacity: 0.4;">|</span>
+                <span>Update: 2026-09-01</span>
+            </div>
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleDashboardTheme()" style="background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+                ☀️ Light Mode
+            </button>
+        </div>
         <div class="tab-navigation">
         <button class="tab-btn active" data-tab="d8" onclick="switchTab('d8')">📋 8D Problem Solving</button>
         <button class="tab-btn" data-tab="cpk" onclick="switchTab('cpk')">📈 Process Cpk</button>
@@ -1443,6 +1870,7 @@
         <button class="tab-btn" data-tab="msc" onclick="switchTab('msc')">🔍 Gage R&R (MSA)</button>
         <button class="tab-btn" data-tab="drift" onclick="switchTab('drift')">⏳ Device Drift & Shift</button>
         <button class="tab-btn" data-tab="qsh" onclick="switchTab('qsh')">📊 Quality Statistics Hub</button>
+        <button class="tab-btn" data-tab="smart" onclick="switchTab('smart')">🎯 SMART 原則</button>
         <button class="tab-btn" data-tab="help" onclick="switchTab('help')">📖 Help / Readme</button>
         </div>
     </header>
@@ -2817,6 +3245,360 @@
 
             </div>
         </div>
+        <!-- PANEL 9: SMART PRINCIPLES MODULE -->
+        <div class="panel hidden smart-scope" id="smartPanel">
+            <div class="smart-tab-bar">
+                <button class="smart-tab-btn active" onclick="smartSwitchSubTab('eval', this)">🎯 目標設定與即時評估器 (SMART Evaluator)</button>
+                <button class="smart-tab-btn" onclick="smartSwitchSubTab('demo', this)">🧪 實戰範例庫 (Demo / Mock)</button>
+                <button class="smart-tab-btn" onclick="smartSwitchSubTab('help', this)">📖 指南與知識庫 (HELP / Guide)</button>
+            </div>
+
+            <!-- SUB-TAB 1: EVALUATOR & BUILDER -->
+            <div class="smart-tab-panel active" id="smartTab-eval">
+                <div class="smart-card">
+                    <div class="smart-card-title">
+                        <span>🎯 目標概覽與快速設定 (Target Goal Overview)</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="smart-btn" onclick="smartResetForm()">🔄 重設 (Reset)</button>
+                            <button class="smart-btn primary" onclick="smartEvaluate()">⚡ 立即評估 (Evaluate Now)</button>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 200px; gap: 14px; margin-bottom: 12px;">
+                        <div>
+                            <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block;">原始目標陳述 (Goal Statement / Draft):</label>
+                            <input type="text" id="smartGoalStatement" class="smart-input" placeholder="例：在 2026-Q4 前，透過回焊溫度曲線優化與雷射錫膏檢測，將 SMT 空焊率由 2.4% 降至 0.3% (Cpk >= 1.67)..." oninput="smartEvaluate()">
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; font-size: 12px; margin-bottom: 4px; display: block;">目標所屬領域 (Category):</label>
+                            <select id="smartCategory" class="smart-select" onchange="smartEvaluate()">
+                                <option value="quality">品質改善 (8D / Quality)</option>
+                                <option value="cpk">製程能力 (Cpk / SPC)</option>
+                                <option value="oee">設備與精實 (OEE / TPM)</option>
+                                <option value="yield">晶圓良率 (Wafer Yield)</option>
+                                <option value="rd">專案研發 (R&D / Delivery)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="smart-grid-2">
+                    <!-- LEFT COLUMN: S-M-A-R-T 5 DIMENSIONS INPUT -->
+                    <div>
+                        <!-- S - Specific -->
+                        <div class="dim-card card-s">
+                            <div class="dim-header">
+                                <span class="dim-badge badge-s">S · Specific (明確具體)</span>
+                                <span class="dim-score-pill" id="scoreBadgeS">得分: --/100</span>
+                            </div>
+                            <div style="font-size: 11.5px; color: var(--smart-muted); margin-bottom: 6px;">明確回答 5W1H：誰要做？改善對象與範疇為何？用什麼具體方法？去除模糊字眼。</div>
+                            <div class="smart-form-row">
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">執行負責人/團隊 (Who):</label>
+                                    <input type="text" id="smartWho" class="smart-input" placeholder="例：PE 製程工程組 / SMT 品質圈" oninput="smartEvaluate()">
+                                </div>
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">改善核心對象 (What/Where):</label>
+                                    <input type="text" id="smartWhat" class="smart-input" placeholder="例：SMT #3 線 BGA 焊點空焊缺陷" oninput="smartEvaluate()">
+                                </div>
+                            </div>
+                            <div style="margin-top: 8px;">
+                                <label style="font-size: 11px; font-weight: 600;">關鍵手法/改善措施 (How/Strategy):</label>
+                                <input type="text" id="smartHow" class="smart-input" placeholder="例：實施 8D D6 溫控多點監控與鋼網開孔設計優化" oninput="smartEvaluate()">
+                            </div>
+                            <div class="smart-checkbox-group">
+                                <label><input type="checkbox" id="chkS1" checked onchange="smartEvaluate()"> 明確主體與對象</label>
+                                <label><input type="checkbox" id="chkS2" checked onchange="smartEvaluate()"> 具體行動措施</label>
+                                <label><input type="checkbox" id="chkS3" onchange="smartEvaluate()"> 排除模糊形容詞 (如加強/盡量)</label>
+                            </div>
+                        </div>
+
+                        <!-- M - Measurable -->
+                        <div class="dim-card card-m">
+                            <div class="dim-header">
+                                <span class="dim-badge badge-m">M · Measurable (可衡量)</span>
+                                <span class="dim-score-pill" id="scoreBadgeM">得分: --/100</span>
+                            </div>
+                            <div style="font-size: 11.5px; color: var(--smart-muted); margin-bottom: 6px;">定義清晰的量化指標、基準值 (Baseline)、目標值 (Target) 與量測數據來源。</div>
+                            <div class="smart-form-row" style="grid-template-columns: 1.5fr 1fr 1fr 0.8fr;">
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">指標名稱 (KPI):</label>
+                                    <input type="text" id="smartKpi" class="smart-input" placeholder="例：空焊不良率 (Defect Rate)" oninput="smartEvaluate()">
+                                </div>
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">基準現況 (Baseline):</label>
+                                    <input type="number" id="smartBaseline" class="smart-input" value="2.4" step="any" oninput="smartEvaluate()">
+                                </div>
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">目標值 (Target):</label>
+                                    <input type="number" id="smartTarget" class="smart-input" value="0.3" step="any" oninput="smartEvaluate()">
+                                </div>
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">單位 (Unit):</label>
+                                    <input type="text" id="smartUnit" class="smart-input" value="%" oninput="smartEvaluate()">
+                                </div>
+                            </div>
+                            <div style="margin-top: 8px;">
+                                <label style="font-size: 11px; font-weight: 600;">數據來源與量測系統 (Data Source & MSA):</label>
+                                <input type="text" id="smartDataSource" class="smart-input" placeholder="例：AOI 自動光學檢測系統每日日報 (GR&R < 10%)" oninput="smartEvaluate()">
+                            </div>
+                            <div style="font-size: 11px; color: var(--color-blue); margin-top: 6px; font-family: var(--font-mono);" id="smartDeltaCalc">預估變化幅度: -87.5% (顯著改善)</div>
+                        </div>
+
+                        <!-- A - Achievable -->
+                        <div class="dim-card card-a">
+                            <div class="dim-header">
+                                <span class="dim-badge badge-a">A · Achievable (可達成)</span>
+                                <span class="dim-score-pill" id="scoreBadgeA">得分: --/100</span>
+                            </div>
+                            <div style="font-size: 11.5px; color: var(--smart-muted); margin-bottom: 6px;">評估資源配置、技術可行性與甜蜜點 (具挑戰性但經努力可達成)。</div>
+                            <div class="smart-form-row">
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">挑戰與可行性評估:</label>
+                                    <select id="smartFeasibility" class="smart-select" onchange="smartEvaluate()">
+                                        <option value="high">高度可行且具適度挑戰 (Realistic & Challenging)</option>
+                                        <option value="medium">具重大技術挑戰需跨部門支援 (Major Challenge)</option>
+                                        <option value="easy">過於保守容易達成 (Too Easy)</option>
+                                        <option value="impossible">不切實際/資源嚴重不足 (Unrealistic)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">所需資源與支援 (Resources):</label>
+                                    <input type="text" id="smartResources" class="smart-input" placeholder="例：預算 $5,000、DOE 試產 3 批" oninput="smartEvaluate()">
+                                </div>
+                            </div>
+                            <div style="margin-top: 8px;">
+                                <label style="font-size: 11px; font-weight: 600;">潛在風險與對策 (Obstacles & Countermeasures):</label>
+                                <input type="text" id="smartObstacles" class="smart-input" placeholder="例：供應商鋼網交期延誤，已預先備妥替代治具" oninput="smartEvaluate()">
+                            </div>
+                        </div>
+
+                        <!-- R - Relevant -->
+                        <div class="dim-card card-r">
+                            <div class="dim-header">
+                                <span class="dim-badge badge-r">R · Relevant (相關性)</span>
+                                <span class="dim-score-pill" id="scoreBadgeR">得分: --/100</span>
+                            </div>
+                            <div style="font-size: 11.5px; color: var(--smart-muted); margin-bottom: 6px;">對齊組織頂層策略 (8D 品質問題、Cpk 能力指標、客戶滿意度、成本節約)。</div>
+                            <div class="smart-form-row">
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">對齊之核心策略目標:</label>
+                                    <select id="smartAlignment" class="smart-select" onchange="smartEvaluate()">
+                                        <option value="8d">8D 根本原因永久對策 (8D D6/D7 Action)</option>
+                                        <option value="cpk">關鍵製程能力升級 (Cpk >= 1.67)</option>
+                                        <option value="customer">消除客戶客退與品質抱怨 (Zero Defect)</option>
+                                        <option value="oee">精實生產與稼動率最大化 (Lean Kaizen)</option>
+                                        <option value="cost">降低報廢損失與重工成本 (Cost Reduction)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">商業與價值影響 (Impact / Value):</label>
+                                    <input type="text" id="smartImpact" class="smart-input" placeholder="例：避免每月 12 萬美元客退重工損失" oninput="smartEvaluate()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- T - Time-bound -->
+                        <div class="dim-card card-t">
+                            <div class="dim-header">
+                                <span class="dim-badge badge-t">T · Time-bound (時限性)</span>
+                                <span class="dim-score-pill" id="scoreBadgeT">得分: --/100</span>
+                            </div>
+                            <div style="font-size: 11.5px; color: var(--smart-muted); margin-bottom: 6px;">明確的完成截止日期、階段性里程碑檢查點與審查節奏。</div>
+                            <div class="smart-form-row">
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">最終完成期限 (Target Deadline):</label>
+                                    <input type="date" id="smartDeadline" class="smart-input" value="2026-10-31" onchange="smartEvaluate()">
+                                </div>
+                                <div>
+                                    <label style="font-size: 11px; font-weight: 600;">審查回顧頻率 (Review Cadence):</label>
+                                    <select id="smartReviewCadence" class="smart-select" onchange="smartEvaluate()">
+                                        <option value="weekly">每週專案例會 (Weekly)</option>
+                                        <option value="biweekly">雙週進度審查 (Bi-weekly)</option>
+                                        <option value="monthly">每月主管會報 (Monthly)</option>
+                                        <option value="milestone">關鍵里程碑節點 (Milestone Gate)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="margin-top: 8px;">
+                                <label style="font-size: 11px; font-weight: 600;">階段里程碑 (Milestones):</label>
+                                <input type="text" id="smartMilestones" class="smart-input" placeholder="例：M1(09/15) 完成溫控DOE；M2(10/10) 小批量試產驗證；M3(10/31) 正式量產並標準化" oninput="smartEvaluate()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: SCORE, RADAR CHART, DIAGNOSIS & REFINED STATEMENT -->
+                    <div>
+                        <!-- Overall Score & Radar Box -->
+                        <div class="smart-card" style="margin-bottom: 14px;">
+                            <div class="smart-card-title">
+                                <span>📊 SMART 總體指數與雷達圖</span>
+                                <span id="smartScoreGrade" style="font-size: 12px; font-weight: 700; color: var(--color-emerald); background: rgba(52,211,153,0.15); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(52,211,153,0.3);">卓越 (Exemplary)</span>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 110px 1fr; gap: 14px; align-items: center;">
+                                <div class="smart-score-box" style="margin-bottom: 0;">
+                                    <div class="smart-score-circle" id="smartScoreCircle">
+                                        <span class="smart-score-val" id="smartScoreVal">94</span>
+                                        <span class="smart-score-label">SMART INDEX</span>
+                                    </div>
+                                    <div style="font-size: 10.5px; color: var(--smart-muted);" id="smartScoreStatus">高品質目標</div>
+                                </div>
+
+                                <div>
+                                    <!-- Progress bars for S, M, A, R, T -->
+                                    <div class="smart-progress-item">
+                                        <div class="smart-progress-header"><span style="color:var(--smart-accent-s)">S · Specific</span><span id="pbValS">95%</span></div>
+                                        <div class="smart-progress-track"><div class="smart-progress-fill" id="pbFillS" style="width: 95%; background: var(--smart-accent-s);"></div></div>
+                                    </div>
+                                    <div class="smart-progress-item">
+                                        <div class="smart-progress-header"><span style="color:var(--smart-accent-m)">M · Measurable</span><span id="pbValM">98%</span></div>
+                                        <div class="smart-progress-track"><div class="smart-progress-fill" id="pbFillM" style="width: 98%; background: var(--smart-accent-m);"></div></div>
+                                    </div>
+                                    <div class="smart-progress-item">
+                                        <div class="smart-progress-header"><span style="color:var(--smart-accent-a)">A · Achievable</span><span id="pbValA">90%</span></div>
+                                        <div class="smart-progress-track"><div class="smart-progress-fill" id="pbFillA" style="width: 90%; background: var(--smart-accent-a);"></div></div>
+                                    </div>
+                                    <div class="smart-progress-item">
+                                        <div class="smart-progress-header"><span style="color:var(--smart-accent-r)">R · Relevant</span><span id="pbValR">92%</span></div>
+                                        <div class="smart-progress-track"><div class="smart-progress-fill" id="pbFillR" style="width: 92%; background: var(--smart-accent-r);"></div></div>
+                                    </div>
+                                    <div class="smart-progress-item">
+                                        <div class="smart-progress-header"><span style="color:var(--smart-accent-t)">T · Time-bound</span><span id="pbValT">95%</span></div>
+                                        <div class="smart-progress-track"><div class="smart-progress-fill" id="pbFillT" style="width: 95%; background: var(--smart-accent-t);"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Plotly Radar Container -->
+                            <div id="smartRadarChart" style="width: 100%; height: 230px; margin-top: 10px;"></div>
+                        </div>
+
+                        <!-- Diagnosis & Refined Statement Card -->
+                        <div class="smart-card">
+                            <div class="smart-card-title">
+                                <span>💡 智慧診斷與標準目標重構 (Auto-Refined Goal)</span>
+                            </div>
+
+                            <div id="smartDiagnosisBox" style="font-size: 12px; line-height: 1.5; margin-bottom: 12px; padding: 10px; background: var(--smart-surface); border: 1px solid var(--smart-border); border-radius: 6px;">
+                                <!-- Injected dynamically -->
+                            </div>
+
+                            <div style="font-size: 11.5px; font-weight: 700; color: var(--color-blue); margin-bottom: 6px;">✨ 標準 SMART 重構陳述句 (Standard Formatted Statement):</div>
+                            <div id="smartRefinedOutput" style="font-size: 12.5px; line-height: 1.6; padding: 12px; background: var(--bg-primary); border: 1px dashed var(--color-blue); border-radius: 6px; color: var(--smart-text); min-height: 50px; font-weight: 500;">
+                                <!-- Generated statement -->
+                            </div>
+
+                            <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+                                <button class="smart-btn" onclick="smartCopyRefinedGoal()">📋 複製標準陳述句 (Copy)</button>
+                                <button class="smart-btn success" onclick="smartExportTo8D()">🚀 套用至 8D 改善對策 (Apply to 8D)</button>
+                                <button class="smart-btn" onclick="smartExportReport()">📥 匯出 Markdown 評估報告</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-TAB 2: DEMO / MOCK LIBRARY -->
+            <div class="smart-tab-panel" id="smartTab-demo">
+                <div class="smart-card">
+                    <div class="smart-card-title">
+                        <span>🧪 跨領域實戰範例庫 (Interactive Demo Scenarios & Bad vs Good Comparison)</span>
+                    </div>
+                    <p style="font-size: 12.5px; color: var(--smart-muted); margin-bottom: 16px;">
+                        點擊下方任一案例的「📥 載入此範例到評估器」，系統將自動把數值、維度檢核與指標同步至評估器中，展示即時雷達圖、評分與重構過程。
+                    </p>
+
+                    <div id="smartDemoList">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-TAB 3: HELP / GUIDE & BEST PRACTICES -->
+            <div class="smart-tab-panel" id="smartTab-help">
+                <div class="smart-card">
+                    <div class="smart-card-title">
+                        <span>📖 SMART 原則深度指引與最佳實踐 (SMART Methodology & Engineering Guide)</span>
+                    </div>
+
+                    <!-- Accordion Item 1 -->
+                    <div class="help-accordion-item">
+                        <div class="help-accordion-header" onclick="smartToggleHelpAccordion(this)">
+                            <span>📌 1. 什麼是 SMART 原則？核心概念與價值</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="help-accordion-body open">
+                            <p><strong>SMART 原則</strong>最早由 George T. Doran 於 1981 年提出，並廣泛應用於 Peter Drucker 的目標管理 (MBO)、六標準差 (Six Sigma DMAIC) 與精實改善 (Lean Kaizen)。</p>
+                            <p>SMART 的核心目的在於<strong>破除口號式、模糊不清的願景</strong>，將抽象的期望轉化為團隊成員皆能理解、可被量測、可被驗證的具體行動方針。</p>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px;">
+                                <div style="padding: 10px; background: var(--smart-surface); border-radius: 6px; border-left: 3px solid var(--smart-accent-s);"><strong>S - Specific</strong><br><span style="font-size: 12px; color: var(--smart-muted);">明確具體，消除認知歧義</span></div>
+                                <div style="padding: 10px; background: var(--smart-surface); border-radius: 6px; border-left: 3px solid var(--smart-accent-m);"><strong>M - Measurable</strong><br><span style="font-size: 12px; color: var(--smart-muted);">量化指標，用數據說話</span></div>
+                                <div style="padding: 10px; background: var(--smart-surface); border-radius: 6px; border-left: 3px solid var(--smart-accent-a);"><strong>A - Achievable</strong><br><span style="font-size: 12px; color: var(--smart-muted);">挑戰但可達成，資源適配</span></div>
+                                <div style="padding: 10px; background: var(--smart-surface); border-radius: 6px; border-left: 3px solid var(--smart-accent-r);"><strong>R - Relevant</strong><br><span style="font-size: 12px; color: var(--smart-muted);">與組織 8D/Cpk 核心策略對齊</span></div>
+                                <div style="padding: 10px; background: var(--smart-surface); border-radius: 6px; border-left: 3px solid var(--smart-accent-t);"><strong>T - Time-bound</strong><br><span style="font-size: 12px; color: var(--smart-muted);">設定明確截止日與里程碑</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 2 -->
+                    <div class="help-accordion-item">
+                        <div class="help-accordion-header" onclick="smartToggleHelpAccordion(this)">
+                            <span>📐 2. 工程與品質目標撰寫黃金公式 (The Golden Formula)</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="help-accordion-body">
+                            <p>在撰寫 8D 對策、製程能力改善 (Cpk)、良率提升時，推薦使用以下<strong>標準黃金公式 (Golden Formula)</strong>：</p>
+                            <div style="background: var(--smart-surface); padding: 14px; border-radius: 6px; border: 1px solid var(--smart-border); font-family: var(--font-mono); font-size: 13px; color: var(--color-blue); margin: 10px 0;">
+                                「由 [執行主體] 主導，透過 [關鍵手法/對策]，在 [明確截止日] 前，將 [關鍵指標 KPI] 從 [基準值 From] 改善至 [目標值 To]，以實現 [策略關聯價值]。」
+                            </div>
+                            <p><strong>範例對比：</strong></p>
+                            <ul>
+                                <li>❌ <strong>不良寫法：</strong>「把機台蝕刻良率弄好一點，越快越好。」 (0 分：缺乏人、事、時、地、數值)</li>
+                                <li>✅ <strong>黃金公式寫法：</strong>「由薄膜蝕刻模組團隊主導，透過 RF 阻抗自動調諧與氣體分流改造，於 2026 年 10 月底前將關鍵尺寸 Cpk 由 1.15 提升至 1.67 以上，達成晶圓允收零客退。」 (100 分)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 3 -->
+                    <div class="help-accordion-item">
+                        <div class="help-accordion-header" onclick="smartToggleHelpAccordion(this)">
+                            <span>⚠️ 3. SMART 目標常見的 8 大反模式 (Anti-Patterns)</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="help-accordion-body">
+                            <ol style="padding-left: 20px;">
+                                <li><strong>把「行動手段」當作「最終目標」</strong>：例如「完成 5 場教育訓練」（這是手段），真正的 SMART 目標應為「透過教育訓練，使操作失誤率由 3% 降至 0.2%」。</li>
+                                <li><strong>只有目標值，缺乏基準現況 (Baseline)</strong>：缺少 From 數據，無法計算實際改善效益與變化幅度。</li>
+                                <li><strong>使用模糊動詞</strong>：如「加強」、「盡量」、「大幅改善」、「優化」，應改為可客觀判斷的具體數據。</li>
+                                <li><strong>不切實際的百日神話</strong>：設定一週內將不良率從 15% 降至 0% 且無配套資源，導致團隊失去信心。</li>
+                                <li><strong>缺乏量測系統支援 (No MSA)</strong>：設定了小數點後三位的嚴苛指標，但現有檢驗量具的 GR&R 超過 30%，測出來的數值不可信。</li>
+                                <li><strong>局部最佳化 (Local Optimum)</strong>：目標與公司整體獲利或 8D 根本原因無關，甚至犧牲其他製程站點。</li>
+                                <li><strong>沒有中途里程碑 (Milestones)</strong>：只看最後一天，缺乏 25%、50%、75% 的進度檢核閘門。</li>
+                                <li><strong>目標未與執行者對齊 (Lack of Ownership)</strong>：主管單向指派，缺乏團隊共同審查與承諾。</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 4 -->
+                    <div class="help-accordion-item">
+                        <div class="help-accordion-header" onclick="smartToggleHelpAccordion(this)">
+                            <span>🔗 4. SMART 與 8D / OKR / DMAIC 的整合應用</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="help-accordion-body">
+                            <p><strong>在 8D Problem Solving 中的應用：</strong></p>
+                            <ul>
+                                <li><strong>D3 圍堵措施 (ICA)</strong>：時限通常為 24-48 小時內，目標是 100% 阻絕不良品流出至客戶端。</li>
+                                <li><strong>D6 永久對策驗證 (PCA)</strong>：必須定義清晰的量化指標（如 Cpk >= 1.67、連續 3 批零缺陷），確認根本原因已被根除。</li>
+                                <li><strong>D7 預防再發 (Prevent Recurrence)</strong>：將 SMART 標準融入 SOP、FMEA 與管制計劃 (Control Plan)。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="panel hidden" id="helpPanel">
             <div class="help-container">
@@ -3357,6 +4139,7 @@
         document.getElementById('mscPanel').classList.add('hidden');
         document.getElementById('driftPanel').classList.add('hidden');
         document.getElementById('helpPanel').classList.add('hidden');
+        if (document.getElementById('smartPanel')) document.getElementById('smartPanel').classList.add('hidden');
         document.getElementById('qshPanel').classList.add('hidden');
  
         // Hide/Show Sidebars
@@ -3432,6 +4215,11 @@
             } else {
                 redrawDriftChartsOnly();
             }
+        } else if (tabId === 'smart') {
+            document.getElementById('smartPanel').classList.remove('hidden');
+            document.getElementById('sidebarControls').classList.add('hidden');
+            document.getElementById('mainContainer').classList.add('full-width');
+            smartInit();
         } else if (tabId === 'help') {
             document.getElementById('helpPanel').classList.remove('hidden');
             document.getElementById('sidebarControls').classList.add('hidden');
@@ -6269,6 +7057,641 @@ function handleCpkDistChange() {
         };
 
         Plotly.newPlot('driftBoxplotChart', tracesBox, layoutBox, { displayModeBar: false, responsive: true });
+    }
+
+    
+    // -------------------------------------------------------------
+    // SMART PRINCIPLES MODULE (JavaScript Engine)
+    // -------------------------------------------------------------
+    const SMART_DEMOS = [
+        {
+            id: 'smt_quality',
+            title: 'SMT 回焊空焊與銲點不良率改善 (8D D6 對策)',
+            category: 'quality',
+            badGoal: '我們要盡量把 SMT 焊點不良率降低，改善產線品質並減少客戶客退。',
+            badWhy: '缺乏具體執行者、缺乏基準值與目標數字、沒有明確改善手法、缺乏具體截止日期與里程碑。',
+            badScore: 28,
+            goodGoal: '由 SMT 品質改善圈主導，透過回焊爐多溫區曲線優化與鋼網雷射開孔設計，在 2026-10-31 前將 BGA 焊點不良率由 2.4% 降至 0.3% 以下 (Cpk >= 1.67)，消除每月 $12 萬美元客退損失。',
+            goodScore: 96,
+            state: {
+                goalStatement: '在 2026-10-31 前，透過回焊溫度曲線優化與雷射鋼網開孔，將 SMT 空焊不良率由 2.4% 降至 0.3% (Cpk >= 1.67)。',
+                category: 'quality',
+                who: 'SMT 品質改善圈 / PE 製程工程組',
+                what: 'SMT #3 線 BGA 焊點空焊缺陷',
+                how: '實施 8D D6 溫控多點監控與鋼網開孔設計優化',
+                chkS1: true, chkS2: true, chkS3: true,
+                kpi: '空焊不良率 (Defect Rate)',
+                baseline: 2.4,
+                target: 0.3,
+                unit: '%',
+                dataSource: 'AOI 自動光學檢測系統每日日報 (GR&R < 8%)',
+                feasibility: 'high',
+                resources: '預算 $5,000、DOE 試產 3 批',
+                obstacles: '供應商鋼網交期延誤，已預先備妥替代治具',
+                alignment: '8d',
+                impact: '消除每月 12 萬美元客退重工損失',
+                deadline: '2026-10-31',
+                reviewCadence: 'weekly',
+                milestones: 'M1(09/15) 完成溫控DOE; M2(10/10) 小批量試產; M3(10/31) 正式量產並標準化'
+            }
+        },
+        {
+            id: 'etch_cpk',
+            title: '12吋晶圓關鍵蝕刻深度 Cpk 製程能力提升',
+            category: 'cpk',
+            badGoal: '製程蝕刻深度的 Cpk 表現不夠好，要盡快調機拉高。',
+            badWhy: '用詞模糊（不夠好、盡快、拉高），無具體機台、無當前 Cpk 與目標 Cpk、無改善路徑與截止日。',
+            badScore: 22,
+            goodGoal: '由蝕刻模組工程部主導，透過 RF 匹配阻抗自動調諧演算法與氣體噴淋盤改造，於 2026-11-30 前將 Poly Gate 關鍵蝕刻深度 Cpk 由 1.12 提升至 1.67 以上，符合車用晶片嚴苛規範。',
+            goodScore: 98,
+            state: {
+                goalStatement: '由蝕刻模組團隊主導，透過 RF 阻抗調諧與氣盤改造，於 2026-11-30 前將蝕刻深度 Cpk 由 1.12 提升至 1.67 以上。',
+                category: 'cpk',
+                who: '蝕刻模組工程部 / 製程整合 (PIE)',
+                what: '12吋先進製程 Poly Gate 關鍵蝕刻深度',
+                how: '導入 RF 匹配阻抗即時調諧與氣體噴淋盤流場改造',
+                chkS1: true, chkS2: true, chkS3: true,
+                kpi: '製程能力指數 (Cpk)',
+                baseline: 1.12,
+                target: 1.67,
+                unit: 'Cpk',
+                dataSource: '線上自動光學膜厚儀與 CD-SEM 量測 (GR&R < 5%)',
+                feasibility: 'high',
+                resources: '機台測試時間 10 小時、測試晶圓 24 片',
+                obstacles: '機台產能滿載，協調維護窗口進行測試',
+                alignment: 'cpk',
+                impact: '取得 Tier-1 車用晶片客戶製程認證資格',
+                deadline: '2026-11-30',
+                reviewCadence: 'biweekly',
+                milestones: 'M1(09/30) 阻抗演算法部署; M2(10/25) 晶圓均勻性驗證; M3(11/30) 連續 50 批 Cpk 達標'
+            }
+        },
+        {
+            id: 'lean_smed_oee',
+            title: '精實製造快速換模 (SMED) 與設備 OEE 提升',
+            category: 'oee',
+            badGoal: '希望產線換模能快一點，讓設備稼動率高一些。',
+            badWhy: '「快一點」、「高一些」無法衡量，無換模時間基準、無 OEE 目標、無責任歸屬與時程。',
+            badScore: 25,
+            goodGoal: '由精實生產推動小組主導，運用 SMED 八步法將內部換模作業轉為外部化，在 2026-09-30 前將沖壓線平均換模時間由 45 分鐘縮短至 15 分鐘以內，並將 OEE 由 68% 提升至 85%。',
+            goodScore: 95,
+            state: {
+                goalStatement: '運用 SMED 快速換模，於 2026-09-30 前將沖壓線換模時間由 45 分鐘降至 15 分鐘，提升 OEE 至 85%。',
+                category: 'oee',
+                who: '精實製造改善推行小組 / 生產部',
+                what: '大型沖壓機台換模流程與模具定位作業',
+                how: '導入 SMED 單分鐘換模手法、快拆氣動夾爪與預熱治具',
+                chkS1: true, chkS2: true, chkS3: true,
+                kpi: '平均換模時間 (Changeover Time)',
+                baseline: 45,
+                target: 15,
+                unit: '分鐘',
+                dataSource: 'MES 製造執行系統設備停機紀錄與工時碼表',
+                feasibility: 'high',
+                resources: '快拆夾具預算 $8,000、作業標準書修訂',
+                obstacles: '作業員舊習慣抗拒，已規劃 4 場技能實操訓練',
+                alignment: 'oee',
+                impact: '產線每月釋放 36 小時可用產能，年節省 $15 萬',
+                deadline: '2026-09-30',
+                reviewCadence: 'weekly',
+                milestones: 'M1(09/05) 錄影動作浪費分析; M2(09/18) 治具快拆上線; M3(09/30) 全員標準化認證'
+            }
+        },
+        {
+            id: 'wafer_yield_ramp',
+            title: '旗艦 SoC 晶圓允收測試 (WAT/CP) 良率爬坡',
+            category: 'yield',
+            badGoal: '晶圓良率必須大幅拉升，減少報廢晶圓。',
+            badWhy: '「大幅拉升」為口號式用語，缺少缺陷密度 D0 目標、缺乏爬坡時程與測試站點定義。',
+            badScore: 30,
+            goodGoal: '由 NPI 良率工程小組主導，透過金屬層化學機械研磨 (CMP) 刮傷改善，於 2026-12-15 前將旗艦 SoC 晶圓 CP 良率從 78.0% 提升至 93.5% (D0 < 0.08 def/cm²)，確保 Q4 順利量產。',
+            goodScore: 97,
+            state: {
+                goalStatement: '透過 CMP 研磨液優化與缺陷過濾，於 2026-12-15 前將晶圓 CP 良率由 78% 提升至 93.5%。',
+                category: 'yield',
+                who: 'NPI 良率工程處 / 晶圓代工整合團隊',
+                what: '旗艦 5nm SoC 晶圓允收與晶圓針測 (CP) 良率',
+                how: '導入奈米微濾濾心、調控 CMP 研磨下壓力與清洗配方',
+                chkS1: true, chkS2: true, chkS3: true,
+                kpi: '晶圓針測良率 (CP Yield)',
+                baseline: 78.0,
+                target: 93.5,
+                unit: '%',
+                dataSource: '自動化晶圓測試機 (ATE) 測試日報與 Klarf 缺陷圖',
+                feasibility: 'high',
+                resources: '新配方驗證晶圓 12 批、分析儀器 SEM/TEM',
+                obstacles: '化學品切換需通過原廠相容性驗證',
+                alignment: 'customer',
+                impact: '單批晶圓產出合格 Die 增加 380 顆，確保交付',
+                deadline: '2026-12-15',
+                reviewCadence: 'weekly',
+                milestones: 'M1(10/15) 缺陷源頭定錨; M2(11/15) 新清洗製程上線; M3(12/15) 連續 3 萬片良率 > 93.5%'
+            }
+        },
+        {
+            id: 'tpm_mtbf',
+            title: '關鍵封裝打線機台 (Wire Bonder) MTBF 提升',
+            category: 'oee',
+            badGoal: '打線機常常當機，設備組要多做保養維護。',
+            badWhy: '缺乏平均故障間隔時間 (MTBF) 基準、缺乏保養項目定義、無驗證期限。',
+            badScore: 26,
+            goodGoal: '由設備維護部 TPM 專案組主導，透過自主保養基準書制定與關鍵陶瓷劈刀 (Capillary) 預知保養監控，於 2026-10-15 前將打線機 MTBF 由 120 小時提升至 200 小時以上。',
+            goodScore: 94,
+            state: {
+                goalStatement: '透過 TPM 預知保養與劈刀壽命監控，於 2026-10-15 前將打線機 MTBF 由 120 小時拉升至 200 小時。',
+                category: 'oee',
+                who: '設備工程部 TPM 推進小組 / 封裝廠',
+                what: '超音波打線機 (Wire Bonder) 傳動與音圈馬達模組',
+                how: '實施振動頻譜即時監控與陶瓷劈刀壽命動態預警系統',
+                chkS1: true, chkS2: true, chkS3: true,
+                kpi: '平均故障間隔時間 (MTBF)',
+                baseline: 120,
+                target: 200,
+                unit: '小時',
+                dataSource: 'EAP 設備自動化連線數據與維修工單紀錄',
+                feasibility: 'high',
+                resources: 'IoT 振動感測器 20 組、預警軟體授權',
+                obstacles: '舊機台通訊協定整合，已開發專屬中繼閘道器',
+                alignment: 'oee',
+                impact: '減少突發停機損失 70%，月省維修成本 $35,000',
+                deadline: '2026-10-15',
+                reviewCadence: 'biweekly',
+                milestones: 'M1(09/10) 感測器裝設; M2(09/25) 警報門檻校正; M3(10/15) MTBF 穩定達到 200hr+'
+            }
+        },
+        {
+            id: 'rd_agile',
+            title: '軟體研發自動化測試覆蓋率與發布準時交付',
+            category: 'rd',
+            badGoal: '軟體團隊要盡快把測試寫好，減少 Bug 上線。',
+            badWhy: '「盡快寫好」、「減少 Bug」無任何量化指標與時間約束，無法追蹤成效。',
+            badScore: 24,
+            goodGoal: '由研發效能小組主導，透過導入 CI/CD 自動化測試管線與 End-to-End 回歸測試套件，於 2026-11-15 前將核心代碼覆蓋率從 42% 提升至 85%，並將線上嚴重缺陷 (P1/P2) 降為 0 件。',
+            goodScore: 96,
+            state: {
+                goalStatement: '透過 CI/CD 單元與端到端自動化測試，於 2026-11-15 前將核心代碼覆蓋率由 42% 提升至 85%，線上 P1 Bug 歸零。',
+                category: 'rd',
+                who: '核心架構團隊 / QA 自動化測試小組',
+                what: '雲端製造分析平台 (Cloud Analytics Platform) 核心微服務',
+                how: '建立 GitHub Actions CI/CD 自動化測試與 Playwright E2E 流程',
+                chkS1: true, chkS2: true, chkS3: true,
+                kpi: '代碼測試覆蓋率 (Code Coverage)',
+                baseline: 42,
+                target: 85,
+                unit: '%',
+                dataSource: 'SonarQube 代碼品質報告與 Sentry 異常監控',
+                feasibility: 'high',
+                resources: 'CI/CD 雲端運算節點、Mock 伺服器建置',
+                obstacles: '歷史遺留代碼耦合度高，採取優先重構核心模組策略',
+                alignment: 'customer',
+                impact: '縮短 Release 發布驗證時間 65%，客戶投訴歸零',
+                deadline: '2026-11-15',
+                reviewCadence: 'weekly',
+                milestones: 'M1(09/30) 核心模組單元測試 80%; M2(10/25) E2E 流水線整合; M3(11/15) 全面達標'
+            }
+        }
+    ];
+
+    function smartSwitchSubTab(subTabId, btn) {
+        document.querySelectorAll('.smart-tab-btn').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        document.querySelectorAll('.smart-tab-panel').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById('smartTab-' + subTabId);
+        if (target) target.classList.add('active');
+        if (subTabId === 'eval') {
+            smartRenderRadar();
+        } else if (subTabId === 'demo') {
+            smartRenderDemoList();
+        }
+    }
+
+    function smartInit() {
+        smartRenderDemoList();
+        smartEvaluate();
+    }
+
+    function smartEvaluate() {
+        const who = (document.getElementById('smartWho')?.value || '').trim();
+        const what = (document.getElementById('smartWhat')?.value || '').trim();
+        const how = (document.getElementById('smartHow')?.value || '').trim();
+        const goalStmt = (document.getElementById('smartGoalStatement')?.value || '').trim();
+        
+        const chkS1 = document.getElementById('chkS1')?.checked;
+        const chkS2 = document.getElementById('chkS2')?.checked;
+        const chkS3 = document.getElementById('chkS3')?.checked;
+
+        const kpi = (document.getElementById('smartKpi')?.value || '').trim();
+        const baseline = parseFloat(document.getElementById('smartBaseline')?.value);
+        const target = parseFloat(document.getElementById('smartTarget')?.value);
+        const unit = (document.getElementById('smartUnit')?.value || '').trim();
+        const dataSource = (document.getElementById('smartDataSource')?.value || '').trim();
+
+        const feasibility = document.getElementById('smartFeasibility')?.value || 'high';
+        const resources = (document.getElementById('smartResources')?.value || '').trim();
+        const obstacles = (document.getElementById('smartObstacles')?.value || '').trim();
+
+        const alignment = document.getElementById('smartAlignment')?.value || '8d';
+        const impact = (document.getElementById('smartImpact')?.value || '').trim();
+
+        const deadline = document.getElementById('smartDeadline')?.value;
+        const reviewCadence = document.getElementById('smartReviewCadence')?.value;
+        const milestones = (document.getElementById('smartMilestones')?.value || '').trim();
+
+        // 1. Calculate S (Specific) Score (0 - 100)
+        let sScore = 30;
+        if (who.length > 2) sScore += 20;
+        if (what.length > 3) sScore += 20;
+        if (how.length > 4) sScore += 15;
+        if (chkS1) sScore += 5;
+        if (chkS2) sScore += 5;
+        if (chkS3) sScore += 5;
+        // Penalize vague words
+        const vagueRegex = /(盡量|盡快|加強|做好|大幅|適當|弄好|快一點|高一些|asap|better|optimize)/i;
+        if (vagueRegex.test(goalStmt) || vagueRegex.test(what)) {
+            sScore = Math.max(15, sScore - 25);
+        }
+        sScore = Math.min(100, Math.max(10, sScore));
+
+        // 2. Calculate M (Measurable) Score (0 - 100)
+        let mScore = 20;
+        if (kpi.length > 2) mScore += 20;
+        if (!isNaN(baseline)) mScore += 20;
+        if (!isNaN(target)) mScore += 20;
+        if (unit.length > 0) mScore += 10;
+        if (dataSource.length > 3) mScore += 10;
+        mScore = Math.min(100, Math.max(10, mScore));
+
+        // Update Delta preview
+        let deltaText = '請輸入基準值與目標值';
+        if (!isNaN(baseline) && !isNaN(target)) {
+            if (baseline !== 0) {
+                const deltaPct = ((target - baseline) / Math.abs(baseline)) * 100;
+                const sign = deltaPct > 0 ? '+' : '';
+                deltaText = `預估指標變化: ${sign}${deltaPct.toFixed(1)}% (從 ${baseline} ${unit} 到 ${target} ${unit})`;
+            } else {
+                deltaText = `預估指標從 0 到 ${target} ${unit}`;
+            }
+        }
+        const deltaEl = document.getElementById('smartDeltaCalc');
+        if (deltaEl) deltaEl.textContent = deltaText;
+
+        // 3. Calculate A (Achievable) Score (0 - 100)
+        let aScore = 40;
+        if (feasibility === 'high') aScore += 30;
+        else if (feasibility === 'medium') aScore += 20;
+        else if (feasibility === 'easy') aScore += 10;
+        else if (feasibility === 'impossible') aScore = 15;
+
+        if (resources.length > 3) aScore += 15;
+        if (obstacles.length > 3) aScore += 15;
+        aScore = Math.min(100, Math.max(10, aScore));
+
+        // 4. Calculate R (Relevant) Score (0 - 100)
+        let rScore = 40;
+        if (alignment) rScore += 30;
+        if (impact.length > 3) rScore += 30;
+        rScore = Math.min(100, Math.max(10, rScore));
+
+        // 5. Calculate T (Time-bound) Score (0 - 100)
+        let tScore = 20;
+        if (deadline) tScore += 40;
+        if (reviewCadence) tScore += 20;
+        if (milestones.length > 5) tScore += 20;
+        tScore = Math.min(100, Math.max(10, tScore));
+
+        // Overall Index
+        const totalScore = Math.round((sScore * 0.25) + (mScore * 0.25) + (aScore * 0.15) + (rScore * 0.15) + (tScore * 0.20));
+
+        // Update UI Badges & Progress Bars
+        const setEl = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+        setEl('scoreBadgeS', `得分: ${sScore}/100`);
+        setEl('scoreBadgeM', `得分: ${mScore}/100`);
+        setEl('scoreBadgeA', `得分: ${aScore}/100`);
+        setEl('scoreBadgeR', `得分: ${rScore}/100`);
+        setEl('scoreBadgeT', `得分: ${tScore}/100`);
+
+        setEl('pbValS', `${sScore}%`);
+        setEl('pbValM', `${mScore}%`);
+        setEl('pbValA', `${aScore}%`);
+        setEl('pbValR', `${rScore}%`);
+        setEl('pbValT', `${tScore}%`);
+
+        const setWidth = (id, val) => { const el = document.getElementById(id); if (el) el.style.width = val + '%'; };
+        setWidth('pbFillS', sScore);
+        setWidth('pbFillM', mScore);
+        setWidth('pbFillA', aScore);
+        setWidth('pbFillR', rScore);
+        setWidth('pbFillT', tScore);
+
+        setEl('smartScoreVal', totalScore);
+
+        // Grade Badge & Circle
+        const gradeEl = document.getElementById('smartScoreGrade');
+        const circleEl = document.getElementById('smartScoreCircle');
+        const statusEl = document.getElementById('smartScoreStatus');
+        
+        let gradeText = '卓越 (Exemplary)';
+        let gradeColor = 'var(--color-emerald)';
+        let statusText = '高品質且嚴謹之 SMART 目標';
+        
+        if (totalScore >= 90) {
+            gradeText = '🥇 卓越 (Exemplary)';
+            gradeColor = 'var(--color-emerald)';
+            statusText = '符合最高品質與工程驗證標準';
+        } else if (totalScore >= 75) {
+            gradeText = '🥈 良好 (Strong)';
+            gradeColor = 'var(--color-blue)';
+            statusText = '具備關鍵量化與時限，可執行';
+        } else if (totalScore >= 50) {
+            gradeText = '🥉 需改進 (Moderate)';
+            gradeColor = 'var(--color-orange)';
+            statusText = '缺少部分量化/時限細節，建議補充';
+        } else {
+            gradeText = '⚠️ 不及格 (Vague)';
+            gradeColor = 'var(--color-red)';
+            statusText = '缺乏具體數據與期限，屬口號式願景';
+        }
+
+        if (gradeEl) {
+            gradeEl.textContent = gradeText;
+            gradeEl.style.color = gradeColor;
+        }
+        if (circleEl) {
+            circleEl.style.borderColor = gradeColor;
+        }
+        if (statusEl) {
+            statusEl.textContent = statusText;
+        }
+
+        // Generate Refined Statement
+        const refined = smartGenerateRefinedGoal(who, what, how, kpi, baseline, target, unit, deadline, impact, reviewCadence);
+        const refinedEl = document.getElementById('smartRefinedOutput');
+        if (refinedEl) refinedEl.textContent = refined;
+
+        // Generate Diagnostic Tips
+        const diagBox = document.getElementById('smartDiagnosisBox');
+        if (diagBox) {
+            let tips = [];
+            if (sScore < 70) tips.push('🔍 <strong>具體性 (S)</strong>: 建議明確指出負責人與對象，避免「盡量/加強」等主觀動詞。');
+            if (mScore < 70) tips.push('📊 <strong>可衡量性 (M)</strong>: 需補齊指標名稱、基準現況數值、目標值與單位。');
+            if (aScore < 70) tips.push('⚖️ <strong>可達成性 (A)</strong>: 請評估所需資源與潛在障礙之備援方案。');
+            if (rScore < 70) tips.push('🔗 <strong>相關性 (R)</strong>: 建議說明此目標如何支持 8D / Cpk / 企業商業價值。');
+            if (tScore < 70) tips.push('⏳ <strong>時限性 (T)</strong>: 必須設定具體年-月-日截止時間與中間審查節奏。');
+            
+            if (tips.length === 0) {
+                diagBox.innerHTML = '✅ <strong style="color:var(--color-emerald)">極佳的目標定義！</strong> 各維度均具備充分量化數據與時限，符合工程六標準差與 8D 專業標準。';
+            } else {
+                diagBox.innerHTML = '<div style="color:var(--color-orange); font-weight:700; margin-bottom:4px;">⚠️ 診斷建議與改善要點:</div>' + tips.map(t => `<div style="margin-bottom:2px;">• ${t}</div>`).join('');
+            }
+        }
+
+        smartRenderRadar([sScore, mScore, aScore, rScore, tScore]);
+    }
+
+    function smartGenerateRefinedGoal(who, what, how, kpi, baseline, target, unit, deadline, impact, reviewCadence) {
+        const executor = who || '[負責團隊]';
+        const targetObj = what || '[改善對象]';
+        const method = how ? `透過${how}，` : '';
+        const kpiName = kpi || '[關鍵指標]';
+        const baseStr = !isNaN(baseline) ? `${baseline} ${unit}` : '[基準值]';
+        const tgtStr = !isNaN(target) ? `${target} ${unit}` : '[目標值]';
+        const dateStr = deadline ? `在 ${deadline} 前` : '在 [目標期限] 前';
+        const impactStr = impact ? `，以達成${impact}` : '';
+        const cadenceMap = { weekly: '每週', biweekly: '雙週', monthly: '每月', milestone: '各里程碑' };
+        const reviewStr = reviewCadence ? `（以${cadenceMap[reviewCadence] || '定期'}回顧進度）` : '';
+
+        return `由 ${executor} 主導針對 ${targetObj}，${method}${dateStr}將 ${kpiName} 從 ${baseStr} 改善至 ${tgtStr}${impactStr}${reviewStr}。`;
+    }
+
+    function smartRenderRadar(scores) {
+        if (!scores) {
+            scores = [
+                parseInt(document.getElementById('pbValS')?.textContent) || 90,
+                parseInt(document.getElementById('pbValM')?.textContent) || 90,
+                parseInt(document.getElementById('pbValA')?.textContent) || 90,
+                parseInt(document.getElementById('pbValR')?.textContent) || 90,
+                parseInt(document.getElementById('pbValT')?.textContent) || 90
+            ];
+        }
+
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        const textColor = isLight ? '#0f172a' : '#f8fafc';
+        const gridColor = isLight ? '#cbd5e1' : '#334155';
+
+        const data = [{
+            type: 'scatterpolar',
+            r: [...scores, scores[0]],
+            theta: ['Specific (具體)', 'Measurable (可衡量)', 'Achievable (可達成)', 'Relevant (相關)', 'Time-bound (時限)', 'Specific (具體)'],
+            fill: 'toself',
+            fillcolor: isLight ? 'rgba(2, 132, 199, 0.25)' : 'rgba(56, 189, 248, 0.25)',
+            line: {
+                color: isLight ? '#0284c7' : '#38bdf8',
+                width: 2.5
+            },
+            marker: {
+                size: 6,
+                color: isLight ? '#0369a1' : '#38bdf8'
+            }
+        }];
+
+        const layout = {
+            polar: {
+                radialaxis: {
+                    visible: true,
+                    range: [0, 100],
+                    tickfont: { size: 9, color: textColor },
+                    gridcolor: gridColor
+                },
+                angularaxis: {
+                    tickfont: { size: 10.5, color: textColor, family: 'Inter, sans-serif' },
+                    linecolor: gridColor
+                },
+                bgcolor: 'transparent'
+            },
+            paper_bgcolor: 'transparent',
+            plot_bgcolor: 'transparent',
+            margin: { t: 25, b: 25, l: 35, r: 35 },
+            showlegend: false
+        };
+
+        const config = { responsive: true, displayModeBar: false };
+        if (typeof Plotly !== 'undefined') {
+            Plotly.newPlot('smartRadarChart', data, layout, config);
+        }
+    }
+
+    function smartRenderDemoList() {
+        const listEl = document.getElementById('smartDemoList');
+        if (!listEl) return;
+        
+        listEl.innerHTML = SMART_DEMOS.map(demo => `
+            <div class="demo-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div>
+                        <span class="demo-tag">${demo.category.toUpperCase()}</span>
+                        <span style="font-weight: 700; font-size: 14px; margin-left: 8px;">${demo.title}</span>
+                    </div>
+                    <button class="smart-btn primary" style="font-size: 11.5px; padding: 5px 10px;" onclick="smartLoadDemo('${demo.id}')">
+                        📥 載入到評估器 (Load Demo)
+                    </button>
+                </div>
+                
+                <div class="demo-comparison">
+                    <div class="demo-box bad">
+                        <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--color-red); margin-bottom: 4px;">
+                            <span>❌ 模糊糟糕的原始目標 (Bad Draft)</span>
+                            <span>評分: ${demo.badScore}/100</span>
+                        </div>
+                        <div>"${demo.badGoal}"</div>
+                        <div style="font-size: 11px; margin-top: 6px; color: var(--smart-muted);"><strong>缺陷診斷:</strong> ${demo.badWhy}</div>
+                    </div>
+                    <div class="demo-box good">
+                        <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--color-emerald); margin-bottom: 4px;">
+                            <span>✅ 標準 SMART 重構目標 (Good Goal)</span>
+                            <span>評分: ${demo.goodScore}/100</span>
+                        </div>
+                        <div>"${demo.goodGoal}"</div>
+                        <div style="font-size: 11px; margin-top: 6px; color: var(--color-emerald);"><strong>優點:</strong> 包含 5W1H、基準值、目標值、MSA量測與具體截止日。</div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function smartLoadDemo(demoId) {
+        const demo = SMART_DEMOS.find(d => d.id === demoId);
+        if (!demo || !demo.state) return;
+
+        const s = demo.state;
+        const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+        const setChk = (id, val) => { const el = document.getElementById(id); if (el) el.checked = !!val; };
+
+        setVal('smartGoalStatement', s.goalStatement || '');
+        setVal('smartCategory', s.category || 'quality');
+        setVal('smartWho', s.who || '');
+        setVal('smartWhat', s.what || '');
+        setVal('smartHow', s.how || '');
+        setChk('chkS1', s.chkS1);
+        setChk('chkS2', s.chkS2);
+        setChk('chkS3', s.chkS3);
+
+        setVal('smartKpi', s.kpi || '');
+        setVal('smartBaseline', s.baseline);
+        setVal('smartTarget', s.target);
+        setVal('smartUnit', s.unit || '');
+        setVal('smartDataSource', s.dataSource || '');
+
+        setVal('smartFeasibility', s.feasibility || 'high');
+        setVal('smartResources', s.resources || '');
+        setVal('smartObstacles', s.obstacles || '');
+
+        setVal('smartAlignment', s.alignment || '8d');
+        setVal('impact', s.impact || '');
+
+        setVal('smartDeadline', s.deadline || '');
+        setVal('smartReviewCadence', s.reviewCadence || 'weekly');
+        setVal('smartMilestones', s.milestones || '');
+
+        // Switch to eval sub-tab and evaluate
+        smartSwitchSubTab('eval', document.querySelectorAll('.smart-tab-btn')[0]);
+        smartEvaluate();
+    }
+
+    function smartResetForm() {
+        const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+        setVal('smartGoalStatement', '');
+        setVal('smartWho', '');
+        setVal('smartWhat', '');
+        setVal('smartHow', '');
+        setVal('smartKpi', '');
+        setVal('smartBaseline', '');
+        setVal('smartTarget', '');
+        setVal('smartUnit', '');
+        setVal('smartDataSource', '');
+        setVal('smartResources', '');
+        setVal('smartObstacles', '');
+        setVal('smartImpact', '');
+        setVal('smartMilestones', '');
+        smartEvaluate();
+    }
+
+    function smartCopyRefinedGoal() {
+        const text = document.getElementById('smartRefinedOutput')?.textContent || '';
+        if (!text) return;
+        navigator.clipboard.writeText(text).then(() => {
+            alert('✅ 標準 SMART 目標陳述已成功複製到剪貼簿！');
+        }).catch(() => {
+            alert('複製成功: ' + text);
+        });
+    }
+
+    function smartExportTo8D() {
+        const goalText = document.getElementById('smartRefinedOutput')?.textContent || '';
+        const who = document.getElementById('smartWho')?.value || 'SMT Team';
+        const deadline = document.getElementById('smartDeadline')?.value || '2026-10-31';
+        
+        if (typeof kanbanTasks !== 'undefined') {
+            const newTask = {
+                id: 'task_' + Date.now(),
+                title: '【SMART 行動目標】' + goalText.substring(0, 48) + '...',
+                desc: goalText,
+                owner: who,
+                phase: 'D6',
+                status: 'todo',
+                dueDate: deadline
+            };
+            kanbanTasks.push(newTask);
+            if (typeof renderKanban === 'function') {
+                renderKanban();
+            }
+            alert('🎉 已成功將 SMART 目標加入 8D (D6 永久改善對策) 任務看板中！');
+            switchTab('d8');
+        } else {
+            smartCopyRefinedGoal();
+        }
+    }
+
+    function smartExportReport() {
+        const text = document.getElementById('smartRefinedOutput')?.textContent || '';
+        const score = document.getElementById('smartScoreVal')?.textContent || '0';
+        const kpi = document.getElementById('smartKpi')?.value || '';
+        const baseline = document.getElementById('smartBaseline')?.value || '';
+        const target = document.getElementById('smartTarget')?.value || '';
+        const unit = document.getElementById('smartUnit')?.value || '';
+        const deadline = document.getElementById('smartDeadline')?.value || '';
+
+        const md = `# SMART 目標設定與評估報告 (SMART Goal Evaluation Report)
+**生成日期**: ${new Date().toISOString().split('T')[0]}
+**SMART 總體指數**: ${score} / 100 (${document.getElementById('smartScoreGrade')?.textContent || ''})
+
+## 🎯 標準重構目標陳述 (Refined Goal Statement)
+> ${text}
+
+## 📊 五大維度檢核清單 (Dimension Breakdown)
+- **Specific (具體性)**: ${document.getElementById('pbValS')?.textContent} - 負責人: ${document.getElementById('smartWho')?.value || 'N/A'}, 對象: ${document.getElementById('smartWhat')?.value || 'N/A'}
+- **Measurable (可衡量性)**: ${document.getElementById('pbValM')?.textContent} - 指標: ${kpi}, 基準: ${baseline} ${unit} -> 目標: ${target} ${unit}
+- **Achievable (可達成性)**: ${document.getElementById('pbValA')?.textContent} - 可行性: ${document.getElementById('smartFeasibility')?.value}, 資源: ${document.getElementById('smartResources')?.value || 'N/A'}
+- **Relevant (相關性)**: ${document.getElementById('pbValR')?.textContent} - 策略對齊: ${document.getElementById('smartAlignment')?.value}
+- **Time-bound (時限性)**: ${document.getElementById('pbValT')?.textContent} - 截止日期: ${deadline}, 審查頻率: ${document.getElementById('smartReviewCadence')?.value}
+
+---
+*Masa Lean Expert Workspace - Quality Engineering Toolkit*
+`;
+
+        const blob = new Blob([md], { type: 'text/markdown;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `SMART_Goal_Report_${new Date().toISOString().split('T')[0]}.md`;
+        link.click();
+    }
+
+    function smartToggleHelpAccordion(headerEl) {
+        const body = headerEl.nextElementSibling;
+        if (body) {
+            const isOpen = body.classList.toggle('open');
+            const arrow = headerEl.querySelector('span:last-child');
+            if (arrow) arrow.textContent = isOpen ? '▲' : '▼';
+        }
     }
 
     // Bootstrap app
