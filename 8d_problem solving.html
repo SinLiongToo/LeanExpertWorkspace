@@ -2018,7 +2018,381 @@
             color: #0f172a;
         }
 
-</style>
+
+
+        /* ========================================================================= */
+        /* DEFINE LIMIT SOP MODULE (Scoped CSS)                                     */
+        /* ========================================================================= */
+        .limit-scope {
+            --lim-bg-card: var(--bg-secondary);
+            --lim-bg-subtle: var(--bg-tertiary);
+            --lim-border: var(--border-color);
+            --lim-text: var(--text-primary);
+            --lim-text-muted: var(--text-muted);
+            --lim-accent-blue: var(--color-blue);
+            --lim-accent-green: var(--color-emerald);
+            --lim-accent-amber: var(--color-orange);
+            --lim-accent-rose: var(--color-red);
+            --lim-accent-purple: var(--color-purple);
+        }
+
+        .limit-scope .lim-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .limit-scope .lim-card-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .limit-scope .lim-badge {
+            background: var(--color-blue-glow);
+            color: var(--color-blue);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .limit-scope .lim-preset-bar {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .limit-scope .lim-preset-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-right: 4px;
+        }
+
+        .limit-scope .lim-preset-btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .limit-scope .lim-preset-btn:hover {
+            border-color: var(--color-blue);
+            color: var(--color-blue);
+            background: var(--color-blue-glow);
+        }
+
+        .limit-scope .lim-preset-btn.mock-star {
+            background: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.4);
+            color: var(--color-orange);
+        }
+
+        .limit-scope .lim-main-grid {
+            display: grid;
+            grid-template-columns: 460px 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 1024px) {
+            .limit-scope .lim-main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .limit-scope .lim-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .limit-scope .lim-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 10px;
+        }
+
+        .limit-scope .lim-form-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .limit-scope .lim-form-group input,
+        .limit-scope .lim-form-group select,
+        .limit-scope .lim-form-group textarea {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 7px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            transition: border 0.15s;
+        }
+
+        .limit-scope .lim-form-group input:focus,
+        .limit-scope .lim-form-group select:focus,
+        .limit-scope .lim-form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 2px var(--color-blue-glow);
+        }
+
+        .limit-scope .lim-checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--text-primary);
+            margin-top: 6px;
+        }
+
+        .limit-scope .lim-checkbox-item.highlight-box {
+            background: var(--color-blue-glow);
+            border: 1px dashed var(--color-blue);
+            padding: 8px 10px;
+            border-radius: 6px;
+        }
+
+        .limit-scope .lim-tab-pills {
+            display: flex;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 2px;
+            gap: 2px;
+            margin-bottom: 12px;
+        }
+
+        .limit-scope .lim-tab-pill {
+            flex: 1;
+            text-align: center;
+            padding: 5px 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+
+        .limit-scope .lim-tab-pill.active {
+            background: var(--bg-secondary);
+            color: var(--color-blue);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+
+        .limit-scope .lim-kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .limit-scope .lim-kpi-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .limit-scope .lim-kpi-card.green { border-left: 4px solid var(--color-emerald); }
+        .limit-scope .lim-kpi-card.amber { border-left: 4px solid var(--color-orange); }
+        .limit-scope .lim-kpi-card.purple { border-left: 4px solid var(--color-purple); }
+        .limit-scope .lim-kpi-card.rose { border-left: 4px solid var(--color-red); }
+
+        .limit-scope .lim-kpi-title {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .limit-scope .lim-kpi-value {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            font-family: var(--font-mono, monospace);
+        }
+
+        .limit-scope .lim-kpi-sub {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .limit-scope .lim-chart-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .limit-scope .lim-table-container {
+            overflow-x: auto;
+        }
+
+        .limit-scope table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            text-align: left;
+        }
+
+        .limit-scope th, .limit-scope td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .limit-scope th {
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.78rem;
+        }
+
+        .limit-scope .lim-help-details {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 16px;
+        }
+
+        .limit-scope .lim-help-summary {
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-tertiary);
+        }
+
+        .limit-scope .lim-help-summary:hover {
+            color: var(--color-blue);
+        }
+
+        .limit-scope .lim-help-content {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            line-height: 1.7;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+        }
+
+        .limit-scope .lim-help-content h2 {
+            font-size: 1.15rem;
+            margin: 18px 0 10px;
+            color: var(--color-blue);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+        }
+
+        .limit-scope .lim-help-content h2:first-child { margin-top: 0; }
+
+        .limit-scope .lim-help-content h3 {
+            font-size: 0.98rem;
+            margin: 14px 0 6px;
+            color: var(--text-primary);
+        }
+
+        .limit-scope .lim-help-content p { margin-bottom: 10px; }
+        .limit-scope .lim-help-content ul, .limit-scope .lim-help-content ol {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+        .limit-scope .lim-help-content li { margin-bottom: 4px; }
+
+        .limit-scope .lim-help-box {
+            background: var(--bg-tertiary);
+            border-left: 4px solid var(--color-blue);
+            padding: 10px 14px;
+            border-radius: 4px;
+            margin: 12px 0;
+            font-size: 0.84rem;
+        }
+
+        .limit-scope .lim-help-box.warning {
+            border-left-color: var(--color-orange);
+            background: rgba(245, 158, 11, 0.08);
+        }
+
+        .limit-scope .lim-help-box.success {
+            border-left-color: var(--color-emerald);
+            background: rgba(16, 185, 129, 0.08);
+        }
+
+        .limit-scope .lim-status-pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .limit-scope .lim-status-pill.pass {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--color-emerald);
+        }
+
+        .limit-scope .lim-status-pill.warn {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--color-orange);
+        }
+
+        .limit-scope .lim-status-pill.danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--color-red);
+        }
+
+    </style>
+  <!-- MathJax 3 for beautiful LaTeX mathematical formula rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </head>
 <body>
 
@@ -2033,10 +2407,10 @@
             <div class="version-badge" style="display: flex; align-items: center; gap: 8px; font-size: 11.5px; font-family: var(--font-mono, monospace); background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-muted); padding: 7px 12px; border-radius: 6px; user-select: none; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
                 <span style="display: inline-flex; align-items: center; gap: 4px; color: var(--color-blue); font-weight: 700;">
                     <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-emerald); box-shadow: 0 0 6px var(--color-emerald);"></span>
-                    v1.3.2
+                    v1.4.0
                 </span>
                 <span style="opacity: 0.4;">|</span>
-                <span>Update: 2026-09-23</span>
+                <span>Update: 2026-09-24</span>
             </div>
             <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleDashboardTheme()" style="background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
                 ☀️ Light Mode
@@ -2050,6 +2424,7 @@
         <button class="tab-btn" data-tab="msc" onclick="switchTab('msc')">🔍 Gage R&R (MSA)</button>
         <button class="tab-btn" data-tab="drift" onclick="switchTab('drift')">⏳ Device Drift & Shift</button>
         <button class="tab-btn" data-tab="qsh" onclick="switchTab('qsh')">📊 Quality Statistics Hub</button>
+                <button class="tab-btn" data-tab="limitsop" onclick="switchTab('limitsop')">📐 Define Limit SOP</button>
         <button class="tab-btn" data-tab="smart" onclick="switchTab('smart')">🎯 SMART 原則</button>
         <a href="https://sinliongtoo.github.io/semiconductor-test-coverage-sop/" target="_blank" rel="noopener noreferrer" class="tab-btn" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 6px;" title="Semiconductor Cross-Stage Test Coverage Optimization SOP">🔬 Semiconductor Cross-Stage Test Coverage Optimization SOP <span style="font-size: 11px; opacity: 0.7;">↗</span></a>
         <a href="https://sinliongtoo.github.io/Cqc-defect-map/" target="_blank" rel="noopener noreferrer" class="tab-btn" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 6px;" title="CQC Defect Map — Wafer & Die Defect Viewer">🗺️ CQC Defect Map <span style="font-size: 11px; opacity: 0.7;">↗</span></a>
@@ -3428,6 +3803,657 @@
             </div>
         </div>
         <!-- PANEL 9: SMART PRINCIPLES MODULE -->
+        
+        <!-- ================================================================= -->
+        <!-- DEFINE LIMIT SOP PANEL (Limit Formulation Studio)                 -->
+        <!-- ================================================================= -->
+        <div class="panel hidden limit-scope" id="limitsopPanel">
+
+    <!-- Top Toolbar Header -->
+    <div class="lim-preset-bar" style="justify-content: space-between; margin-bottom: 14px; padding: 12px 16px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 1.3rem;">📐</span>
+        <div>
+          <h2 style="font-size: 1.05rem; font-weight: 700; color: var(--color-blue); margin: 0; display: flex; align-items: center; gap: 8px;">
+            <span id="lim_mainTitleText">⚡ Test Limit & Guardband Formulation Studio (Define Limit SOP)</span>
+            <span class="lim-badge">SOP Metrology</span>
+          </h2>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;" id="lim_mainSubtitle">
+            Statistical Test Boundary Synthesis (Mean, Sigma, Median, MAD, GRR, AEC-Q001 PAT, ISO 14253-1)
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button class="lim-preset-btn" id="lim_langToggleBtn" onclick="limToggleLanguage()" style="padding: 6px 14px; font-weight: 700;">
+          <span id="lim_langIcon">🌐</span> <span id="lim_langText">繁體中文</span>
+        </button>
+      </div>
+    </div>
+
+<!-- Quick Presets & Mock Examples -->
+    <div class="lim-preset-bar">
+      <span class="lim-preset-label" id="lim_presetLabel">Quick Scenarios:</span>
+      <button class="lim-preset-btn mock-star" id="lim_btnMock" onclick="limLoadMockExample()">
+        ⭐ Mock Example: Leakage Current ($I_{SB}$ Non-Negative & Right-Skewed)
+      </button>
+      <button class="lim-preset-btn" id="lim_btnPat" onclick="limLoadPreset('pat')">
+        🚗 AEC-Q001 PAT ($6\sigma$ Outlier Screening)
+      </button>
+      <button class="lim-preset-btn" id="lim_btnIso" onclick="limLoadPreset('iso_grr')">
+        📐 ISO 14253-1 ($3\sigma_{GRR}$ Metrology Guardband)
+      </button>
+      <button class="lim-preset-btn" id="lim_btnTight" onclick="limLoadPreset('tight_cpk')">
+        ⚠️ Tight Process Margin ($C_{pk} \approx 1.0$)
+      </button>
+      <button class="lim-preset-btn" id="lim_btnSym" onclick="limLoadPreset('symmetric')">
+        🔄 Standard Precision Voltage (Gaussian)
+      </button>
+      <button class="lim-preset-btn" id="lim_btnReset" onclick="limResetDefaults()" style="margin-left:auto; color:var(--text-muted);">
+        ↺ Reset Defaults
+      </button>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="lim-main-grid">
+      <!-- Left Column: Input Configurations -->
+      <div class="lim-config-column">
+        <!-- 1. Spec Limits Card -->
+        <div class="lim-card">
+          <div class="lim-card-title">
+            <span id="lim_cardTitleSpec">1. Customer & Design Specifications</span>
+            <span class="lim-badge" id="lim_specBadge">Double-Sided</span>
+          </div>
+          
+          <div class="lim-form-row">
+            <div class="lim-form-group">
+              <label for="lim_inputLSL" id="lim_lblLSL">Lower Spec Limit (LSL):</label>
+              <input type="number" id="lim_inputLSL" value="0" step="any" oninput="limRecalculate()">
+            </div>
+            <div class="lim-form-group">
+              <label for="lim_inputUSL" id="lim_lblUSL">Upper Spec Limit (USL):</label>
+              <input type="number" id="lim_inputUSL" value="50" step="any" oninput="limRecalculate()">
+            </div>
+          </div>
+
+          <div class="lim-form-row">
+            <div class="lim-form-group">
+              <label for="lim_inputTarget" id="lim_lblTarget">Nominal / Target Value (Optional):</label>
+              <input type="number" id="lim_inputTarget" value="12" step="any" oninput="limRecalculate()">
+            </div>
+            <div class="lim-form-group">
+              <label for="lim_unitLabel" id="lim_lblUnit">Engineering Unit:</label>
+              <input type="text" id="lim_unitLabel" value="µA" oninput="limRecalculate()">
+            </div>
+          </div>
+
+          <div class="lim-checkbox-item highlight-box">
+            <input type="checkbox" id="lim_checkNonNegative" checked onchange="limRecalculate()">
+            <label for="lim_checkNonNegative" style="margin:0; cursor:pointer;">
+              <strong id="lim_lblNonNegative">Strictly Non-Negative Physical Bound ($x \ge 0$)</strong>
+              <div style="font-size:0.75rem; color:var(--text-muted);" id="lim_descNonNegative">
+                Essential for electrical current, leakage $I_{DDQ}$, resistance. Enforces $LTL = \max(0, \dots)$ so limits never start negative.
+              </div>
+            </label>
+          </div>
+
+          <div class="lim-checkbox-item" style="margin-top:6px;">
+            <input type="checkbox" id="lim_checkOneSidedUpper" onchange="limToggleOneSided()">
+            <label for="lim_checkOneSidedUpper" style="margin:0; cursor:pointer;" id="lim_lblOneSided">
+              One-Sided Specification (Upper Bound Only, e.g., Max Leakage)
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. Process Distribution & Statistics Card -->
+        <div class="lim-card">
+          <div class="lim-card-title">
+            <span id="lim_cardTitleDist">2. Process Distribution & Statistics</span>
+          </div>
+
+          <div class="lim-form-group">
+            <label for="lim_selectDistModel" id="lim_lblDistModel">Distribution Model:</label>
+            <select id="lim_selectDistModel" onchange="limHandleDistModelChange()">
+              <option value="lognormal" id="lim_optLogNormal" selected>Log-Normal (Skewed & Non-Negative e.g., Current Test)</option>
+              <option value="normal" id="lim_optNormal">Normal / Gaussian ($\mu, \sigma$ Parametric)</option>
+              <option value="nonparametric" id="lim_optNonParam">Non-Parametric (Robust Median & MAD / Percentiles)</option>
+            </select>
+          </div>
+
+          <!-- Data Input Method Pills -->
+          <div class="lim-tab-pills">
+            <div class="lim-tab-pill active" id="lim_tabSummary" onclick="limSwitchInputTab('summary')">Summary Statistics</div>
+            <div class="lim-tab-pill" id="lim_tabRaw" onclick="limSwitchInputTab('raw')">Paste Raw Data (CSV)</div>
+          </div>
+
+          <!-- Summary Stats Input Panel -->
+          <div id="lim_panelSummary">
+            <div class="lim-form-row">
+              <div class="lim-form-group">
+                <label for="lim_inputMean" id="lim_lblMean">Sample Mean ($\bar{X}$):</label>
+                <input type="number" id="lim_inputMean" value="14.8" step="any" oninput="limRecalculate()">
+              </div>
+              <div class="lim-form-group">
+                <label for="lim_inputSigma" id="lim_lblSigma">Sample Sigma ($\sigma$):</label>
+                <input type="number" id="lim_inputSigma" value="7.6" step="any" oninput="limRecalculate()">
+              </div>
+            </div>
+
+            <div class="lim-form-row">
+              <div class="lim-form-group">
+                <label for="lim_inputMedian" id="lim_lblMedian">Median ($\tilde{X}$ / $P_{50}$):</label>
+                <input type="number" id="lim_inputMedian" value="12.4" step="any" oninput="limRecalculate()">
+              </div>
+              <div class="lim-form-group">
+                <label for="lim_inputMAD" id="lim_lblMAD">MAD (Median Absolute Dev):</label>
+                <input type="number" id="lim_inputMAD" value="4.5" step="any" oninput="limRecalculate()">
+              </div>
+            </div>
+          </div>
+
+          <!-- Raw Data Input Panel -->
+          <div id="lim_panelRaw" style="display:none;">
+            <label for="lim_inputRawData" id="lim_lblRawData">Paste numbers (separated by comma, space, or newline):</label>
+            <textarea id="lim_inputRawData" placeholder="10.2, 11.5, 12.8, 14.2, 9.8, 16.5..." oninput="limParseRawData()"></textarea>
+            <div style="display:flex; justify-content:space-between; margin-top:4px;">
+              <span id="lim_rawCountLabel" style="font-size:0.75rem; color:var(--text-muted);">0 samples parsed</span>
+              <button class="lim-preset-btn" id="lim_btnFillMockRaw" style="padding:2px 8px; font-size:0.75rem;" onclick="limLoadMockRawData()">Fill 100 Sample Current Data</button>
+            </div>
+          </div>
+
+          <div style="font-size:0.78rem; color:var(--text-muted); margin-top:8px; background:var(--bg-subtle); padding:6px 10px; border-radius:6px;">
+            <span id="lim_lblRobustPrefix">ℹ️ Robust Sigma Estimate: $\sigma_{\text{robust}} = 1.4826 \times \text{MAD} = $</span> <strong id="lim_valRobustSigma">6.67</strong>
+          </div>
+        </div>
+
+        <!-- 3. Gage R&R & Guardband Formulation Card -->
+        <div class="lim-card">
+          <div class="lim-card-title">
+            <span id="lim_cardTitleGRR">3. Gage R&R & Guardband Engineering</span>
+          </div>
+
+          <div class="lim-form-row">
+            <div class="lim-form-group">
+              <label for="lim_inputSigmaGRR" id="lim_lblSigmaGRR">Measurement Error ($\sigma_{GRR}$):</label>
+              <input type="number" id="lim_inputSigmaGRR" value="1.2" step="any" oninput="limRecalculate()">
+            </div>
+            <div class="lim-form-group">
+              <label for="lim_inputKGB" id="lim_lblKGB">Guardband Multiplier ($k_{GB}$):</label>
+              <select id="lim_inputKGB" onchange="limRecalculate()">
+                <option value="0" id="lim_optKgb0">0 (No Guardband / Direct Spec)</option>
+                <option value="2" id="lim_optKgb2">2σ_GRR (Moderate 95.4% Confidence)</option>
+                <option value="3" id="lim_optKgb3" selected>3σ_GRR (ISO 14253-1 Strict 99.73%)</option>
+                <option value="4" id="lim_optKgb4">4σ_GRR (Ultra-High Reliability)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="lim-form-row">
+            <div class="lim-form-group">
+              <label for="lim_inputKPAT" id="lim_lblKPAT">PAT Outlier Multiplier ($k_{PAT}$):</label>
+              <select id="lim_inputKPAT" onchange="limRecalculate()">
+                <option value="3" id="lim_optPat3">3σ (Natural Process Limit)</option>
+                <option value="4" id="lim_optPat4">4σ (Automotive Screening)</option>
+                <option value="6" id="lim_optPat6" selected>6σ (AEC-Q001 Static PAT Standard)</option>
+              </select>
+            </div>
+            <div class="lim-form-group">
+              <label for="lim_selectFormulationMode" id="lim_lblFormulationMode">Enforcement Rule:</label>
+              <select id="lim_selectFormulationMode" onchange="limRecalculate()">
+                <option value="composite" id="lim_optComposite" selected>Composite Envelope (Tightest Clamp)</option>
+                <option value="guardband_only" id="lim_optGBOnly">Guardbanded Spec Only (USL - GB)</option>
+                <option value="pat_only" id="lim_optPATOnly">Statistical PAT Only (Center ± kσ)</option>
+                <option value="relaxed" id="lim_optRelaxed">Yield-Preserving (Widest Envelope)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="lim-checkbox-item">
+            <input type="checkbox" id="lim_checkAsymmetricGB" onchange="limToggleAsymmetricGB()">
+            <label for="lim_checkAsymmetricGB" style="margin:0; cursor:pointer;" id="lim_lblAsymGB">
+              Enable Asymmetric Guardbanding (Separate Upper & Lower GB)
+            </label>
+          </div>
+
+          <div id="lim_asymmetricGBRow" class="lim-form-row" style="display:none; margin-top:8px;">
+            <div class="lim-form-group">
+              <label for="lim_inputGBLower" id="lim_lblGBLower">Lower GB ($GB_L$):</label>
+              <input type="number" id="lim_inputGBLower" value="0" step="any" oninput="limRecalculate()">
+            </div>
+            <div class="lim-form-group">
+              <label for="lim_inputGBUpper" id="lim_lblGBUpper">Upper GB ($GB_U$):</label>
+              <input type="number" id="lim_inputGBUpper" value="3.6" step="any" oninput="limRecalculate()">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Visualization & KPI Summary -->
+      <div class="lim-results-column">
+        <!-- KPI Cards -->
+        <div class="lim-kpi-grid">
+          <div class="lim-kpi-card green">
+            <div class="lim-kpi-title" id="lim_kpiTitleLTL">Formulated Lower Test Limit (LTL)</div>
+            <div class="lim-kpi-value" id="lim_kpiLTL">3.80</div>
+            <div class="lim-kpi-sub" id="lim_subLTL">Clamped: Non-Negative ≥ 0</div>
+          </div>
+
+          <div class="lim-kpi-card green">
+            <div class="lim-kpi-title" id="lim_kpiTitleUTL">Formulated Upper Test Limit (UTL)</div>
+            <div class="lim-kpi-value" id="lim_kpiUTL">38.60</div>
+            <div class="lim-kpi-sub" id="lim_subUTL">Guardbanded Spec: 46.40 | PAT: 38.60</div>
+          </div>
+
+          <div class="lim-kpi-card amber">
+            <div class="lim-kpi-title" id="lim_kpiTitleGB">Guardband Consumption</div>
+            <div class="lim-kpi-value" id="lim_kpiGBConsumed">7.2 %</div>
+            <div class="lim-kpi-sub" id="lim_subGBConsumed">Upper GB = 3.60 µA (3 × 1.20)</div>
+          </div>
+
+          <div class="lim-kpi-card purple">
+            <div class="lim-kpi-title" id="lim_kpiTitleCpk">Process Capability (Cpk)</div>
+            <div class="lim-kpi-value" id="lim_kpiCpk">1.54</div>
+            <div class="lim-kpi-sub" id="lim_subCpk">Test Limit Cpk: 1.04</div>
+          </div>
+
+          <div class="lim-kpi-card">
+            <div class="lim-kpi-title" id="lim_kpiTitleProducer">Producer's Risk (Yield Loss / Overkill)</div>
+            <div class="lim-kpi-value" id="lim_kpiProducerRisk">0.05 %</div>
+            <div class="lim-kpi-sub" id="lim_subProducerRisk">Good parts filtered by Test Limit</div>
+          </div>
+
+          <div class="lim-kpi-card rose">
+            <div class="lim-kpi-title" id="lim_kpiTitleConsumer">Consumer's Risk (Escape PPM)</div>
+            <div class="lim-kpi-value" id="lim_kpiConsumerRisk">&lt; 1 PPM</div>
+            <div class="lim-kpi-sub" id="lim_subConsumerRisk">Protected by 3σ_GRR Guardband</div>
+          </div>
+        </div>
+
+        <!-- Interactive Plotly Chart -->
+        <div class="lim-chart-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-main);" id="lim_chartTitleText">
+                📈 Distribution & Boundary Visualizer
+              </h3>
+              <!-- Chart View Pills -->
+              <div class="lim-tab-pills" style="margin-bottom:0; width:auto;">
+                <div class="lim-tab-pill active" id="lim_chartPillPDF" onclick="limSwitchChartMode('pdf')">📈 PDF Density</div>
+                <div class="lim-tab-pill" id="lim_chartPillCDF" onclick="limSwitchChartMode('cdf')">📊 CDF Cumulative</div>
+                <div class="lim-tab-pill" id="lim_chartPillDual" onclick="limSwitchChartMode('dual')">📑 Dual View</div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+              <div style="display:flex; align-items:center; gap:6px;">
+                <label for="lim_selectAxisZoom" style="margin:0; font-size:0.75rem;" id="lim_lblScaleFocus">Scale Focus:</label>
+                <select id="lim_selectAxisZoom" onchange="limRecalculate()" style="padding:3px 8px; font-size:0.75rem; width:auto;">
+                  <option value="focused" id="lim_optScaleFocused" selected>🎯 Auto Focus (Specs & Distribution)</option>
+                  <option value="zero" id="lim_optScaleZero">📍 Include Zero / Origin (0)</option>
+                </select>
+              </div>
+              <label class="lim-checkbox-item" style="margin:0; font-size:0.75rem;">
+                <input type="checkbox" id="lim_checkShowHistogram" checked onchange="limRecalculate()">
+                <span id="lim_labelSampleOverlay">Show Sample Overlay</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- PDF Chart Container -->
+          <div id="lim_distributionChart" style="width:100%; height:410px;"></div>
+          <!-- CDF Chart Container -->
+          <div id="lim_cdfChart" style="width:100%; height:410px; display:none; margin-top:10px;"></div>
+        </div>
+
+        <!-- Limit Comparison Summary Table -->
+        <div class="lim-card" style="margin-bottom:0;">
+          <div class="lim-card-title">
+            <span id="lim_cardTitleSummary">📋 Limit Formulation Breakdown & Synthesis Summary</span>
+          </div>
+          <div class="lim-table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th id="lim_thBoundaryType">Boundary Type</th>
+                  <th id="lim_thFormulaOrigin">Formula / Origin</th>
+                  <th id="lim_thLowerLimit">Lower Limit</th>
+                  <th id="lim_thUpperLimit">Upper Limit</th>
+                  <th id="lim_thToleranceBand">Tolerance Band</th>
+                  <th id="lim_thEngineeringStatus">Engineering Status</th>
+                </tr>
+              </thead>
+              <tbody id="lim_limitTableBody">
+                <!-- Dynamically populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collapsible Help / Readme Section (Default Collapsed as requested) -->
+    <details class="help-section" id="lim_helpSection">
+      <summary class="lim-help-summary">
+        <span id="lim_helpSummaryText">📖 How It Works: Test Limit & Guardband Formulation Guide (Click to Expand / Collapse)</span>
+        <span class="lim-help-summary-arrow">▼</span>
+      </summary>
+      <div class="lim-help-content">
+        <!-- English Help Content -->
+        <div id="lim_helpContentEn">
+          <h2>1. Why Formalize Test Limits? (The Engineering Challenge)</h2>
+          <p>
+            In manufacturing, semiconductor testing, and precision hardware assembly, products must adhere to 
+            <strong>Specification Limits ($LSL, USL$)</strong> defined by product datasheets or customer contracts.
+            However, testing parts directly against Specification Limits is dangerous because 
+            <strong>measurement systems have intrinsic uncertainty and noise (Gage R&R)</strong>, and manufacturing processes can have latent outliers.
+          </p>
+          <div class="lim-help-box">
+            <strong>The Dual Risks of Test Limits:</strong>
+            <ul>
+              <li><strong>Consumer's Risk ($\beta$ Risk / Bad Escapes):</strong> A defective part with true value outside specification gets measured as "in spec" due to measurement error ($\sigma_{GRR}$) and ships to the customer.</li>
+              <li><strong>Producer's Risk ($\alpha$ Risk / Overkill Yield Loss):</strong> A perfectly conforming part gets measured as "out of spec" and is discarded.</li>
+            </ul>
+          </div>
+
+          <h2>2. Handling Non-Negative ($x \ge 0$) & Non-Normal Tests (Current & Leakage)</h2>
+          <p>
+            A critical flaw in standard statistical tools is the blind assumption of Gaussian (Normal) distributions. 
+            Parameters such as <strong>Standby Current ($I_{SB}$), Leakage Current ($I_{DDQ}$), Quiescent Current ($I_Q$), Contact Resistance, or Optical Jitter</strong>:
+          </p>
+          <ul>
+            <li><strong>Are strictly non-negative:</strong> Physical current cannot flow backward in passive/off-state tests ($x \ge 0$).</li>
+            <li><strong>Exhibit strong right-skewness:</strong> Most dies group close to a low baseline ($10 \sim 15\,\mu\text{A}$), but process drift and defect tails stretch to the right ($30 \sim 40\,\mu\text{A}$).</li>
+          </ul>
+          <div class="lim-help-box warning">
+            <strong>⚠️ The Danger of Normal $3\sigma$ / $6\sigma$ on Current Tests:</strong><br>
+            If Mean $\bar{X} = 14.8\,\mu\text{A}$ and $\sigma = 7.6\,\mu\text{A}$, a standard $3\sigma$ lower limit gives:
+            $$\bar{X} - 3\sigma = 14.8 - 22.8 = -8.0\,\mu\text{A}$$
+            An ATE (Automated Test Equipment) engineer cannot program a negative lower limit for a positive current leakage test! 
+            It causes false test program validation errors or hides defects.
+          </div>
+          <div class="lim-help-box success">
+            <strong>✅ How This Tool Solves It:</strong>
+            <ol>
+              <li><strong>Non-Negative Physical Bound ($x \ge 0$):</strong> Formulated lower limit is automatically clamped: $LTL = \max(0, \text{Calculated Limit})$.</li>
+              <li><strong>Log-Normal Distribution Model:</strong> We transform data to logarithmic space $Y = \ln(X) \sim \mathcal{N}(\mu_{\ln}, \sigma_{\ln}^2)$. 
+              The limits are computed as:
+              $$LTL = \exp(\mu_{\ln} - k \cdot \sigma_{\ln}) \quad (> 0 \text{ guaranteed})$$
+              $$UTL = \exp(\mu_{\ln} + k \cdot \sigma_{\ln})$$
+              </li>
+              <li><strong>Robust Non-Parametric Median & MAD:</strong> 
+              Median is unaffected by extreme skewness. Robust sigma $\sigma_{\text{robust}} = 1.4826 \times \text{MAD}$ ensures outlier-resilient limits without distortion.
+              </li>
+            </ol>
+          </div>
+
+          <h2>3. Mathematical Formulations & Standards</h2>
+          <h3>A. Guardbanded Specification Limits (ISO 14253-1 / IEEE 557)</h3>
+          <p>
+            Guardbanding contracts the acceptance zone inward from the specification limits by a margin proportional to the measurement system capability:
+          </p>
+          $$\text{UTL}_{\text{GB}} = USL - k_{GB} \cdot \sigma_{GRR}$$
+          $$\text{LTL}_{\text{GB}} = \max(0, LSL + k_{GB} \cdot \sigma_{GRR})$$
+          <p>
+            Where $k_{GB} = 3$ provides $99.73\%$ confidence that shipped units conform to design specification even under worst-case measurement noise.
+          </p>
+
+          <h3>B. Part Average Testing Limits (Automotive AEC-Q001 Static PAT)</h3>
+          <p>
+            Automotive electronics require removing latent reliability outliers ("mavericks") that pass the functional specification but deviate significantly from the rest of the lot population:
+          </p>
+          $$\text{UTL}_{\text{PAT}} = \bar{X} + k_{PAT} \cdot \sigma \quad \text{or} \quad \text{Median} + k_{PAT} \cdot (1.4826 \cdot \text{MAD})$$
+          $$\text{LTL}_{\text{PAT}} = \max\left(0, \bar{X} - k_{PAT} \cdot \sigma\right) \quad \text{or} \quad \max\left(0, \text{Median} - k_{PAT} \cdot (1.4826 \cdot \text{MAD})\right)$$
+          <p>Typically $k_{PAT} = 6$ for static PAT, or $k_{PAT} = 4$ for strict pre-burn-in wafer screening.</p>
+
+          <h3>C. Robust Statistics Deep-Dive: What is MAD & Why $\sigma_{\text{robust}} = 1.4826 \times \text{MAD}$?</h3>
+          <p>
+            In automated wafer sort and semiconductor final testing, raw data distributions frequently contain 
+            <strong>latent defect clusters, ATE probe needle contact spikes, or long right-hand leakage tails</strong>. 
+            When using traditional sample standard deviation ($\sigma$), these outliers cause a critical statistical breakdown:
+          </p>
+          <div class="lim-help-box warning">
+            <strong>⚠️ The "Masking Effect" of Standard Deviation ($\sigma$):</strong><br>
+            Standard deviation calculates squared deviations: $\sigma = \sqrt{\frac{1}{n-1}\sum (x_i - \bar{X})^2}$. 
+            Because deviations are squared, even a single extreme outlier (e.g., one shorted die with $500\,\mu\text{A}$ leakage among ninety-nine $12\,\mu\text{A}$ dies) 
+            massively inflates $\sigma$. 
+            When $\sigma$ blows up, the traditional outlier screen ($\bar{X} \pm 6\sigma$) expands drastically outward, 
+            <strong>masking the defect and allowing defective parts to pass inspection!</strong>
+            In statistical theory, the mean and standard deviation have a <strong>0% Breakdown Point</strong> (a single bad data point can arbitrarily distort them).
+          </div>
+
+          <h4>1. What is MAD (Median Absolute Deviation)?</h4>
+          <p>
+            <strong>MAD</strong> is the most resilient measure of statistical dispersion. While standard deviation measures the root-mean-square distance from the mean, 
+            MAD measures the <em>median distance from the median</em>:
+          </p>
+          $$\text{MAD} = \text{median}\left( \left| X_i - \tilde{X} \right| \right) \quad \text{where } \tilde{X} = \text{median}(X)$$
+          <p><strong>Step-by-step calculation:</strong></p>
+          <ol>
+            <li>Find the sample median $\tilde{X} = P_{50}$ (e.g., $12.4\,\mu\text{A}$).</li>
+            <li>Subtract $\tilde{X}$ from every sample and take the absolute value: $D_i = |X_i - 12.4|$.</li>
+            <li>Sort the absolute differences $D_i$ and find their median: this is the <strong>MAD</strong>.</li>
+          </ol>
+          <p>
+            MAD has a <strong>50% Breakdown Point</strong>: up to 50% of the sample measurements can be complete garbage, contact opens, or wild outliers 
+            without moving the MAD!
+          </p>
+
+          <h4>2. Where Does the $1.4826$ Multiplier Come From? (Exact Derivation)</h4>
+          <p>
+            MAD measures spread, but on a different numerical scale than standard deviation. 
+            To make MAD an <strong>unbiased estimator of $\sigma$</strong> for the normal core of a population, we scale it by a calibration constant:
+          </p>
+          $$\sigma_{\text{robust}} = b \times \text{MAD}$$
+          <p>
+            For a standard Gaussian normal distribution $Z \sim \mathcal{N}(0, 1)$, the median of the absolute values $|Z|$ satisfies:
+          </p>
+          $$P(|Z| \le \text{MAD}) = 0.50$$
+          <p>Because the normal distribution is perfectly symmetric around zero:</p>
+          $$P(-\text{MAD} \le Z \le \text{MAD}) = 0.50 \iff \Phi(\text{MAD}) - \Phi(-\text{MAD}) = 0.50$$
+          <p>Using the identity $\Phi(-z) = 1 - \Phi(z)$:</p>
+          $$2\Phi(\text{MAD}) - 1 = 0.50 \implies \Phi(\text{MAD}) = 0.75$$
+          <p>Taking the inverse cumulative normal function (quantile function $\Phi^{-1}$):</p>
+          $$\text{MAD} = \Phi^{-1}(0.75) \approx 0.67448975$$
+          <p>Therefore, the scaling constant $b$ required to estimate $\sigma$ from MAD is:</p>
+          $$b = \frac{1}{\Phi^{-1}(0.75)} = \frac{1}{0.67448975} \approx \mathbf{1.482602218}$$
+          $$\mathbf{\sigma_{\text{robust}} = 1.4826 \times \text{MAD}}$$
+
+          <div class="lim-help-box success">
+            <strong>✅ Summary of Why AEC-Q001 Mandates Robust Sigma:</strong>
+            <ul style="margin-left:20px; margin-top:6px;">
+              <li><strong>Zero Masking:</strong> Extreme outliers never blow up $\sigma_{\text{robust}}$, ensuring the outlier screening limits stay tight and true to the conforming population.</li>
+              <li><strong>Exact Compatibility:</strong> For pure normal data without outliers, $1.4826 \times \text{MAD}$ yields exactly the same numerical value as conventional $\sigma$.</li>
+              <li><strong>Automotive Compliance:</strong> Recommended by <strong>AEC-Q001 Appendix C</strong> for static PAT limit calculation on raw, uncleaned production test logs.</li>
+            </ul>
+          </div>
+
+          <h3>D. Composite Limit Synthesis Rule (Tightest Envelope)</h3>
+          <p>
+            To achieve zero-defect quality without risking customer escapes, the tool synthesizes the final operational limits by taking the intersection (tightest envelope):
+          </p>
+          $$\text{Final UTL} = \min\left(\text{UTL}_{\text{GB}}, \text{UTL}_{\text{PAT}}\right)$$
+          $$\text{Final LTL} = \max\left(0, \text{LTL}_{\text{GB}}, \text{LTL}_{\text{PAT}}\right)$$
+
+          <h3>E. Interpreting the Cumulative Distribution Function (CDF) Plot</h3>
+          <p>
+            While the <strong>PDF (Probability Density Function)</strong> shows distribution shape and center tendency, the 
+            <strong>CDF (Cumulative Distribution Function) $F(x) = P(X \le x)$</strong> directly reveals product yield and defect fallout percentages:
+          </p>
+          <ul>
+            <li><strong>Lower Fallout ($F(LTL)$):</strong> The cumulative percentage of parts rejected below the lower test limit.</li>
+            <li><strong>Total Conforming Yield:</strong> Evaluated as $Y = F(UTL) - F(LTL)$.</li>
+            <li><strong>Upper Fallout ($1 - F(UTL)$):</strong> The percentage of parts falling above the upper test limit.</li>
+            <li><strong>Guardband Overkill Cost:</strong> The amber shaded band directly visualizes the yield sacrificed by guardbanding:
+            $$\text{Overkill} = [F(LTL) - F(LSL)] + [F(USL) - F(UTL)]$$
+            </li>
+            <li><strong>Percentile Anchors ($P_{0.135\%}, P_{50\%}, P_{99.865\%}$):</strong> Help engineers assess parametric symmetry and tail stretch on the same scale.</li>
+          </ul>
+
+          <h2>4. Step-by-Step Engineering Workflow</h2>
+          <ol>
+            <li><strong>Step 1: Enter Customer Specifications:</strong> Input USL, LSL, and verify if the parameter is strictly non-negative ($x \ge 0$).</li>
+            <li><strong>Step 2: Choose Distribution & Process Data:</strong> For current, leakage, or resistance tests, choose <em>Log-Normal</em> or <em>Non-Parametric</em>. Enter summary metrics ($\bar{X}, \sigma$, Median, MAD) or paste raw CSV samples.</li>
+            <li><strong>Step 3: Enter Gage R&R:</strong> Input measurement error standard deviation $\sigma_{GRR}$ (derived from MSA ANOVA / gage study).</li>
+            <li><strong>Step 4: Select Formulation Policy:</strong> Choose between Composite Envelope, Guardbanded Spec, or Statistical PAT.</li>
+            <li><strong>Step 5: Review the Synthesis Table & Interactive Chart:</strong> Verify the formulated $LTL$ and $UTL$, inspect the shaded Guardband buffer zone, and verify the trade-off between Yield Loss and Defect Escape PPM.</li>
+          </ol>
+        </div>
+
+        <!-- Traditional Chinese Help Content -->
+        <div id="lim_helpContentZh" style="display:none;">
+          <h2>1. 為什麼需要推算測試限度？ (工程挑戰與雙重風險)</h2>
+          <p>
+            在半導體自動化測試 (ATE)、精準硬體製造及車用電子組裝中，產品必須符合規格書所定義的<strong>客戶與設計規格限度 ($LSL, USL$)</strong>。
+            然而，直接使用規格限度作為產線測試邊界極具風險，因為<strong>量測系統本身具有不可忽視的隨機誤差與雜訊 (Gage R&R)</strong>，且製程中可能存在潛在的異常離群個體。
+          </p>
+          <div class="lim-help-box">
+            <strong>測試邊界的雙重風險平衡：</strong>
+            <ul>
+              <li><strong>消費者風險 ($\beta$ 風險 / 不良逃逸)：</strong> 真實值超出規格的不良品，因量測系統隨機誤差 ($\sigma_{GRR}$) 被誤測為合格並出貨至客戶端。</li>
+              <li><strong>製造者風險 ($\alpha$ 風險 / 假性良率損失 Overkill)：</strong> 本身完全符合設計規範的良品，因量測偏誤被誤判為超標而遭報廢。</li>
+            </ul>
+          </div>
+
+          <h2>2. 處理物理非負 ($x \ge 0$) 與偏態分配測試 (漏電流與電阻)</h2>
+          <p>
+            傳統統計品管工具常盲目假設常態高斯分配 (Gaussian Normal)，然而在真實電性測試中，諸如<strong>待機漏電流 ($I_{SB}$)、靜態電流 ($I_{DDQ}$)、靜止電流 ($I_Q$)、接觸電阻或光學抖動 (Jitter)</strong>：
+          </p>
+          <ul>
+            <li><strong>物理上嚴格非負：</strong> 在被動關斷狀態下，物理電流不可反向流動 ($x \ge 0$)。</li>
+            <li><strong>具備顯著右偏態：</strong> 絕大多數晶片集中在較低水準 ($10 \sim 15\,\mu\text{A}$)，但微小缺陷與漏電物理機制會向右側拉出長尾 ($30 \sim 40\,\mu\text{A}$)。</li>
+          </ul>
+          <div class="lim-help-box warning">
+            <strong>⚠️ 對電流測試盲目套用常態 $3\sigma$ / $6\sigma$ 的致命錯誤：</strong><br>
+            若平均值 $\bar{X} = 14.8\,\mu\text{A}$、標準差 $\sigma = 7.6\,\mu\text{A}$，標準 $3\sigma$ 下限將算出：
+            $$\bar{X} - 3\sigma = 14.8 - 22.8 = -8.0\,\mu\text{A}$$
+            測試工程師無法在 ATE 測試機台程式中設定一個負數電流下限！這會導致測試程式檢查報錯或使不良晶片檢出機制失靈。
+          </div>
+          <div class="lim-help-box success">
+            <strong>✅ 本工具的工程解決方案：</strong>
+            <ol>
+              <li><strong>嚴格非負物理邊界 ($x \ge 0$)：</strong> 所有推算公式自動加入下限截斷：$LTL = \max(0, \text{計算限度})$。</li>
+              <li><strong>對數常態分配模型 (Log-Normal)：</strong> 將數據對數轉換至對數空間 $Y = \ln(X) \sim \mathcal{N}(\mu_{\ln}, \sigma_{\ln}^2)$，推算邊界為：
+              $$LTL = \exp(\mu_{\ln} - k \cdot \sigma_{\ln}) \quad (\text{數學上保證 } > 0)$$
+              $$UTL = \exp(\mu_{\ln} + k \cdot \sigma_{\ln})$$
+              </li>
+              <li><strong>穩健非參數中位數與 MAD：</strong>
+              中位數不受極端尾部偏態影響，穩健標準差 $\sigma_{\text{robust}} = 1.4826 \times \text{MAD}$ 能確保邊界不被離群值扭曲。
+              </li>
+            </ol>
+          </div>
+
+          <h2>3. 數學推導與國際工業標準</h2>
+          <h3>A. 規格保護帶法 (ISO 14253-1 / IEEE 557)</h3>
+          <p>
+            保護帶技術將驗收區間自規格限度向內縮減，縮減幅度取決於量測系統的重複性與再現性誤差：
+          </p>
+          $$\text{UTL}_{\text{GB}} = USL - k_{GB} \cdot \sigma_{GRR}$$
+          $$\text{LTL}_{\text{GB}} = \max(0, LSL + k_{GB} \cdot \sigma_{GRR})$$
+          <p>
+            其中取 $k_{GB} = 3$ 可提供高達 $99.73\%$ 的保證信心水準，確保出貨零件即使在最嚴苛量測誤差下依然符合設計規範。
+          </p>
+
+          <h3>B. 車用電子零件平均測試邊界 (Automotive AEC-Q001 Static PAT)</h3>
+          <p>
+            車用零缺陷標準要求剔除「雖然在規格內，但與母體行為迥異」的潛在可靠度隱患個體 (Maverick Outliers)：
+          </p>
+          $$\text{UTL}_{\text{PAT}} = \bar{X} + k_{PAT} \cdot \sigma \quad \text{或} \quad \text{Median} + k_{PAT} \cdot (1.4826 \cdot \text{MAD})$$
+          $$\text{LTL}_{\text{PAT}} = \max\left(0, \bar{X} - k_{PAT} \cdot \sigma\right) \quad \text{或} \quad \max\left(0, \text{Median} - k_{PAT} \cdot (1.4826 \cdot \text{MAD})\right)$$
+          <p>常態篩選標準採用 $k_{PAT} = 6$，更嚴苛的預燒前篩選則可採用 $k_{PAT} = 4$。</p>
+
+          <h3>C. 穩健統計深度解析：什麼是 MAD？為什麼穩健標準差為 $1.4826 \times \text{MAD}$？</h3>
+          <p>
+            在半導體晶圓針測 (CP/Wafer Sort) 與成品測試 (FT) 的原始數據中，數據常受到<strong>探針接觸不良阻抗突波 (Contact Resistance Spikes)、靜電放電 (ESD)、微小漏電缺陷或長尾偏態</strong>的干擾。
+            若直接使用傳統樣本標準差 ($\sigma$)，將會引發嚴重的統計失效：
+          </p>
+          <div class="lim-help-box warning">
+            <strong>⚠️ 傳統標準差 ($\sigma$) 的「遮蔽效應 (Masking Effect)」：</strong><br>
+            傳統標準差計算平方離差和：$\sigma = \sqrt{\frac{1}{n-1}\sum (x_i - \bar{X})^2}$。
+            由於離差被平方放大，只要存在哪怕 1 顆嚴重漏電短路不良晶片 (例如 99 顆正常晶片為 $12\,\mu\text{A}$，但有 1 顆接觸不良飆到 $500\,\mu\text{A}$)，
+            就會導致傳統標準差 $\sigma$ 暴增數倍至數十倍！
+            標準差一旦被異常值人為撐大，推算出的離群值篩選邊界 ($\bar{X} \pm 6\sigma$) 就會向外極度膨脹，
+            <strong>導致不良晶片被盲目包容並放行出貨（即所謂的缺陷遮蔽）！</strong>
+            在統計學中，平均值與標準差的<strong>崩潰點 (Breakdown Point) 為 0%</strong>（僅需 1 筆髒數據即可使其失真）。
+          </div>
+
+          <h4>1. 什麼是 MAD (Median Absolute Deviation，中位數絕對離差)？</h4>
+          <p>
+            <strong>MAD</strong> 是現代穩健統計學 (Robust Statistics) 中公認最具抗干擾能力的離散度量測指標。
+            相較於標準差計算「數值到平均值的均方根距離」，MAD 計算的是<strong>「每個數值到中位數的距離的中位數」</strong>：
+          </p>
+          $$\text{MAD} = \text{median}\left( \left| X_i - \tilde{X} \right| \right) \quad \text{其中 } \tilde{X} = \text{median}(X)$$
+          <p><strong>逐步計算範例：</strong></p>
+          <ol>
+            <li>計算樣本中位數 $\tilde{X} = P_{50}$ (例如 $12.4\,\mu\text{A}$)。</li>
+            <li>計算每筆量測數據與中位數的絕對差距：$D_i = |X_i - 12.4|$。</li>
+            <li>將所有絕對差距 $D_i$ 由小到大排序，取其<strong>中位數</strong>，此數值即為 <strong>MAD</strong>。</li>
+          </ol>
+          <p>
+            MAD 具有高達 <strong>50% 的崩潰點 (Breakdown Point)</strong>：即使樣本中有高達一半 (50%) 的數據是極端異常值、開路斷線或測試機台錯誤，MAD 依然能穩定維持在真實水準！
+          </p>
+
+          <h4>2. 係數 1.4826 是如何推導出來的？ (數學嚴密推導)</h4>
+          <p>
+            MAD 本身度量了離散度，但其尺度與傳統常態標準差 $\sigma$ 不同。
+            為了讓 MAD 在母體為常態高斯分配的核心群體中，成為常態標準差 $\sigma$ 的<strong>無偏估計量 (Unbiased Estimator)</strong>，必須乘上校正係數 $b$：
+          </p>
+          $$\sigma_{\text{robust}} = b \times \text{MAD}$$
+          <p>
+            考慮標準常態分配 $Z \sim \mathcal{N}(0, 1)$，其絕對值 $|Z|$ 的中位數定義上滿足：
+          </p>
+          $$P(|Z| \le \text{MAD}) = 0.50$$
+          <p>由於常態分配對稱於 0：</p>
+          $$P(-\text{MAD} \le Z \le \text{MAD}) = 0.50 \iff \Phi(\text{MAD}) - \Phi(-\text{MAD}) = 0.50$$
+          <p>由常態對稱性 $\Phi(-z) = 1 - \Phi(z)$ 代入：</p>
+          $$2\Phi(\text{MAD}) - 1 = 0.50 \implies \Phi(\text{MAD}) = 0.75$$
+          <p>取常態累積分配函數的反函數 (分位數函數 $\Phi^{-1}$)：</p>
+          $$\text{MAD} = \Phi^{-1}(0.75) \approx 0.67448975$$
+          <p>因此，將 MAD 轉換為等效常態標準差的換算常數 $b$ 即為：</p>
+          $$b = \frac{1}{\Phi^{-1}(0.75)} = \frac{1}{0.67448975} \approx \mathbf{1.482602218}$$
+          $$\mathbf{\sigma_{\text{robust}} = 1.4826 \times \text{MAD}}$$
+
+          <div class="lim-help-box success">
+            <strong>✅ 車規 AEC-Q001 強烈建議採用穩健標準差的核心價值：</strong>
+            <ul style="margin-left:20px; margin-top:6px;">
+              <li><strong>杜絕遮蔽效應：</strong> 離群異常晶圓絕對不會拉垮或撐大 $\sigma_{\text{robust}}$，確保離群值過濾網依然緊緻有效。</li>
+              <li><strong>完全無縫銜接：</strong> 當數據為純淨高斯常態分配且無異常值時，$1.4826 \times \text{MAD}$ 與傳統標準差 $\sigma$ 完全相等。</li>
+              <li><strong>車用零缺陷必備：</strong> 符合 <strong>AEC-Q001 附錄 C (Appendix C)</strong> 針對產線未經清洗的原始測試日誌推算靜態 PAT 邊界之官方標準規範。</li>
+            </ul>
+          </div>
+
+          <h3>D. 複合式邊界合成規則 (緊縮交集包絡)</h3>
+          <p>
+            為兼顧零缺陷品質並防範客戶端不良逃逸，本工具預設採用最嚴格的包絡交集：
+          </p>
+          $$\text{最終 UTL} = \min\left(\text{UTL}_{\text{GB}}, \text{UTL}_{\text{PAT}}\right)$$
+          $$\text{最終 LTL} = \max\left(0, \text{LTL}_{\text{GB}}, \text{LTL}_{\text{PAT}}\right)$$
+
+          <h3>E. 如何判讀累積分配函數 (CDF) 圖表</h3>
+          <p>
+            <strong>PDF (機率密度函數)</strong> 呈現母體的形狀分佈與中心集中趨勢，而 <strong>CDF (累積分配函數) $F(x) = P(X \le x)$</strong> 則直觀反映出良率與不良剔除比率：
+          </p>
+          <ul>
+            <li><strong>下側剔除率 ($F(LTL)$)：</strong> 低於下測試限度的累積零件比率。</li>
+            <li><strong>總合格產出良率：</strong> 計算為 $Y = F(UTL) - F(LTL)$。</li>
+            <li><strong>上側超標剔除率 ($1 - F(UTL)$)：</strong> 高於上測試限度的累積零件比率。</li>
+            <li><strong>保護帶過度剔除成本 (Overkill)：</strong> 琥珀色遮罩區域直接呈現因設置保護帶而犧牲的良品率：
+            $$\text{Overkill} = [F(LTL) - F(LSL)] + [F(USL) - F(UTL)]$$
+            </li>
+            <li><strong>百分位數錨點 ($P_{0.135\%}, P_{50\%}, P_{99.865\%}$)：</strong> 協助工程師評估參數的對稱性與長尾延伸程度。</li>
+          </ul>
+
+          <h2>4. 標準工程作業流程 (SOP)</h2>
+          <ol>
+            <li><strong>步驟 1：輸入客戶規範限度：</strong> 設定 USL、LSL，並確認物理量是否為嚴格非負 ($x \ge 0$)。</li>
+            <li><strong>步驟 2：選擇分配模型與製程數據：</strong> 電流或電阻測試請選取<em>對數常態 (Log-Normal)</em> 或<em>非參數模型</em>。輸入摘要統計量或直接貼上 CSV 原始樣本。</li>
+            <li><strong>步驟 3：輸入量測系統 Gage R&R 誤差：</strong> 填入量測標準差 $\sigma_{GRR}$ (來自 MSA 變異數分析)。</li>
+            <li><strong>步驟 4：選取限度合成規則：</strong> 選擇緊縮交集、僅規格保護帶或統計 PAT 邊界。</li>
+            <li><strong>步驟 5：檢視合成總表與雙圖並列視覺化：</strong> 確認最終 $LTL$ 與 $UTL$，檢視保護帶緩衝區與良率損失 vs 不良逃逸 (PPM) 之權衡平衡。</li>
+          </ol>
+        </div>
+      </div>
+    </details>
+        </div>
+
         <div class="panel hidden smart-scope" id="smartPanel">
             <div class="smart-tab-bar">
                 <button class="smart-tab-btn active" onclick="smartSwitchSubTab('eval', this)">🎯 目標設定與即時評估器 (SMART Evaluator)</button>
@@ -4322,6 +5348,7 @@
         document.getElementById('driftPanel').classList.add('hidden');
         document.getElementById('helpPanel').classList.add('hidden');
         if (document.getElementById('smartPanel')) document.getElementById('smartPanel').classList.add('hidden');
+        if (document.getElementById('limitsopPanel')) document.getElementById('limitsopPanel').classList.add('hidden');
         document.getElementById('qshPanel').classList.add('hidden');
  
         // Hide/Show Sidebars
@@ -4397,6 +5424,11 @@
             } else {
                 redrawDriftChartsOnly();
             }
+        } else if (tabId === 'limitsop') {
+            document.getElementById('limitsopPanel').classList.remove('hidden');
+            document.getElementById('sidebarControls').classList.add('hidden');
+            document.getElementById('mainContainer').classList.add('full-width');
+            if (typeof limInit === 'function') limInit();
         } else if (tabId === 'smart') {
             document.getElementById('smartPanel').classList.remove('hidden');
             document.getElementById('sidebarControls').classList.add('hidden');
@@ -7957,9 +8989,1380 @@ function handleCpkDistChange() {
                 scDrawMiniWafers();
             } else if (activeTab === 'smart' && typeof smartRenderRadar === 'function') {
                 smartRenderRadar();
+            } else if (activeTab === 'limitsop' && typeof limRecalculate === 'function') {
+                limRecalculate();
             }
         }
     }
+
+    
+    // =========================================================================
+    // DEFINE LIMIT SOP (Test Limit & Guardband Formulation Engine)
+    // =========================================================================
+    let limInitialized = false;
+
+    function limInit() {
+        if (!limInitialized) {
+            limInitialized = true;
+            limLoadMockExample();
+        } else {
+            limRecalculate();
+        }
+    }
+
+/* ==========================================================================
+       State & Globals
+       ========================================================================== */
+    let currentTheme = 'light';
+    let inputMode = 'summary'; // 'summary' or 'raw'
+    let currentChartMode = 'pdf'; // 'pdf', 'cdf', or 'dual'
+    let rawDataArray = [];
+
+    function limSwitchChartMode(mode) {
+      currentChartMode = mode;
+      document.getElementById('lim_chartPillPDF').classList.toggle('active', mode === 'pdf');
+      document.getElementById('lim_chartPillCDF').classList.toggle('active', mode === 'cdf');
+      document.getElementById('lim_chartPillDual').classList.toggle('active', mode === 'dual');
+
+      const pdfDiv = document.getElementById('lim_distributionChart');
+      const cdfDiv = document.getElementById('lim_cdfChart');
+
+      if (mode === 'pdf') {
+        pdfDiv.style.display = 'block';
+        pdfDiv.style.height = '410px';
+        cdfDiv.style.display = 'none';
+      } else if (mode === 'cdf') {
+        pdfDiv.style.display = 'none';
+        cdfDiv.style.display = 'block';
+        cdfDiv.style.height = '410px';
+      } else {
+        // Dual View
+        pdfDiv.style.display = 'block';
+        pdfDiv.style.height = '330px';
+        cdfDiv.style.display = 'block';
+        cdfDiv.style.height = '330px';
+      }
+
+      limRecalculate();
+    }
+
+    // Realistic Mock Dataset for Standby Leakage Current (Isb in µA)
+    // 100 samples from a right-skewed log-normal process
+    const MOCK_LEAKAGE_CURRENT_DATA = [
+      8.4, 9.1, 9.7, 10.2, 10.5, 10.8, 11.1, 11.4, 11.6, 11.9,
+      12.1, 12.3, 12.4, 12.6, 12.7, 12.8, 13.0, 13.2, 13.5, 13.6,
+      13.8, 13.9, 14.1, 14.3, 14.5, 14.7, 15.0, 15.2, 15.4, 15.6,
+      15.9, 16.2, 16.5, 16.8, 17.2, 17.5, 17.9, 18.2, 18.6, 19.1,
+      19.5, 20.0, 20.6, 21.2, 21.9, 22.5, 23.4, 24.2, 25.1, 26.3,
+      8.8, 9.4, 9.9, 10.3, 10.6, 10.9, 11.2, 11.5, 11.8, 12.0,
+      12.2, 12.4, 12.5, 12.7, 12.8, 12.9, 13.1, 13.3, 13.5, 13.7,
+      14.0, 14.2, 14.4, 14.6, 14.8, 15.1, 15.3, 15.5, 15.8, 16.0,
+      16.3, 16.6, 17.0, 17.4, 17.8, 18.1, 18.5, 19.0, 19.4, 19.9,
+      20.5, 21.1, 21.8, 22.4, 23.2, 24.0, 25.5, 27.2, 29.8, 33.5
+    ];
+
+    /* ==========================================================================
+       Language (EN / 繁體中文) Engine
+       ========================================================================== */
+    let currentLang = 'en'; // 'en' or 'zh'
+
+    function limToggleLanguage() {
+      currentLang = (currentLang === 'en') ? 'zh' : 'en';
+      limApplyLanguage(currentLang);
+      limRecalculate();
+    }
+
+    function limApplyLanguage(lang) {
+      const isZh = lang === 'zh';
+      document.getElementById('lim_langText').textContent = isZh ? 'English' : '繁體中文';
+
+      // Theme toggle button text
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isZh) {
+        if (document.getElementById('lim_themeText')) document.getElementById('lim_themeText').textContent = isDark ? '深色模式' : '淺色模式';
+      } else {
+        if (document.getElementById('lim_themeText')) document.getElementById('lim_themeText').textContent = isDark ? 'Dark Mode' : 'Light Mode';
+      }
+
+      // Header & Motto
+      document.getElementById('lim_mainTitleText').textContent = isZh ? '⚡ 測試規格限度與保護帶推算工具' : '⚡ Test Limit & Guardband Formulation Studio';
+      document.getElementById('lim_mainSubtitle').textContent = isZh ? '統計製程測試邊界合成計算 (平均值、標準差、中位數、MAD、GRR、AEC-Q001 PAT、ISO 14253-1)' : 'Statistical Test Boundary Synthesis (Mean, Sigma, Median, MAD, GRR, AEC-Q001 PAT, ISO 14253-1)';
+      if (document.getElementById('lim_mottoBanner')) document.getElementById('lim_mottoBanner').textContent = isZh ? 'MASA TU: 品質與精準工程 • 數據驅動卓越' : 'MASA TU: Quality & Precision Engineering • Data-Driven Excellence';
+      if (document.getElementById('lim_attrLead')) document.getElementById('lim_attrLead').textContent = isZh ? '工程開發：' : 'Engineered by';
+
+      // Quick Presets
+      document.getElementById('lim_presetLabel').textContent = isZh ? '快速情境：' : 'Quick Scenarios:';
+      document.getElementById('lim_btnMock').innerHTML = isZh ? '⭐ 示範範例: 待機漏電流 ($I_{SB}$ 物理非負與右偏態)' : '⭐ Mock Example: Leakage Current ($I_{SB}$ Non-Negative & Right-Skewed)';
+      document.getElementById('lim_btnPat').innerHTML = isZh ? '🚗 AEC-Q001 PAT ($6\\sigma$ 離群值篩選)' : '🚗 AEC-Q001 PAT ($6\\sigma$ Outlier Screening)';
+      document.getElementById('lim_btnIso').innerHTML = isZh ? '📐 ISO 14253-1 ($3\\sigma_{GRR}$ 量測保護帶)' : '📐 ISO 14253-1 ($3\\sigma_{GRR}$ Metrology Guardband)';
+      document.getElementById('lim_btnTight').innerHTML = isZh ? '⚠️ 緊縮製程餘裕 ($C_{pk} \\approx 1.0$)' : '⚠️ Tight Process Margin ($C_{pk} \\approx 1.0$)';
+      document.getElementById('lim_btnSym').innerHTML = isZh ? '🔄 標準精密電壓基準 (高斯常態)' : '🔄 Standard Precision Voltage (Gaussian)';
+      document.getElementById('lim_btnReset').innerHTML = isZh ? '↺ 重設預設值' : '↺ Reset Defaults';
+
+      // Card 1: Specs
+      document.getElementById('lim_cardTitleSpec').textContent = isZh ? '1. 客戶與設計規範限度' : '1. Customer & Design Specifications';
+      document.getElementById('lim_lblLSL').textContent = isZh ? '下規格限度 (LSL)：' : 'Lower Spec Limit (LSL):';
+      document.getElementById('lim_lblUSL').textContent = isZh ? '上規格限度 (USL)：' : 'Upper Spec Limit (USL):';
+      document.getElementById('lim_lblTarget').textContent = isZh ? '目標中心值 / 中心 Target (選填)：' : 'Nominal / Target Value (Optional):';
+      document.getElementById('lim_lblUnit').textContent = isZh ? '工程單位：' : 'Engineering Unit:';
+      document.getElementById('lim_lblNonNegative').innerHTML = isZh ? '嚴格物理非負邊界限制 ($x \\ge 0$)' : 'Strictly Non-Negative Physical Bound ($x \\ge 0$)';
+      document.getElementById('lim_descNonNegative').textContent = isZh ?
+        '適用於電流、漏電流 IDDQ、電阻等物理量。自動強制 LTL = max(0, ...) 杜絕負數下限。' :
+        'Essential for electrical current, leakage IDDQ, resistance. Enforces LTL = max(0, ...) so limits never start negative.';
+      document.getElementById('lim_lblOneSided').textContent = isZh ? '單邊規格 (僅上限，例如最大允許漏電流)' : 'One-Sided Specification (Upper Bound Only, e.g., Max Leakage)';
+
+      // Card 2: Distribution
+      document.getElementById('lim_cardTitleDist').textContent = isZh ? '2. 製程分配模型與統計量' : '2. Process Distribution & Statistics';
+      document.getElementById('lim_lblDistModel').textContent = isZh ? '分配模型：' : 'Distribution Model:';
+      document.getElementById('lim_optLogNormal').textContent = isZh ? '對數常態 Log-Normal (非負右偏態，例如電流測試)' : 'Log-Normal (Skewed & Non-Negative e.g., Current Test)';
+      document.getElementById('lim_optNormal').textContent = isZh ? '常態高斯 Normal (μ, σ 參數模型)' : 'Normal / Gaussian (μ, σ Parametric)';
+      document.getElementById('lim_optNonParam').textContent = isZh ? '非參數模型 (穩健中位數與 MAD / 百分位數)' : 'Non-Parametric (Robust Median & MAD / Percentiles)';
+      document.getElementById('lim_tabSummary').textContent = isZh ? '摘要統計量輸入' : 'Summary Statistics';
+      document.getElementById('lim_tabRaw').textContent = isZh ? '貼上原始數據 (CSV)' : 'Paste Raw Data (CSV)';
+      document.getElementById('lim_lblMean').innerHTML = isZh ? '樣本平均值 (\\(\\bar{X}\\))：' : 'Sample Mean (\\(\\bar{X}\\)):';
+      document.getElementById('lim_lblSigma').innerHTML = isZh ? '樣本標準差 (\\(\\sigma\\))：' : 'Sample Sigma (\\(\\sigma\\)):';
+      document.getElementById('lim_lblMedian').innerHTML = isZh ? '中位數 (\\(\\tilde{X}\\) / \\(P_{50}\\))：' : 'Median (\\(\\tilde{X}\\) / \\(P_{50}\\)):';
+      document.getElementById('lim_lblMAD').textContent = isZh ? '中位數絕對離差 (MAD)：' : 'MAD (Median Absolute Dev):';
+      document.getElementById('lim_lblRawData').textContent = isZh ? '貼上數據 (以逗號、空格或換行分隔)：' : 'Paste numbers (separated by comma, space, or newline):';
+      document.getElementById('lim_btnFillMockRaw').textContent = isZh ? '帶入 100 筆漏電樣本數據' : 'Fill 100 Sample Current Data';
+      document.getElementById('lim_lblRobustPrefix').innerHTML = isZh ? 'ℹ️ 穩健標準差估計：\\(\\sigma_{\\text{robust}} = 1.4826 \\times \\text{MAD} = \\)' : 'ℹ️ Robust Sigma Estimate: \\(\\sigma_{\\text{robust}} = 1.4826 \\times \\text{MAD} = \\)';
+
+      // Card 3: GRR
+      document.getElementById('lim_cardTitleGRR').textContent = isZh ? '3. 量測系統 (Gage R&R) 與保護帶工程' : '3. Gage R&R & Guardband Engineering';
+      document.getElementById('lim_lblSigmaGRR').innerHTML = isZh ? '量測系統誤差 (\\(\\sigma_{GRR}\\))：' : 'Measurement Error (\\(\\sigma_{GRR}\\)):';
+      document.getElementById('lim_lblKGB').innerHTML = isZh ? '保護帶倍數 (\\(k_{GB}\\))：' : 'Guardband Multiplier (\\(k_{GB}\\)):';
+      document.getElementById('lim_lblKPAT').innerHTML = isZh ? 'PAT 離群值倍數 (\\(k_{PAT}\\))：' : 'PAT Outlier Multiplier (\\(k_{PAT}\\)):';
+      document.getElementById('lim_lblFormulationMode').textContent = isZh ? '合成執行規則：' : 'Enforcement Rule:';
+      document.getElementById('lim_optComposite').textContent = isZh ? '緊縮交集包絡 (Composite - 最嚴格保護)' : 'Composite Envelope (Tightest Clamp)';
+      document.getElementById('lim_optGBOnly').textContent = isZh ? '僅規格保護帶 (Guardband Only)' : 'Guardbanded Spec Only (USL - GB)';
+      document.getElementById('lim_optPATOnly').textContent = isZh ? '僅統計 PAT 邊界 (Center ± kσ)' : 'Statistical PAT Only (Center ± kσ)';
+      document.getElementById('lim_optRelaxed').textContent = isZh ? '寬鬆聯集包絡 (Yield-Preserving)' : 'Yield-Preserving (Widest Envelope)';
+      document.getElementById('lim_lblAsymGB').textContent = isZh ? '啟用不對稱保護帶 (上下邊界獨立設定)' : 'Enable Asymmetric Guardbanding (Separate Upper & Lower GB)';
+      document.getElementById('lim_lblGBLower').textContent = isZh ? '下保護帶 (GB_L)：' : 'Lower GB (GB_L):';
+      document.getElementById('lim_lblGBUpper').textContent = isZh ? '上保護帶 (GB_U)：' : 'Upper GB (GB_U):';
+
+      // Spec Badge
+      const isOneSided = document.getElementById('lim_checkOneSidedUpper').checked;
+      document.getElementById('lim_specBadge').textContent = isOneSided ?
+        (isZh ? '單邊上限規格' : 'Upper Spec Only') :
+        (isZh ? '雙邊規格' : 'Double-Sided');
+
+      // Card 3: GRR Options
+      document.getElementById('lim_optKgb0').textContent = isZh ? '0 (無保護帶 / 直接規格)' : '0 (No Guardband / Direct Spec)';
+      document.getElementById('lim_optKgb2').textContent = isZh ? '2σ_GRR (適度 95.4% 信心度)' : '2σ_GRR (Moderate 95.4% Confidence)';
+      document.getElementById('lim_optKgb3').textContent = isZh ? '3σ_GRR (ISO 14253-1 嚴格 99.73%)' : '3σ_GRR (ISO 14253-1 Strict 99.73%)';
+      document.getElementById('lim_optKgb4').textContent = isZh ? '4σ_GRR (超高可靠度 / 航太級)' : '4σ_GRR (Ultra-High Reliability)';
+
+      document.getElementById('lim_optPat3').textContent = isZh ? '3σ (自然製程限度 99.73%)' : '3σ (Natural Process Limit)';
+      document.getElementById('lim_optPat4').textContent = isZh ? '4σ (車規初階篩選)' : '4σ (Automotive Screening)';
+      document.getElementById('lim_optPat6').textContent = isZh ? '6σ (AEC-Q001 靜態 PAT 標準)' : '6σ (AEC-Q001 Static PAT Standard)';
+
+      // KPI Titles
+      document.getElementById('lim_kpiTitleLTL').textContent = isZh ? '推算下測試限度 (LTL)' : 'Formulated Lower Test Limit (LTL)';
+      document.getElementById('lim_kpiTitleUTL').textContent = isZh ? '推算上測試限度 (UTL)' : 'Formulated Upper Test Limit (UTL)';
+      document.getElementById('lim_kpiTitleGB').textContent = isZh ? '保護帶佔規格比例' : 'Guardband Consumption';
+      document.getElementById('lim_kpiTitleCpk').textContent = isZh ? '製程能力指標 (Cpk)' : 'Process Capability (Cpk)';
+      document.getElementById('lim_kpiTitleProducer').textContent = isZh ? '製造者風險 (假性良率損失 / Overkill)' : "Producer's Risk (Yield Loss / Overkill)";
+      document.getElementById('lim_kpiTitleConsumer').textContent = isZh ? '消費者風險 (量測不良逃逸率 PPM)' : "Consumer's Risk (Escape PPM)";
+
+      // Chart Controls
+      document.getElementById('lim_chartTitleText').textContent = isZh ? '📈 製程分配與測試邊界視覺化' : '📈 Distribution & Boundary Visualizer';
+      document.getElementById('lim_chartPillPDF').textContent = isZh ? '📈 PDF 機率密度' : '📈 PDF Density';
+      document.getElementById('lim_chartPillCDF').textContent = isZh ? '📊 CDF 累積良率' : '📊 CDF Cumulative';
+      document.getElementById('lim_chartPillDual').textContent = isZh ? '📑 雙圖並列 (Dual)' : '📑 Dual View';
+      document.getElementById('lim_lblScaleFocus').textContent = isZh ? '刻度焦點：' : 'Scale Focus:';
+      document.getElementById('lim_optScaleFocused').textContent = isZh ? '🎯 自動聚焦 (規格與分配)' : '🎯 Auto Focus (Specs & Distribution)';
+      document.getElementById('lim_optScaleZero').textContent = isZh ? '📍 包含原點零 (0)' : '📍 Include Zero / Origin (0)';
+      document.getElementById('lim_labelSampleOverlay').textContent = isZh ? '顯示樣本分佈疊圖' : 'Show Sample Overlay';
+
+      // Summary Table
+      document.getElementById('lim_cardTitleSummary').textContent = isZh ? '📋 測試限度推算分解與合成總表' : '📋 Limit Formulation Breakdown & Synthesis Summary';
+      document.getElementById('lim_thBoundaryType').textContent = isZh ? '邊界類型' : 'Boundary Type';
+      document.getElementById('lim_thFormulaOrigin').textContent = isZh ? '計算公式 / 來源' : 'Formula / Origin';
+      document.getElementById('lim_thLowerLimit').textContent = isZh ? '下限度' : 'Lower Limit';
+      document.getElementById('lim_thUpperLimit').textContent = isZh ? '上限度' : 'Upper Limit';
+      document.getElementById('lim_thToleranceBand').textContent = isZh ? '允差寬度' : 'Tolerance Band';
+      document.getElementById('lim_thEngineeringStatus').textContent = isZh ? '工程判定狀態' : 'Engineering Status';
+
+      // Help Section Toggle
+      document.getElementById('lim_helpSummaryText').textContent = isZh ?
+        '📖 運作原理與工程指南：測試限度與保護帶推算詳解 (點擊展開 / 收合)' :
+        '📖 How It Works: Test Limit & Guardband Formulation Guide (Click to Expand / Collapse)';
+      document.getElementById('lim_helpContentEn').style.display = isZh ? 'none' : 'block';
+      document.getElementById('lim_helpContentZh').style.display = isZh ? 'block' : 'none';
+
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise();
+      }
+    }
+
+    /* ==========================================================================
+       Theme Toggle Engine
+       ========================================================================== */
+    function limToggleTheme() {
+      const isZh = currentLang === 'zh';
+      if (document.body.classList.contains('dark-mode')) {
+        document.body.classList.remove('dark-mode');
+        currentTheme = 'light';
+        document.getElementById('lim_themeIcon').textContent = '🌙';
+        if (document.getElementById('lim_themeText')) document.getElementById('lim_themeText').textContent = isZh ? '深色模式' : 'Dark Mode';
+      } else {
+        document.body.classList.add('dark-mode');
+        currentTheme = 'dark';
+        document.getElementById('lim_themeIcon').textContent = '☀️';
+        if (document.getElementById('lim_themeText')) document.getElementById('lim_themeText').textContent = isZh ? '淺色模式' : 'Light Mode';
+      }
+      limRecalculate();
+    }
+
+    /* ==========================================================================
+       Input Switching & Raw Data Parser
+       ========================================================================== */
+    function limSwitchInputTab(tab) {
+      inputMode = tab;
+      document.getElementById('lim_tabSummary').classList.toggle('active', tab === 'summary');
+      document.getElementById('lim_tabRaw').classList.toggle('active', tab === 'raw');
+      document.getElementById('lim_panelSummary').style.display = tab === 'summary' ? 'block' : 'none';
+      document.getElementById('lim_panelRaw').style.display = tab === 'raw' ? 'block' : 'none';
+
+      if (tab === 'raw' && rawDataArray.length > 0) {
+        limUpdateStatsFromRaw();
+      }
+      limRecalculate();
+    }
+
+    function limParseRawData() {
+      const text = document.getElementById('lim_inputRawData').value;
+      const tokens = text.split(/[\s,;\n\t]+/).filter(s => s.trim().length > 0);
+      const nums = tokens.map(Number).filter(n => !isNaN(n));
+      rawDataArray = nums;
+      document.getElementById('lim_rawCountLabel').textContent = `${nums.length} samples parsed`;
+
+      if (nums.length >= 3) {
+        limUpdateStatsFromRaw();
+        limRecalculate();
+      }
+    }
+
+    function limLoadMockRawData() {
+      document.getElementById('lim_inputRawData').value = MOCK_LEAKAGE_CURRENT_DATA.join(', ');
+      limParseRawData();
+    }
+
+    function limUpdateStatsFromRaw() {
+      if (rawDataArray.length < 3) return;
+      const sorted = [...rawDataArray].sort((a, b) => a - b);
+      const n = sorted.length;
+      const sum = sorted.reduce((acc, x) => acc + x, 0);
+      const mean = sum / n;
+      const variance = sorted.reduce((acc, x) => acc + Math.pow(x - mean, 2), 0) / (n - 1);
+      const sigma = Math.sqrt(variance);
+
+      const median = n % 2 === 1 ? sorted[Math.floor(n / 2)] : (sorted[n / 2 - 1] + sorted[n / 2]) / 2;
+      const absDevs = sorted.map(x => Math.abs(x - median)).sort((a, b) => a - b);
+      const mad = n % 2 === 1 ? absDevs[Math.floor(n / 2)] : (absDevs[n / 2 - 1] + absDevs[n / 2]) / 2;
+
+      document.getElementById('lim_inputMean').value = mean.toFixed(2);
+      document.getElementById('lim_inputSigma').value = sigma.toFixed(2);
+      document.getElementById('lim_inputMedian').value = median.toFixed(2);
+      document.getElementById('lim_inputMAD').value = mad.toFixed(2);
+    }
+
+    function limHandleDistModelChange() {
+      limRecalculate();
+    }
+
+    function limToggleOneSided() {
+      const isZh = currentLang === 'zh';
+      const isOneSided = document.getElementById('lim_checkOneSidedUpper').checked;
+      document.getElementById('lim_inputLSL').disabled = isOneSided;
+      document.getElementById('lim_specBadge').textContent = isOneSided ?
+        (isZh ? '單邊上限規格' : 'Upper Spec Only') :
+        (isZh ? '雙邊規格' : 'Double-Sided');
+      limRecalculate();
+    }
+
+    function limToggleAsymmetricGB() {
+      const isAsym = document.getElementById('lim_checkAsymmetricGB').checked;
+      document.getElementById('lim_asymmetricGBRow').style.display = isAsym ? 'grid' : 'none';
+      limRecalculate();
+    }
+
+    /* ==========================================================================
+       Synthetic Data Generator (Preserves Consistency Across Presets)
+       ========================================================================== */
+    function limGenerateSyntheticData(mean, sigma, n = 100, isLogNormal = false, minBound = 0) {
+      const data = [];
+      if (isLogNormal) {
+        const safeMean = Math.max(0.0001, mean);
+        const ratio = (sigma * sigma) / (safeMean * safeMean);
+        const sigmaLn = Math.sqrt(Math.log(1 + ratio));
+        const muLn = Math.log(safeMean) - 0.5 * sigmaLn * sigmaLn;
+        for (let i = 0; i < n; i++) {
+          let u1 = Math.random() || 0.0001;
+          let u2 = Math.random() || 0.0001;
+          let z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+          let val = Math.exp(muLn + z * sigmaLn);
+          data.push(Number(val.toFixed(2)));
+        }
+      } else {
+        for (let i = 0; i < n; i++) {
+          let u1 = Math.random() || 0.0001;
+          let u2 = Math.random() || 0.0001;
+          let z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+          let val = mean + z * sigma;
+          if (minBound !== null && val < minBound) val = minBound + Math.abs(z * 0.1 * sigma);
+          data.push(Number(val.toFixed(val > 10 ? 2 : 4)));
+        }
+      }
+      return data;
+    }
+
+    /* ==========================================================================
+       Presets & Mock Example Loaders
+       ========================================================================== */
+    function limLoadMockExample() {
+      const isZh = currentLang === 'zh';
+      // Standby Leakage Current ($I_SB$) in µA: strictly non-negative, right-skewed log-normal
+      document.getElementById('lim_inputLSL').value = 0;
+      document.getElementById('lim_inputUSL').value = 50;
+      document.getElementById('lim_inputTarget').value = 12;
+      document.getElementById('lim_unitLabel').value = 'µA';
+      document.getElementById('lim_checkNonNegative').checked = true;
+      document.getElementById('lim_checkOneSidedUpper').checked = false;
+      document.getElementById('lim_inputLSL').disabled = false;
+      document.getElementById('lim_specBadge').textContent = isZh ? '雙邊規格' : 'Double-Sided';
+
+      document.getElementById('lim_selectDistModel').value = 'lognormal';
+      document.getElementById('lim_inputMean').value = 14.8;
+      document.getElementById('lim_inputSigma').value = 7.6;
+      document.getElementById('lim_inputMedian').value = 12.4;
+      document.getElementById('lim_inputMAD').value = 4.5;
+
+      document.getElementById('lim_inputSigmaGRR').value = 1.2;
+      document.getElementById('lim_inputKGB').value = 3;
+      document.getElementById('lim_inputKPAT').value = 6;
+      document.getElementById('lim_selectFormulationMode').value = 'composite';
+
+      document.getElementById('lim_checkAsymmetricGB').checked = false;
+      document.getElementById('lim_asymmetricGBRow').style.display = 'none';
+
+      // Load matching 100-sample empirical leakage current dataset
+      rawDataArray = [...MOCK_LEAKAGE_CURRENT_DATA];
+      document.getElementById('lim_inputRawData').value = rawDataArray.join(', ');
+      document.getElementById('lim_rawCountLabel').textContent = `${rawDataArray.length} samples parsed (Leakage Current µA)`;
+
+      if (document.getElementById('lim_selectAxisZoom')) {
+        document.getElementById('lim_selectAxisZoom').value = 'focused';
+      }
+      if (document.getElementById('lim_checkShowHistogram')) {
+        document.getElementById('lim_checkShowHistogram').checked = true;
+      }
+
+      limSwitchInputTab('summary');
+      limRecalculate();
+    }
+
+    function limLoadPreset(type) {
+      if (type === 'pat') {
+        // Automotive AEC-Q001 PAT $6\sigma$ screening
+        document.getElementById('lim_inputLSL').value = 2.7;
+        document.getElementById('lim_inputUSL').value = 3.3;
+        document.getElementById('lim_inputTarget').value = 3.0;
+        document.getElementById('lim_unitLabel').value = 'V';
+        document.getElementById('lim_checkNonNegative').checked = true;
+        document.getElementById('lim_checkOneSidedUpper').checked = false;
+        document.getElementById('lim_inputLSL').disabled = false;
+
+        document.getElementById('lim_selectDistModel').value = 'normal';
+        document.getElementById('lim_inputMean').value = 3.01;
+        document.getElementById('lim_inputSigma').value = 0.035;
+        document.getElementById('lim_inputMedian').value = 3.01;
+        document.getElementById('lim_inputMAD').value = 0.024;
+
+        document.getElementById('lim_inputSigmaGRR').value = 0.008;
+        document.getElementById('lim_inputKGB').value = 3;
+        document.getElementById('lim_inputKPAT').value = 6;
+        document.getElementById('lim_selectFormulationMode').value = 'composite';
+
+        rawDataArray = limGenerateSyntheticData(3.01, 0.035, 100, false, 2.7);
+        document.getElementById('lim_inputRawData').value = rawDataArray.join(', ');
+        document.getElementById('lim_rawCountLabel').textContent = `100 samples parsed (AEC-Q001 3.01V)`;
+      } else if (type === 'iso_grr') {
+        // ISO 14253-1 Strict Guardband
+        document.getElementById('lim_inputLSL').value = 9.5;
+        document.getElementById('lim_inputUSL').value = 10.5;
+        document.getElementById('lim_inputTarget').value = 10.0;
+        document.getElementById('lim_unitLabel').value = 'mm';
+        document.getElementById('lim_checkNonNegative').checked = true;
+        document.getElementById('lim_checkOneSidedUpper').checked = false;
+        document.getElementById('lim_inputLSL').disabled = false;
+
+        document.getElementById('lim_selectDistModel').value = 'normal';
+        document.getElementById('lim_inputMean').value = 10.02;
+        document.getElementById('lim_inputSigma').value = 0.11;
+        document.getElementById('lim_inputMedian').value = 10.01;
+        document.getElementById('lim_inputMAD').value = 0.075;
+
+        document.getElementById('lim_inputSigmaGRR').value = 0.04;
+        document.getElementById('lim_inputKGB').value = 3;
+        document.getElementById('lim_inputKPAT').value = 4;
+        document.getElementById('lim_selectFormulationMode').value = 'guardband_only';
+
+        rawDataArray = limGenerateSyntheticData(10.02, 0.11, 100, false, 9.0);
+        document.getElementById('lim_inputRawData').value = rawDataArray.join(', ');
+        document.getElementById('lim_rawCountLabel').textContent = `100 samples parsed (ISO 10.02mm)`;
+      } else if (type === 'tight_cpk') {
+        // Tight process margin
+        document.getElementById('lim_inputLSL').value = 45;
+        document.getElementById('lim_inputUSL').value = 55;
+        document.getElementById('lim_inputTarget').value = 50;
+        document.getElementById('lim_unitLabel').value = 'mV';
+        document.getElementById('lim_checkNonNegative').checked = true;
+        document.getElementById('lim_checkOneSidedUpper').checked = false;
+        document.getElementById('lim_inputLSL').disabled = false;
+
+        document.getElementById('lim_selectDistModel').value = 'normal';
+        document.getElementById('lim_inputMean').value = 50.8;
+        document.getElementById('lim_inputSigma').value = 1.6;
+        document.getElementById('lim_inputMedian').value = 50.7;
+        document.getElementById('lim_inputMAD').value = 1.1;
+
+        document.getElementById('lim_inputSigmaGRR').value = 0.5;
+        document.getElementById('lim_inputKGB').value = 2;
+        document.getElementById('lim_inputKPAT').value = 3;
+        document.getElementById('lim_selectFormulationMode').value = 'composite';
+
+        rawDataArray = limGenerateSyntheticData(50.8, 1.6, 100, false, 40.0);
+        document.getElementById('lim_inputRawData').value = rawDataArray.join(', ');
+        document.getElementById('lim_rawCountLabel').textContent = `100 samples parsed (Tight Margin 50.8mV)`;
+      } else if (type === 'symmetric') {
+        // Gaussian standard voltage
+        document.getElementById('lim_inputLSL').value = 1.15;
+        document.getElementById('lim_inputUSL').value = 1.25;
+        document.getElementById('lim_inputTarget').value = 1.20;
+        document.getElementById('lim_unitLabel').value = 'V';
+        document.getElementById('lim_checkNonNegative').checked = true;
+        document.getElementById('lim_checkOneSidedUpper').checked = false;
+        document.getElementById('lim_inputLSL').disabled = false;
+
+        document.getElementById('lim_selectDistModel').value = 'normal';
+        document.getElementById('lim_inputMean').value = 1.201;
+        document.getElementById('lim_inputSigma').value = 0.008;
+        document.getElementById('lim_inputMedian').value = 1.200;
+        document.getElementById('lim_inputMAD').value = 0.0054;
+
+        document.getElementById('lim_inputSigmaGRR').value = 0.0025;
+        document.getElementById('lim_inputKGB').value = 3;
+        document.getElementById('lim_inputKPAT').value = 4;
+        document.getElementById('lim_selectFormulationMode').value = 'composite';
+
+        rawDataArray = limGenerateSyntheticData(1.201, 0.008, 100, false, 1.10);
+        document.getElementById('lim_inputRawData').value = rawDataArray.join(', ');
+        document.getElementById('lim_rawCountLabel').textContent = `100 samples parsed (Precision 1.20V)`;
+      }
+
+      const isZh = currentLang === 'zh';
+      document.getElementById('lim_specBadge').textContent = isZh ? '雙邊規格' : 'Double-Sided';
+
+      document.getElementById('lim_checkAsymmetricGB').checked = false;
+      document.getElementById('lim_asymmetricGBRow').style.display = 'none';
+
+      if (document.getElementById('lim_selectAxisZoom')) {
+        document.getElementById('lim_selectAxisZoom').value = 'focused';
+      }
+
+      limSwitchInputTab('summary');
+      limRecalculate();
+    }
+
+    function limResetDefaults() {
+      limLoadMockExample();
+    }
+
+    /* ==========================================================================
+       Statistical Engine & Limit Formalization
+       ========================================================================== */
+    function limStandardNormalCDF(x) {
+      // Precision Abramowitz and Stegun numerical approximation
+      const b1 = 0.319381530;
+      const b2 = -0.356563782;
+      const b3 = 1.781477937;
+      const b4 = -1.821255978;
+      const b5 = 1.330274429;
+      const p = 0.2316419;
+      const c = 0.39894228;
+
+      if (x >= 0) {
+        const t = 1.0 / (1.0 + p * x);
+        return 1.0 - c * Math.exp(-x * x / 2.0) * t *
+          (t * (t * (t * (t * b5 + b4) + b3) + b2) + b1);
+      } else {
+        const t = 1.0 / (1.0 - p * x);
+        return c * Math.exp(-x * x / 2.0) * t *
+          (t * (t * (t * (t * b5 + b4) + b3) + b2) + b1);
+      }
+    }
+
+    function limRecalculate() {
+      // 1. Gather Inputs
+      const isOneSided = document.getElementById('lim_checkOneSidedUpper').checked;
+      const isNonNegative = document.getElementById('lim_checkNonNegative').checked;
+      const lsl = isOneSided ? (isNonNegative ? 0 : -Infinity) : parseFloat(document.getElementById('lim_inputLSL').value);
+      const usl = parseFloat(document.getElementById('lim_inputUSL').value);
+      const unit = document.getElementById('lim_unitLabel').value || '';
+      const distModel = document.getElementById('lim_selectDistModel').value;
+
+      const mean = parseFloat(document.getElementById('lim_inputMean').value);
+      const sigma = parseFloat(document.getElementById('lim_inputSigma').value);
+      const median = parseFloat(document.getElementById('lim_inputMedian').value);
+      const mad = parseFloat(document.getElementById('lim_inputMAD').value);
+      const robustSigma = 1.4826 * mad;
+      document.getElementById('lim_valRobustSigma').textContent = robustSigma.toFixed(2);
+
+      const sigmaGRR = parseFloat(document.getElementById('lim_inputSigmaGRR').value);
+      const kGB = parseFloat(document.getElementById('lim_inputKGB').value);
+      const kPAT = parseFloat(document.getElementById('lim_inputKPAT').value);
+      const mode = document.getElementById('lim_selectFormulationMode').value;
+      const isAsym = document.getElementById('lim_checkAsymmetricGB').checked;
+
+      // 2. Compute Guardband Margins
+      let gbLower = kGB * sigmaGRR;
+      let gbUpper = kGB * sigmaGRR;
+      if (isAsym) {
+        gbLower = parseFloat(document.getElementById('lim_inputGBLower').value) || 0;
+        gbUpper = parseFloat(document.getElementById('lim_inputGBUpper').value) || 0;
+      }
+
+      // Guardbanded Spec Limits
+      let gbLSL = isOneSided ? 0 : lsl + gbLower;
+      let gbUSL = usl - gbUpper;
+      if (isNonNegative) {
+        gbLSL = Math.max(0, gbLSL);
+      }
+
+      // 3. Statistical Process / PAT Limits
+      let statLTL = 0;
+      let statUTL = 0;
+
+      if (distModel === 'lognormal') {
+        // Log-normal parameter estimation from sample mean and variance
+        // mu_ln = ln(mean^2 / sqrt(mean^2 + sigma^2))
+        // sigma_ln = sqrt(ln(1 + sigma^2 / mean^2))
+        const safeMean = Math.max(0.0001, mean);
+        const ratio = (sigma * sigma) / (safeMean * safeMean);
+        const sigmaLn = Math.sqrt(Math.log(1 + ratio));
+        const muLn = Math.log(safeMean) - 0.5 * sigmaLn * sigmaLn;
+
+        statLTL = Math.exp(muLn - kPAT * sigmaLn);
+        statUTL = Math.exp(muLn + kPAT * sigmaLn);
+      } else if (distModel === 'nonparametric') {
+        // Robust Median + MAD
+        statLTL = median - kPAT * robustSigma;
+        statUTL = median + kPAT * robustSigma;
+      } else {
+        // Standard Gaussian Normal
+        statLTL = mean - kPAT * sigma;
+        statUTL = mean + kPAT * sigma;
+      }
+
+      // Apply non-negative rule to statistical lower limit
+      if (isNonNegative) {
+        statLTL = Math.max(0, statLTL);
+      }
+
+      // 4. Formulate Final Test Limits based on Selected Enforcement Rule
+      let finalLTL = 0;
+      let finalUTL = 0;
+
+      if (mode === 'guardband_only') {
+        finalLTL = gbLSL;
+        finalUTL = gbUSL;
+      } else if (mode === 'pat_only') {
+        finalLTL = statLTL;
+        finalUTL = statUTL;
+      } else if (mode === 'relaxed') {
+        // Widest envelope
+        finalLTL = isOneSided ? 0 : Math.min(gbLSL, statLTL);
+        finalUTL = Math.max(gbUSL, statUTL);
+      } else {
+        // Composite Envelope (Tightest clamp - Standard Industry Best Practice)
+        finalLTL = isOneSided ? 0 : Math.max(gbLSL, statLTL);
+        finalUTL = Math.min(gbUSL, statUTL);
+      }
+
+      if (isNonNegative) {
+        finalLTL = Math.max(0, finalLTL);
+      }
+
+      // 5. Compute Process Capability & Metrics
+      const specTolerance = isOneSided ? (usl - 0) : (usl - lsl);
+      const testTolerance = isOneSided ? finalUTL : (finalUTL - finalLTL);
+
+      // Cpk against Customer Spec
+      let cpkUpper = (usl - mean) / (3 * sigma);
+      let cpkLower = isOneSided ? cpkUpper : (mean - lsl) / (3 * sigma);
+      let cpkSpec = Math.min(cpkUpper, cpkLower);
+
+      // Cpk against Formulated Test Limits
+      let cpkTestUpper = (finalUTL - mean) / (3 * sigma);
+      let cpkTestLower = isOneSided ? cpkTestUpper : (mean - finalLTL) / (3 * sigma);
+      let cpkTest = Math.min(cpkTestUpper, cpkTestLower);
+
+      // Producer Risk (Yield loss / overkill): proportion of population between final limits and spec limits
+      let overkillYieldLoss = 0;
+      let zUpperSpec = (usl - mean) / sigma;
+      let zUpperTest = (finalUTL - mean) / sigma;
+      let probOverUpper = Math.max(0, limStandardNormalCDF(zUpperSpec) - limStandardNormalCDF(zUpperTest));
+
+      let probUnderLower = 0;
+      if (!isOneSided) {
+        let zLowerSpec = (lsl - mean) / sigma;
+        let zLowerTest = (finalLTL - mean) / sigma;
+        probUnderLower = Math.max(0, limStandardNormalCDF(zLowerTest) - limStandardNormalCDF(zLowerSpec));
+      }
+      overkillYieldLoss = (probOverUpper + probUnderLower) * 100;
+
+      // Consumer Risk (Escape PPM)
+      let gbRatio = sigmaGRR > 0 ? (gbUpper / sigmaGRR) : 0;
+      let escapePPM = "< 1 PPM";
+      if (gbRatio < 1) escapePPM = "~ 2,700 PPM";
+      else if (gbRatio < 2) escapePPM = "~ 320 PPM";
+      else if (gbRatio < 3) escapePPM = "~ 13.5 PPM";
+      else escapePPM = "< 1 PPM (Ultra Safe)";
+
+      // Guardband consumption %
+      let gbPercent = specTolerance > 0 ? ((gbUpper + (isOneSided ? 0 : gbLower)) / specTolerance) * 100 : 0;
+
+      // 6. Update KPI Cards in UI
+      const isZh = currentLang === 'zh';
+      document.getElementById('lim_kpiLTL').textContent = isOneSided ? (isZh ? "0.00 (不適用)" : "0.00 (N/A)") : `${finalLTL.toFixed(2)} ${unit}`;
+      document.getElementById('lim_kpiUTL').textContent = `${finalUTL.toFixed(2)} ${unit}`;
+      document.getElementById('lim_subLTL').textContent = isNonNegative ? 
+        (isZh ? "強制執行：物理非負 ≥ 0" : "Enforced: Non-Negative ≥ 0") : 
+        (isZh ? `規格餘裕：${(finalLTL - lsl).toFixed(2)} ${unit}` : `Tolerance margin: ${(finalLTL - lsl).toFixed(2)}`);
+      document.getElementById('lim_subUTL').textContent = isZh ? 
+        `距離 USL 餘裕：${(usl - finalUTL).toFixed(2)} ${unit}` : 
+        `Margin from USL: ${(usl - finalUTL).toFixed(2)} ${unit}`;
+
+      document.getElementById('lim_kpiGBConsumed').textContent = `${gbPercent.toFixed(1)} %`;
+      document.getElementById('lim_subGBConsumed').textContent = isZh ? 
+        `上保護帶 = ${gbUpper.toFixed(2)} ${unit} (${kGB} × ${sigmaGRR.toFixed(2)})` : 
+        `Upper GB = ${gbUpper.toFixed(2)} ${unit} (${kGB} × ${sigmaGRR.toFixed(2)})`;
+
+      document.getElementById('lim_kpiCpk').textContent = cpkSpec.toFixed(2);
+      document.getElementById('lim_subCpk').textContent = isZh ? 
+        `測試限度能力 Cpk: ${cpkTest.toFixed(2)}` : 
+        `Test Limit Cpk: ${cpkTest.toFixed(2)}`;
+
+      document.getElementById('lim_kpiProducerRisk').textContent = `${overkillYieldLoss.toFixed(2)} %`;
+      document.getElementById('lim_subProducerRisk').textContent = isZh ? 
+        `預估假不良良率損失率` : 
+        `Predicted overkill reject rate`;
+
+      let consumerRiskDisplay = escapePPM;
+      if (isZh && escapePPM.includes('Ultra Safe')) {
+        consumerRiskDisplay = '< 1 PPM (超安全)';
+      }
+      document.getElementById('lim_kpiConsumerRisk').textContent = consumerRiskDisplay;
+      document.getElementById('lim_subConsumerRisk').textContent = isZh ? 
+        `受 ${kGB}σ_GRR 量測保護帶防護` : 
+        `Protected by ${kGB}σ_GRR Guardband`;
+
+      // 7. Update Comparison Table
+      renderComparisonTable({
+        lsl, usl, unit, isOneSided, isNonNegative,
+        gbLower, gbUpper, gbLSL, gbUSL,
+        statLTL, statUTL, finalLTL, finalUTL,
+        distModel, kPAT, kGB, sigmaGRR, robustSigma
+      });
+
+      // 8. Plot Interactive Chart(s)
+      const chartParams = {
+        lsl, usl, unit, isOneSided, isNonNegative,
+        mean, sigma, median, mad, robustSigma,
+        gbLSL, gbUSL, statLTL, statUTL, finalLTL, finalUTL,
+        distModel
+      };
+
+      if (currentChartMode === 'pdf' || currentChartMode === 'dual') {
+        renderDistributionPlot(chartParams);
+      }
+      if (currentChartMode === 'cdf' || currentChartMode === 'dual') {
+        renderCDFPlot(chartParams);
+      }
+    }
+
+    /* ==========================================================================
+       Table Renderer
+       ========================================================================== */
+    function renderComparisonTable(p) {
+      const isZh = currentLang === 'zh';
+      const tbody = document.getElementById('lim_limitTableBody');
+      tbody.innerHTML = '';
+
+      const rows = [
+        {
+          name: isZh ? "1. 客戶 / 設計規格限度" : "1. Customer / Spec Limits",
+          formula: isZh ? "規格書 / 合約定義標準" : "Datasheet / Contract Definition",
+          lower: p.isOneSided ? (isZh ? "不適用 (單邊上限)" : "N/A (One-sided)") : `${p.lsl.toFixed(2)} ${p.unit}`,
+          upper: `${p.usl.toFixed(2)} ${p.unit}`,
+          tol: `${(p.usl - (p.isOneSided ? 0 : p.lsl)).toFixed(2)} ${p.unit}`,
+          status: isZh ? `<span class="status-pill warn">規格限度基準</span>` : `<span class="status-pill warn">Spec Boundary</span>`
+        },
+        {
+          name: isZh ? "2. 量測保護帶規格限度 (ISO 14253)" : "2. Guardbanded Spec Limits",
+          formula: `USL - ${p.kGB}σ_GRR (${(p.gbUpper).toFixed(2)})`,
+          lower: p.isOneSided ? "0.00" : `${p.gbLSL.toFixed(2)} ${p.unit}`,
+          upper: `${p.gbUSL.toFixed(2)} ${p.unit}`,
+          tol: `${(p.gbUSL - p.gbLSL).toFixed(2)} ${p.unit}`,
+          status: isZh ? `<span class="status-pill pass">GRR 保護帶防護</span>` : `<span class="status-pill pass">GRR Guarded</span>`
+        },
+        {
+          name: isZh ? "3. 統計製程 PAT 限度 (AEC-Q001)" : "3. Statistical PAT Limits",
+          formula: p.distModel === 'lognormal' ? `Log-Normal exp(μ_ln ± ${p.kPAT}σ_ln)` : 
+                   p.distModel === 'nonparametric' ? `Median ± ${p.kPAT}×1.4826·MAD` : `Mean ± ${p.kPAT}σ`,
+          lower: `${p.statLTL.toFixed(2)} ${p.unit}`,
+          upper: `${p.statUTL.toFixed(2)} ${p.unit}`,
+          tol: `${(p.statUTL - p.statLTL).toFixed(2)} ${p.unit}`,
+          status: isZh ? `<span class="status-pill pass">離群孤兒晶圓篩選</span>` : `<span class="status-pill pass">Maverick Outlier Screen</span>`
+        },
+        {
+          name: isZh ? "⭐ 最終 ATE 量產測試限度" : "⭐ Final Operational Test Limits",
+          formula: isZh ? "緊縮交集包絡 (最嚴格夾止)" : "Composite Envelope (Tightest Clamp)",
+          lower: `${p.finalLTL.toFixed(2)} ${p.unit}`,
+          upper: `${p.finalUTL.toFixed(2)} ${p.unit}`,
+          tol: `${(p.finalUTL - p.finalLTL).toFixed(2)} ${p.unit}`,
+          status: isZh ? `<span class="status-pill pass" style="font-weight:800;">ATE 量產測試基準</span>` : `<span class="status-pill pass" style="font-weight:800;">ATE PRODUCTION LIMIT</span>`,
+          isHighlight: true
+        }
+      ];
+
+      rows.forEach(r => {
+        const tr = document.createElement('tr');
+        if (r.isHighlight) tr.className = 'highlight-row';
+        tr.innerHTML = `
+          <td><strong>${r.name}</strong></td>
+          <td><code>${r.formula}</code></td>
+          <td><strong>${r.lower}</strong></td>
+          <td><strong>${r.upper}</strong></td>
+          <td>${r.tol}</td>
+          <td>${r.status}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    /* ==========================================================================
+       Interactive Plotly Chart Renderer
+       ========================================================================== */
+    function renderDistributionPlot(p) {
+      const isZh = currentLang === 'zh';
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const paperBg = isDark ? '#151c2c' : '#ffffff';
+      const plotBg = isDark ? '#151c2c' : '#ffffff';
+      const fontColor = isDark ? '#cbd5e1' : '#334155';
+      const gridColor = isDark ? '#273553' : '#e2e8f0';
+
+      const axisMode = document.getElementById('lim_selectAxisZoom') ? document.getElementById('lim_selectAxisZoom').value : 'focused';
+      const showHist = document.getElementById('lim_checkShowHistogram') ? document.getElementById('lim_checkShowHistogram').checked : false;
+
+      // Calculate natural span of interest
+      const refLower = p.isOneSided ? (p.mean - 4 * p.sigma) : p.lsl;
+      const span = Math.max(p.usl - refLower, 6 * p.sigma);
+      const margin = Math.max(span * 0.12, 1.5 * p.sigma);
+
+      let minX, maxX;
+      if (axisMode === 'zero') {
+        minX = 0;
+        maxX = Math.max(p.usl + margin, p.mean + 4.5 * p.sigma, p.finalUTL + margin);
+      } else {
+        // Focused Auto Zoom around actual process & specification boundaries
+        let candidateMin = Math.min(refLower - margin, p.mean - 4.5 * p.sigma, p.finalLTL - margin * 0.5);
+        if (p.isNonNegative) {
+          candidateMin = Math.max(0, candidateMin);
+        }
+        minX = candidateMin;
+        maxX = Math.max(p.usl + margin, p.mean + 4.5 * p.sigma, p.finalUTL + margin * 0.5);
+      }
+
+      // Sample curve points across [minX, maxX]
+      const numPoints = 250;
+      const step = (maxX - minX) / numPoints;
+      const xVals = [];
+      const yVals = [];
+
+      if (p.distModel === 'lognormal') {
+        const safeMean = Math.max(0.0001, p.mean);
+        const ratio = (p.sigma * p.sigma) / (safeMean * safeMean);
+        const sigmaLn = Math.sqrt(Math.log(1 + ratio));
+        const muLn = Math.log(safeMean) - 0.5 * sigmaLn * sigmaLn;
+
+        for (let i = 0; i <= numPoints; i++) {
+          const x = minX + i * step;
+          xVals.push(x);
+          if (x <= 0) {
+            yVals.push(0);
+          } else {
+            const pdf = (1 / (x * sigmaLn * Math.sqrt(2 * Math.PI))) *
+              Math.exp(-Math.pow(Math.log(x) - muLn, 2) / (2 * sigmaLn * sigmaLn));
+            yVals.push(pdf);
+          }
+        }
+      } else {
+        // Gaussian Normal
+        for (let i = 0; i <= numPoints; i++) {
+          const x = minX + i * step;
+          xVals.push(x);
+          const pdf = (1 / (p.sigma * Math.sqrt(2 * Math.PI))) *
+            Math.exp(-0.5 * Math.pow((x - p.mean) / p.sigma, 2));
+          yVals.push(pdf);
+        }
+      }
+
+      const maxY = Math.max(...yVals);
+
+      const traces = [
+        // 1. Process Density Distribution Curve
+        {
+          x: xVals,
+          y: yVals,
+          mode: 'lines',
+          name: p.distModel === 'lognormal' ? 
+            (isZh ? '對數常態密度 (電流分配)' : 'Log-Normal Density (Current)') : 
+            (isZh ? '製程機率密度 (常態高斯)' : 'Process Density (Normal)'),
+          line: { color: isDark ? '#38bdf8' : '#0284c7', width: 3 },
+          fill: 'tozeroy',
+          fillcolor: isDark ? 'rgba(56, 189, 248, 0.12)' : 'rgba(2, 132, 199, 0.12)',
+          hoverinfo: 'x+y'
+        }
+      ];
+
+      // Add Raw Data Histogram overlay only if requested AND raw data matches the current scale
+      if (showHist && rawDataArray.length > 5) {
+        const rawSum = rawDataArray.reduce((acc, v) => acc + v, 0);
+        const rawMean = rawSum / rawDataArray.length;
+        // Verify rawMean is in range of p.mean (within 3.5 sigmas) to prevent odd scale collisions
+        if (Math.abs(rawMean - p.mean) <= 3.5 * Math.max(p.sigma, 0.001)) {
+          traces.push({
+            x: rawDataArray,
+            type: 'histogram',
+            histnorm: 'probability density',
+            name: isZh ? '實測樣本直方圖' : 'Empirical Sample Histogram',
+            opacity: 0.35,
+            marker: { color: isDark ? '#a78bfa' : '#8b5cf6' },
+            nbinsx: 25,
+            hoverinfo: 'x+y'
+          });
+        }
+      }
+
+      // Vertical Marker Lines and Shaded Shapes
+      const shapes = [];
+      const annotations = [];
+
+      // Physical Zero Barrier (if non-negative AND 0 is in or near visible range)
+      if (p.isNonNegative && minX <= 0.001 && maxX >= 0) {
+        shapes.push({
+          type: 'line',
+          x0: 0, x1: 0,
+          y0: 0, y1: maxY * 1.15,
+          line: { color: '#64748b', width: 2, dash: 'dot' }
+        });
+        annotations.push({
+          x: 0, y: maxY * 1.12,
+          text: isZh ? '物理非負邊界 (0)' : 'Physical Barrier (0)',
+          showarrow: false,
+          font: { color: '#64748b', size: 10 },
+          xanchor: 'left'
+        });
+      }
+
+      // USL (Spec Upper)
+      shapes.push({
+        type: 'line',
+        x0: p.usl, x1: p.usl,
+        y0: 0, y1: maxY * 1.15,
+        line: { color: '#ef4444', width: 2.5, dash: 'dash' }
+      });
+      annotations.push({
+        x: p.usl, y: maxY * 1.12,
+        text: `USL (${p.usl} ${p.unit})`,
+        showarrow: false,
+        font: { color: '#ef4444', size: 11, family: 'bold' }
+      });
+
+      // LSL (Spec Lower)
+      if (!p.isOneSided) {
+        shapes.push({
+          type: 'line',
+          x0: p.lsl, x1: p.lsl,
+          y0: 0, y1: maxY * 1.15,
+          line: { color: '#ef4444', width: 2.5, dash: 'dash' }
+        });
+        annotations.push({
+          x: p.lsl, y: maxY * 1.12,
+          text: `LSL (${p.lsl} ${p.unit})`,
+          showarrow: false,
+          font: { color: '#ef4444', size: 11, family: 'bold' }
+        });
+      }
+
+      // Lower Guardband Zone Shading (between LSL and Final LTL)
+      if (!p.isOneSided && p.finalLTL > p.lsl) {
+        shapes.push({
+          type: 'rect',
+          x0: p.lsl, x1: p.finalLTL,
+          y0: 0, y1: maxY * 1.05,
+          fillcolor: 'rgba(245, 158, 11, 0.22)',
+          line: { width: 0 }
+        });
+        if ((p.finalLTL - p.lsl) > (maxX - minX) * 0.02) {
+          annotations.push({
+            x: (p.lsl + p.finalLTL) / 2, y: maxY * 0.5,
+            text: isZh ? '下保護帶緩衝區' : 'Lower GB Buffer',
+            showarrow: false,
+            textangle: -90,
+            font: { color: '#d97706', size: 10, weight: 600 }
+          });
+        }
+      }
+
+      // Upper Guardband Zone Shading (between UTL and USL)
+      if (p.usl > p.finalUTL) {
+        shapes.push({
+          type: 'rect',
+          x0: p.finalUTL, x1: p.usl,
+          y0: 0, y1: maxY * 1.05,
+          fillcolor: 'rgba(245, 158, 11, 0.22)',
+          line: { width: 0 }
+        });
+        if ((p.usl - p.finalUTL) > (maxX - minX) * 0.02) {
+          annotations.push({
+            x: (p.finalUTL + p.usl) / 2, y: maxY * 0.5,
+            text: isZh ? '上保護帶緩衝區' : 'Upper GB Buffer',
+            showarrow: false,
+            textangle: -90,
+            font: { color: '#d97706', size: 10, weight: 600 }
+          });
+        }
+      }
+
+      // Final UTL Line
+      shapes.push({
+        type: 'line',
+        x0: p.finalUTL, x1: p.finalUTL,
+        y0: 0, y1: maxY * 1.1,
+        line: { color: '#10b981', width: 3 }
+      });
+      annotations.push({
+        x: p.finalUTL, y: maxY * 1.05,
+        text: `<b>UTL: ${p.finalUTL.toFixed(2)}</b>`,
+        showarrow: true,
+        arrowhead: 2,
+        arrowcolor: '#10b981',
+        ax: 0, ay: -30,
+        font: { color: '#10b981', size: 11 }
+      });
+
+      // Final LTL Line
+      if (!p.isOneSided) {
+        shapes.push({
+          type: 'line',
+          x0: p.finalLTL, x1: p.finalLTL,
+          y0: 0, y1: maxY * 1.1,
+          line: { color: '#10b981', width: 3 }
+        });
+        annotations.push({
+          x: p.finalLTL, y: maxY * 1.05,
+          text: `<b>LTL: ${p.finalLTL.toFixed(2)}</b>`,
+          showarrow: true,
+          arrowhead: 2,
+          arrowcolor: '#10b981',
+          ax: 0, ay: -30,
+          font: { color: '#10b981', size: 11 }
+        });
+      }
+
+      // Process Center (Median / Mean)
+      const centerVal = p.distModel === 'lognormal' ? p.median : p.mean;
+      shapes.push({
+        type: 'line',
+        x0: centerVal, x1: centerVal,
+        y0: 0, y1: maxY * 0.95,
+        line: { color: '#8b5cf6', width: 1.5, dash: 'dot' }
+      });
+      annotations.push({
+        x: centerVal, y: maxY * 0.95,
+        text: p.distModel === 'lognormal' ? 
+          (isZh ? `中位數 (${centerVal.toFixed(1)})` : `Median (${centerVal.toFixed(1)})`) : 
+          (isZh ? `平均值 (${centerVal.toFixed(1)})` : `Mean (${centerVal.toFixed(1)})`),
+        showarrow: false,
+        font: { color: '#8b5cf6', size: 10 }
+      });
+
+      const layout = {
+        paper_bgcolor: paperBg,
+        plot_bgcolor: plotBg,
+        font: { color: fontColor, family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto' },
+        margin: { l: 50, r: 40, t: 30, b: 45 },
+        xaxis: {
+          title: isZh ? `量測數值 (${p.unit})` : `Measurement Value (${p.unit})`,
+          gridcolor: gridColor,
+          zeroline: true,
+          zerolinecolor: gridColor,
+          range: [minX, maxX]
+        },
+        yaxis: {
+          title: isZh ? '機率密度 f(x)' : 'Probability Density',
+          gridcolor: gridColor,
+          zeroline: false
+        },
+        shapes: shapes,
+        annotations: annotations,
+        legend: {
+          orientation: 'h',
+          x: 0, y: 1.12,
+          font: { size: 11 }
+        }
+      };
+
+      const config = {
+        responsive: true,
+        displayModeBar: true,
+        modeBarButtonsToRemove: ['lasso2d', 'select2d']
+      };
+
+      Plotly.react('lim_distributionChart', traces, layout, config);
+    }
+
+    /* ==========================================================================
+       Interactive Plotly CDF (Cumulative Distribution Function) Chart Renderer
+       ========================================================================== */
+    function renderCDFPlot(p) {
+      const isZh = currentLang === 'zh';
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const paperBg = isDark ? '#151c2c' : '#ffffff';
+      const plotBg = isDark ? '#151c2c' : '#ffffff';
+      const fontColor = isDark ? '#cbd5e1' : '#334155';
+      const gridColor = isDark ? '#273553' : '#e2e8f0';
+
+      const axisMode = document.getElementById('lim_selectAxisZoom') ? document.getElementById('lim_selectAxisZoom').value : 'focused';
+      const showHist = document.getElementById('lim_checkShowHistogram') ? document.getElementById('lim_checkShowHistogram').checked : false;
+
+      // Calculate natural span of interest
+      const refLower = p.isOneSided ? (p.mean - 4 * p.sigma) : p.lsl;
+      const span = Math.max(p.usl - refLower, 6 * p.sigma);
+      const margin = Math.max(span * 0.12, 1.5 * p.sigma);
+
+      let minX, maxX;
+      if (axisMode === 'zero') {
+        minX = 0;
+        maxX = Math.max(p.usl + margin, p.mean + 4.5 * p.sigma, p.finalUTL + margin);
+      } else {
+        let candidateMin = Math.min(refLower - margin, p.mean - 4.5 * p.sigma, p.finalLTL - margin * 0.5);
+        if (p.isNonNegative) candidateMin = Math.max(0, candidateMin);
+        minX = candidateMin;
+        maxX = Math.max(p.usl + margin, p.mean + 4.5 * p.sigma, p.finalUTL + margin * 0.5);
+      }
+
+      // Sample CDF points across [minX, maxX]
+      const numPoints = 250;
+      const step = (maxX - minX) / numPoints;
+      const xVals = [];
+      const yVals = [];
+
+      let computeCDF;
+      if (p.distModel === 'lognormal') {
+        const safeMean = Math.max(0.0001, p.mean);
+        const ratio = (p.sigma * p.sigma) / (safeMean * safeMean);
+        const sigmaLn = Math.sqrt(Math.log(1 + ratio));
+        const muLn = Math.log(safeMean) - 0.5 * sigmaLn * sigmaLn;
+        computeCDF = (x) => {
+          if (x <= 0) return 0;
+          const z = (Math.log(x) - muLn) / sigmaLn;
+          return limStandardNormalCDF(z);
+        };
+      } else {
+        computeCDF = (x) => {
+          const z = (x - p.mean) / p.sigma;
+          return limStandardNormalCDF(z);
+        };
+      }
+
+      for (let i = 0; i <= numPoints; i++) {
+        const x = minX + i * step;
+        xVals.push(x);
+        yVals.push(computeCDF(x));
+      }
+
+      const traces = [
+        {
+          x: xVals,
+          y: yVals,
+          mode: 'lines',
+          name: p.distModel === 'lognormal' ? 
+            (isZh ? '對數常態累積良率 CDF' : 'Log-Normal Cumulative CDF') : 
+            (isZh ? '製程累積良率 CDF' : 'Process Cumulative CDF'),
+          line: { color: isDark ? '#38bdf8' : '#0284c7', width: 3 },
+          hoverinfo: 'x+y',
+          hovertemplate: isZh ? 
+            `數值: %{x:.2f} ${p.unit}<br>累積良率 F(x): %{y:.3%}<extra></extra>` : 
+            `Value: %{x:.2f} ${p.unit}<br>Cumulative F(x): %{y:.3%}<extra></extra>`
+        }
+      ];
+
+      // Overlay Empirical Sample Step CDF if sample data is consistent
+      if (showHist && rawDataArray.length > 5) {
+        const rawSum = rawDataArray.reduce((acc, v) => acc + v, 0);
+        const rawMean = rawSum / rawDataArray.length;
+        if (Math.abs(rawMean - p.mean) <= 3.5 * Math.max(p.sigma, 0.001)) {
+          const sorted = [...rawDataArray].sort((a, b) => a - b);
+          const empX = [];
+          const empY = [];
+          const n = sorted.length;
+          for (let i = 0; i < n; i++) {
+            empX.push(sorted[i]);
+            empY.push((i + 1) / n);
+          }
+          traces.push({
+            x: empX,
+            y: empY,
+            mode: 'lines',
+            name: isZh ? '經驗樣本階梯累積 CDF' : 'Empirical Sample Step CDF',
+            line: { shape: 'hv', color: isDark ? '#a78bfa' : '#8b5cf6', width: 2 },
+            opacity: 0.75,
+            hoverinfo: 'x+y',
+            hovertemplate: isZh ? 
+              `樣本值: %{x:.2f} ${p.unit}<br>經驗累積率: %{y:.1%}<extra></extra>` : 
+              `Sample: %{x:.2f} ${p.unit}<br>Empirical Cum: %{y:.1%}<extra></extra>`
+          });
+        }
+      }
+
+      // Key Probability Points for LSL, USL, LTL, UTL
+      const cdfLSL = p.isOneSided ? 0 : computeCDF(p.lsl);
+      const cdfUSL = computeCDF(p.usl);
+      const cdfLTL = p.isOneSided ? 0 : computeCDF(p.finalLTL);
+      const cdfUTL = computeCDF(p.finalUTL);
+
+      const markerX = [];
+      const markerY = [];
+      const markerText = [];
+      const markerColors = [];
+
+      if (!p.isOneSided) {
+        markerX.push(p.finalLTL);
+        markerY.push(cdfLTL);
+        markerText.push(isZh ? 
+          `LTL: ${p.finalLTL.toFixed(2)} | 下限過濾不良: ${(cdfLTL * 100).toFixed(2)}%` : 
+          `LTL: ${p.finalLTL.toFixed(2)} | Lower Fallout: ${(cdfLTL * 100).toFixed(2)}%`);
+        markerColors.push('#10b981');
+      }
+
+      markerX.push(p.finalUTL);
+      markerY.push(cdfUTL);
+      markerText.push(isZh ? 
+        `UTL: ${p.finalUTL.toFixed(2)} | 累積良率: ${(cdfUTL * 100).toFixed(2)}% (上限不良: ${((1 - cdfUTL) * 100).toFixed(2)}%)` : 
+        `UTL: ${p.finalUTL.toFixed(2)} | Cumulative: ${(cdfUTL * 100).toFixed(2)}% (Upper Fallout: ${((1 - cdfUTL) * 100).toFixed(2)}%)`);
+      markerColors.push('#10b981');
+
+      traces.push({
+        x: markerX,
+        y: markerY,
+        mode: 'markers',
+        name: isZh ? '測試邊界關鍵點位' : 'Test Limit Boundary Points',
+        marker: { size: 9, color: markerColors, symbol: 'diamond' },
+        text: markerText,
+        hoverinfo: 'text'
+      });
+
+      const shapes = [];
+      const annotations = [];
+
+      // Physical Zero Barrier
+      if (p.isNonNegative && minX <= 0.001 && maxX >= 0) {
+        shapes.push({
+          type: 'line',
+          x0: 0, x1: 0,
+          y0: 0, y1: 1.0,
+          line: { color: '#64748b', width: 2, dash: 'dot' }
+        });
+        annotations.push({
+          x: 0, y: 1.02,
+          text: isZh ? '物理非負邊界 (0)' : 'Physical Barrier (0)',
+          showarrow: false,
+          font: { color: '#64748b', size: 9 }
+        });
+      }
+
+      // USL vertical line
+      shapes.push({
+        type: 'line',
+        x0: p.usl, x1: p.usl,
+        y0: 0, y1: 1.0,
+        line: { color: '#ef4444', width: 2, dash: 'dash' }
+      });
+      annotations.push({
+        x: p.usl, y: 1.02,
+        text: `USL (${p.usl})`,
+        showarrow: false,
+        font: { color: '#ef4444', size: 10 }
+      });
+
+      // LSL vertical line
+      if (!p.isOneSided) {
+        shapes.push({
+          type: 'line',
+          x0: p.lsl, x1: p.lsl,
+          y0: 0, y1: 1.0,
+          line: { color: '#ef4444', width: 2, dash: 'dash' }
+        });
+        annotations.push({
+          x: p.lsl, y: 1.02,
+          text: `LSL (${p.lsl})`,
+          showarrow: false,
+          font: { color: '#ef4444', size: 10 }
+        });
+      }
+
+      // Final UTL vertical line
+      shapes.push({
+        type: 'line',
+        x0: p.finalUTL, x1: p.finalUTL,
+        y0: 0, y1: 1.0,
+        line: { color: '#10b981', width: 2.5 }
+      });
+      annotations.push({
+        x: p.finalUTL, y: cdfUTL,
+        text: `<b>${isZh ? 'UTL 累積良率' : 'UTL Cum'}: ${(cdfUTL * 100).toFixed(2)}%</b>`,
+        showarrow: true,
+        arrowhead: 2,
+        arrowcolor: '#10b981',
+        ax: -55, ay: 30,
+        font: { color: '#10b981', size: 10 }
+      });
+
+      // Final LTL vertical line
+      if (!p.isOneSided) {
+        shapes.push({
+          type: 'line',
+          x0: p.finalLTL, x1: p.finalLTL,
+          y0: 0, y1: 1.0,
+          line: { color: '#10b981', width: 2.5 }
+        });
+        annotations.push({
+          x: p.finalLTL, y: cdfLTL,
+          text: `<b>${isZh ? 'LTL 下限不良' : 'LTL Fallout'}: ${(cdfLTL * 100).toFixed(2)}%</b>`,
+          showarrow: true,
+          arrowhead: 2,
+          arrowcolor: '#10b981',
+          ax: 55, ay: -30,
+          font: { color: '#10b981', size: 10 }
+        });
+      }
+
+      // 50% Median (P50) horizontal line
+      shapes.push({
+        type: 'line',
+        x0: minX, x1: maxX,
+        y0: 0.5, y1: 0.5,
+        line: { color: '#8b5cf6', width: 1, dash: 'dot' }
+      });
+      annotations.push({
+        x: minX + 0.02 * (maxX - minX), y: 0.52,
+        text: isZh ? '50% 中位數 (P50)' : '50% Median (P50)',
+        showarrow: false,
+        font: { color: '#8b5cf6', size: 9 },
+        xanchor: 'left'
+      });
+
+      // Lower Guardband zone shading on CDF (band between LSL and Final LTL)
+      if (!p.isOneSided && p.finalLTL > p.lsl && cdfLTL > cdfLSL) {
+        shapes.push({
+          type: 'rect',
+          x0: p.lsl, x1: p.finalLTL,
+          y0: 0, y1: 1.0,
+          fillcolor: 'rgba(245, 158, 11, 0.18)',
+          line: { width: 0 }
+        });
+        if ((p.finalLTL - p.lsl) > (maxX - minX) * 0.02) {
+          annotations.push({
+            x: (p.lsl + p.finalLTL) / 2, y: 0.25,
+            text: isZh ? `下保護帶良率損失 = ${((cdfLTL - cdfLSL) * 100).toFixed(2)}%` : `Lower GB Overkill = ${((cdfLTL - cdfLSL) * 100).toFixed(2)}%`,
+            showarrow: false,
+            textangle: -90,
+            font: { color: '#d97706', size: 9, weight: 600 }
+          });
+        }
+      }
+
+      // Upper Guardband zone shading on CDF (horizontal band between F(UTL) and F(USL))
+      if (cdfUSL > cdfUTL) {
+        shapes.push({
+          type: 'rect',
+          x0: p.finalUTL, x1: p.usl,
+          y0: 0, y1: 1.0,
+          fillcolor: 'rgba(245, 158, 11, 0.18)',
+          line: { width: 0 }
+        });
+        if ((p.usl - p.finalUTL) > (maxX - minX) * 0.02) {
+          annotations.push({
+            x: (p.finalUTL + p.usl) / 2, y: 0.25,
+            text: isZh ? `上保護帶良率損失 = ${((cdfUSL - cdfUTL) * 100).toFixed(2)}%` : `Upper GB Overkill = ${((cdfUSL - cdfUTL) * 100).toFixed(2)}%`,
+            showarrow: false,
+            textangle: -90,
+            font: { color: '#d97706', size: 9, weight: 600 }
+          });
+        }
+      }
+
+      const layout = {
+        paper_bgcolor: paperBg,
+        plot_bgcolor: plotBg,
+        font: { color: fontColor, family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto' },
+        margin: { l: 60, r: 40, t: 30, b: 45 },
+        xaxis: {
+          title: isZh ? `量測數值 (${p.unit})` : `Measurement Value (${p.unit})`,
+          gridcolor: gridColor,
+          zeroline: true,
+          zerolinecolor: gridColor,
+          range: [minX, maxX]
+        },
+        yaxis: {
+          title: isZh ? '累積機率 / 良率 F(x)' : 'Cumulative Probability F(x)',
+          gridcolor: gridColor,
+          zeroline: false,
+          tickformat: '.1%',
+          range: [-0.03, 1.07]
+        },
+        shapes: shapes,
+        annotations: annotations,
+        legend: {
+          orientation: 'h',
+          x: 0, y: 1.13,
+          font: { size: 10 }
+        }
+      };
+
+      const config = {
+        responsive: true,
+        displayModeBar: true,
+        modeBarButtonsToRemove: ['lasso2d', 'select2d']
+      };
+
+      Plotly.react('lim_cdfChart', traces, layout, config);
+    }
+
+    /* ==========================================================================
+       Initial Boot
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Initialize with featured mock example: Standby Leakage Current
+      limLoadMockExample();
+    });
+  
+
 
     // Bootstrap app
     window.onload = function() {
