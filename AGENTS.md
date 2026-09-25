@@ -20,10 +20,13 @@ Whenever modifying headers, styles, adding tabs/tools, or fixing bugs, ALWAYS sy
 - Always execute an automated JavaScript syntax check via Node.js on all `<script>` tags across all 4 files before committing.
 - Ensure 0 syntax errors (`SyntaxError`), verify balanced braces in `switchTab`, and confirm that all critical entry functions (`recalculate`, `smartInit`, `prInit`, `scCalculate`, `runCpkSimulation`, `toggleDashboardTheme`) are defined and intact.
 
-## 5. CSS Scoping & Isolation Requirement
+## 5. Dual-Theme Architecture & CSS Scoping Requirement
+- The workspace theme is controlled via `data-theme` on `<html>` (`document.documentElement.getAttribute('data-theme')` with `'dark'` default and `'light'`). **NEVER** use `body.dark-mode` or `classList.contains('dark-mode')`.
+- In JS (for Plotly / Canvas / SVG), theme check MUST be: `const isDark = document.documentElement.getAttribute('data-theme') !== 'light';`.
 - All tool-specific CSS rules MUST be scoped under their respective scope class (e.g. `.lim-scope`, `.smart-scope`, `.sc-scope`, `.pr-scope`).
-- Never introduce unscoped global selectors like `.card`, `.preset-btn`, `.form-group`, `input`, `button` that could collide with other tabs.
-- Use workspace CSS variables (`var(--bg-primary)`, `var(--bg-card)`, `var(--border-color)`, `var(--color-blue)`) for automatic Dark/Light mode theme support.
+- Scope variables must bind to core tokens: `--bg-primary`, `--bg-secondary` (cards/tables), `--bg-tertiary` (sub-cards/inputs), `--border-color`, `--text-primary`, `--text-muted`, `--color-blue`.
+- Light mode overrides MUST use `[data-theme="light"] .<scope> { ... }`.
+- Never introduce unscoped global selectors like `.card`, `.preset-btn`, `.form-group`, `input`, `table`, `th`, `td` that could collide with other tabs.
 
 ## 6. MathJax Performance & DOM Scanning Rule
 - Keep exactly ONE optimized, asynchronous MathJax script tag in `<head>` with `options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }` to eliminate UI blocking and page lag.
@@ -51,3 +54,4 @@ When adding new tools or modules (such as SMART Principles, Wafer Yield, MSA, Li
   2. Demo / Mock Library with 1-click loading and comparison
   3. Comprehensive HELP / Guide / Best Practice Knowledge Base
 - Ensure seamless integration with 8D tasks (`kanbanTasks`) when applicable.
+- Register tool redraw functions in `toggleDashboardTheme()` for instant chart color synchronization upon theme switching.

@@ -9,7 +9,7 @@ description: >-
 
 # Lean Expert Workspace Development & Maintenance Skill
 
-This skill documents the complete architecture, UI/UX design standards, multi-file synchronization protocols, DOM integrity rules, JavaScript validation workflows, and feature guidelines for the **Masa Lean Expert Workspace** application suite.
+This skill documents the complete architecture, UI/UX design standards, multi-file synchronization protocols, DOM integrity rules, JavaScript validation workflows, theme binding rules, and feature guidelines for the **Masa Lean Expert Workspace** application suite.
 
 ---
 
@@ -70,19 +70,75 @@ To prevent breaking click handlers and icons:
 
 ---
 
-## 4. Strict CSS Scoping & Isolation Standard
+## 4. Dual-Theme System Architecture & Variable Binding Standard
 
-- **Scope Everything**: All tool-specific styles MUST be scoped under their respective CSS class prefix (e.g. `.lim-scope`, `.smart-scope`, `.sc-scope`, `.pr-scope`).
-- **No Unscoped Generic Selectors**: Never write unscoped `.card`, `.btn`, `.preset-btn`, `.form-group`, `table`, `input`, or `header` in global CSS.
-- **Dynamic Palette Binding**: Utilize core CSS variables to ensure seamless light/dark mode support:
-  - `var(--bg-primary)` / `var(--bg-secondary)` / `var(--bg-tertiary)`
-  - `var(--border-color)`
-  - `var(--text-primary)` / `var(--text-muted)`
-  - `var(--color-blue)` / `var(--color-emerald)` / `var(--color-amber)` / `var(--color-rose)`
+The workspace uses `document.documentElement.getAttribute('data-theme')` (values: `'dark'` [default] or `'light'`), **NEVER** `body.dark-mode`.
+
+### A. JavaScript Theme Detection Standard
+In any interactive module or Plotly chart generator:
+```javascript
+// ✅ ALWAYS USE THIS (works with default dark and toggled light modes):
+const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+
+// ❌ NEVER USE THIS (will fail in workspace dark mode):
+// const isDark = document.body.classList.contains('dark-mode');
+```
+
+### B. Plotly Layout Dynamic Palette
+```javascript
+const paperBg = isDark ? '#151c2c' : '#ffffff';
+const plotBg = isDark ? '#151c2c' : '#ffffff';
+const fontColor = isDark ? '#cbd5e1' : '#334155';
+const gridColor = isDark ? '#273553' : '#e2e8f0';
+```
+
+### C. CSS Theme Variable Mapping
+All tool-scoped CSS blocks (`.lim-scope`, `.smart-scope`, `.pr-scope`, `.sc-scope`) must bind directly to workspace core variables:
+```css
+.<tool>-scope {
+  --bg-primary: var(--bg-primary);       /* Dark: #0b0f19, Light: #f1f5f9 */
+  --bg-card: var(--bg-secondary);        /* Dark: #151c2c, Light: #ffffff */
+  --bg-subtle: var(--bg-tertiary);       /* Dark: #1e293b, Light: #f8fafc */
+  --border-color: var(--border-color);   /* Dark: #26354a, Light: #e2e8f0 */
+  --border-focus: var(--color-blue);
+  --text-main: var(--text-primary);      /* Dark: #f8fafc, Light: #1e293b */
+  --text-muted: var(--text-muted);       /* Dark: #94a3b8, Light: #64748b */
+  --text-highlight: var(--color-blue);
+  --accent-blue: var(--color-blue);
+  --accent-green: var(--color-emerald);
+  --accent-amber: var(--color-orange, #f59e0b);
+  --accent-rose: var(--color-red, #ef4444);
+  --accent-purple: var(--color-purple);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  color: var(--text-main);
+}
+
+[data-theme="light"] .<tool>-scope {
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07);
+}
+```
+
+### D. Theme Switcher Hook (`toggleDashboardTheme`)
+Ensure every active tab's redraw function is registered in `toggleDashboardTheme()`:
+```javascript
+if (activeTab === 'limitsop' && typeof recalculate === 'function') recalculate();
+else if (activeTab === 'smart' && typeof smartRenderRadar === 'function') smartRenderRadar();
+else if (activeTab === 'yield' && typeof scUpdateViz === 'function') { scUpdateViz(); scDrawMiniWafers(); }
+```
 
 ---
 
-## 5. MathJax Performance & DOM Scanning Rule
+## 5. CSS Scoping & Layout Fidelity Standard
+
+- **100% Selector Scoping**: When integrating external tools, extract all CSS selectors and prefix each with `.<tool>-scope ` (e.g. `.<tool>-scope .kpi-card`, `.<tool>-scope table`, `.<tool>-scope th`, `.<tool>-scope td`).
+- **No Class Name Guessing**: Preserve the exact class names used in the HTML (e.g., `.kpi-card`, `.kpi-grid`, `.table-container`, `.preset-btn`) to ensure cards, KPI metrics, tables, and buttons render with full formatting.
+- **No Global Leakage**: Never write unscoped global selectors (`.card`, `.btn`, `.form-group`, `input`, `select`, `table`) that could override other tabs.
+
+---
+
+## 6. MathJax Performance & DOM Scanning Rule
 
 - Only include **ONE** MathJax script tag in `<head>`.
 - Configure MathJax with `skipHtmlTags` to prevent scanning pre/code/textarea elements and blocking UI interaction:
@@ -99,7 +155,7 @@ To prevent breaking click handlers and icons:
 
 ---
 
-## 6. Header, Identity & Metadata Standards
+## 7. Header, Identity & Metadata Standards
 
 Every workspace file must maintain:
 - **Title & Author Attribution**: `Masa Lean expert workingspace @ Masa Tu`
@@ -108,20 +164,6 @@ Every workspace file must maintain:
 - **MASA TU Motto Banner**:
   `M 挑戰精進 (Mastery Challenge) · A 目標對齊 (Align & Adjust) · S 解決問題 (Solve Problems) · A 迅速行動 (Act Swiftly) · T 團隊協作 (Team Up) · U 成就他人 (Uplift Others)`
 - **Version & Update Badge**: Next to theme toggle (e.g. `v1.4.1 | Update: YYYY-MM-DD`).
-
----
-
-## 7. Dual-Theme & Eye-Care Design Standard (護眼雙模式)
-
-- **Light Mode**:
-  - `--bg-primary: #f1f5f9;` (Soft slate, never blinding `#ffffff`).
-  - `--bg-secondary: #ffffff;` (Cards & containers).
-  - `--border-color: #e2e8f0;` (Hairline border).
-  - `--text-primary: #1e293b;` (Deep slate for crisp contrast).
-  - `--color-blue: #0284c7;` (Legible non-glaring sky blue).
-  - Header: Solid `#ffffff` with subtle soft shadow (never hardcoded dark gradients).
-- **Dark Mode**: Rich slate `#0b0f19` / `#151c2c`, cyan/purple accents.
-- **Plotly Chart Synchronization**: Automatically sync Plotly chart background, text, and grid colors on theme switch.
 
 ---
 
