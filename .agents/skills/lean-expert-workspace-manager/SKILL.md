@@ -4,14 +4,16 @@ description: >-
   Guidelines, architecture rules, and workflows for developing, maintaining,
   and synchronizing tools in the Masa Lean Expert Workspace (8D Problem Solving,
   Process Cpk Simulator, SMART Principles, Wafer Yield Calculator, Gage R&R,
-  Statistical Significance, Quality Statistics Hub).
+  Statistical Significance, Quality Statistics Hub, Define Limit SOP).
 ---
 
 # Lean Expert Workspace Development & Maintenance Skill
 
-This skill documents the complete architecture, UI/UX design standards, multi-file synchronization protocols, and feature guidelines for the **Masa Lean Expert Workspace** application suite.
+This skill documents the complete architecture, UI/UX design standards, multi-file synchronization protocols, DOM integrity rules, JavaScript validation workflows, and feature guidelines for the **Masa Lean Expert Workspace** application suite.
 
-## Workspace Core Files & Multi-File Synchronization
+---
+
+## 1. Workspace Core Files & Multi-File Synchronization
 
 Any UI change, new tool/tab addition, bug fix, or style modification **MUST** be synchronized across all core workspace HTML files:
 
@@ -20,97 +22,109 @@ Any UI change, new tool/tab addition, bug fix, or style modification **MUST** be
 3. `Masa Lean expert workingspace @ Masa Tu.html` - Master production mirror.
 4. `8d_problem solving.html` - Specialized 8D Problem Solving and statistical toolkit.
 
-> **Rule**: When editing or introducing features, always check and apply the changes across all 4 files to maintain 100% consistency.
+> **Rule**: When editing or introducing features, always check and apply changes across all 4 files to maintain 100% consistency.
 
 ---
 
-## Header, Identity & Metadata Standards
+## 2. DOM Integrity & Single-Container Standard (Anti-Duplication Protocol)
 
-Every workspace file must maintain the standardized header structure:
-
-### 1. Title & Author Attribution
-- **Title**: `Masa Lean expert workingspace @ Masa Tu`
-- **Contact Info Hyperlinks**:
-  - Email: `<a href="mailto:masahltu0322@gmail.com">masahltu0322@gmail.com</a>`
-  - LinkedIn: `<a href="https://www.linkedin.com/in/masatu19810322/" target="_blank">https://www.linkedin.com/in/masatu19810322/</a>`
-  - Styled with `.contact-info` to prevent gradient text clipping.
-
-### 2. MASA TU Motto Banner
-```html
-<p id="mottoHeader" style="font-size: 11.5px; color: var(--color-blue); font-weight: 500; margin-top: 2px; letter-spacing: 0.2px;">
-    M 挑戰精進 (Mastery Challenge) · A 目標對齊 (Align & Adjust) · S 解決問題 (Solve Problems) · A 迅速行動 (Act Swiftly)   ·   T 團隊協作 (Team Up) · U 成就他人 (Uplift Others)
-</p>
-```
-
-### 3. Version & Update Badge
-- Located inside `.header-actions` alongside the Theme Toggle Button (`#themeToggleBtn`):
-```html
-<div class="version-badge" style="display: flex; align-items: center; gap: 8px; font-size: 11.5px; font-family: var(--font-mono, monospace); background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-muted); padding: 7px 12px; border-radius: 6px; user-select: none;">
-    <span style="display: inline-flex; align-items: center; gap: 4px; color: var(--color-blue); font-weight: 700;">
-        <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-emerald); box-shadow: 0 0 6px var(--color-emerald);"></span>
-        v1.3.0
-    </span>
-    <span style="opacity: 0.4;">|</span>
-    <span>Update: 2026-09-01</span>
-</div>
-```
+When embedding standalone tools (e.g., Define Limit SOP, SMART Principles, Wafer Yield Calculator):
+- **Never Concatenate Entire HTML Documents**: Do not append or duplicate `<!DOCTYPE html>`, `<html>`, `<head>`, `<body>`, `<header>`, or outer `.dashboard-container` tags.
+- **Strip Standalone Outer Headers & Theme Buttons**: Embedded tools must use the workspace's global header, attribution banner, and theme switcher. Do not introduce redundant inner motto banners or inner dark mode buttons.
+- **Embed as Scoped Panel**: Wrap tool content inside a dedicated panel:
+  ```html
+  <div id="<tool>Panel" class="panel hidden <tool>-scope">
+      <!-- Tool interface without redundant outer headers -->
+  </div>
+  ```
+- **Single-DOM Verification**: Every workspace file must strictly contain:
+  - Exactly **1** `<!DOCTYPE html>`
+  - Exactly **1** `<header>`
+  - Exactly **1** `<body>`
+  - Exactly **1** `#mainContainer` (`.dashboard-container`)
 
 ---
 
-## Dual-Theme & Eye-Care Design Standard (護眼雙模式規範)
+## 3. Mandatory JavaScript AST Validation (Zero-Syntax-Error Protocol)
 
-### 1. Dark Mode Palette (Default)
-- `--bg-primary: #0b0f19;`
-- `--bg-secondary: #151c2c;`
-- `--bg-tertiary: #1e293b;`
-- `--border-color: #26354a;`
-- `--text-primary: #f8fafc;`
-- `--text-muted: #94a3b8;`
-- `--color-blue: #38bdf8;` (Cyan-glow accent)
+To prevent breaking click handlers and icons:
+- **Pre-Commit Automated Syntax Check**: Before committing or finalizing any change, run an automated AST syntax check with Node.js on all inline scripts across all 4 files:
+  ```bash
+  node -e "
+  const fs = require('fs');
+  const files = ['index.html', 'CPKn SIMULATOR.html', 'Masa Lean expert workingspace @ Masa Tu.html', '8d_problem solving.html'];
+  files.forEach(f => {
+    const html = fs.readFileSync(f, 'utf8');
+    const scripts = html.match(/<script[\s\S]*?<\/script>/gi) || [];
+    scripts.forEach((s, i) => {
+      if (s.includes('src=')) return;
+      const js = s.replace(/<script[^>]*>/i, '').replace(/<\/script>/i, '');
+      try { new Function(js); } catch(e) { console.error('ERROR in ' + f + ' script ' + i + ':', e.message); process.exit(1); }
+    });
+  });
+  console.log('ALL JS SCRIPTS 100% VALID');
+  "
+  ```
+- **switchTab Bracket Integrity**: Ensure all `if ... else if` branches inside `switchTab(tabId)` have balanced braces and correctly toggle panels, sidebars, and `.full-width` containers.
+- **Function Integrity**: Verify that essential module entrypoints (`switchTab`, `toggleDashboardTheme`, `recalculate`, `smartInit`, `prInit`, `scCalculate`, `runCpkSimulation`, etc.) remain intact and un-truncated.
 
-### 2. Light Mode Palette (Eye-Care & Anti-Glare Overrides)
-To prevent eye fatigue and screen glare:
-- `--bg-primary: #f1f5f9;` (Soft slate background — **never** use stark blinding `#ffffff` as page background).
-- `--bg-secondary: #ffffff;` (Clean card container background).
-- `--bg-tertiary: #f8fafc;` / `#e2e8f0;` (Soft card headers and sub-tabs).
-- `--border-color: #e2e8f0;` (Gentle hairline border).
-- `--text-primary: #1e293b;` (Deep slate-800 — comfortable, crisp readability).
-- `--text-muted: #64748b;` (Slate-500).
-- `--color-blue: #0284c7;` (Sky-600 — calibrated, non-glaring blue).
-- `--color-emerald: #059669;`, `--color-purple: #7c3aed;`, `--color-red: #e11d48;`
-- **Header**: Solid `#ffffff` background with subtle soft shadow `rgba(15, 23, 42, 0.05)`, **never** hardcoded dark gradients!
+---
 
-### 3. Dynamic Plotly Chart Theme Synchronization
-```javascript
-function getPlotlyColors() {
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    return {
-        text: isLight ? '#1e293b' : '#f8fafc',
-        muted: isLight ? '#64748b' : '#94a3b8',
-        grid: isLight ? '#e2e8f0' : '#26354a'
+## 4. Strict CSS Scoping & Isolation Standard
+
+- **Scope Everything**: All tool-specific styles MUST be scoped under their respective CSS class prefix (e.g. `.lim-scope`, `.smart-scope`, `.sc-scope`, `.pr-scope`).
+- **No Unscoped Generic Selectors**: Never write unscoped `.card`, `.btn`, `.preset-btn`, `.form-group`, `table`, `input`, or `header` in global CSS.
+- **Dynamic Palette Binding**: Utilize core CSS variables to ensure seamless light/dark mode support:
+  - `var(--bg-primary)` / `var(--bg-secondary)` / `var(--bg-tertiary)`
+  - `var(--border-color)`
+  - `var(--text-primary)` / `var(--text-muted)`
+  - `var(--color-blue)` / `var(--color-emerald)` / `var(--color-amber)` / `var(--color-rose)`
+
+---
+
+## 5. MathJax Performance & DOM Scanning Rule
+
+- Only include **ONE** MathJax script tag in `<head>`.
+- Configure MathJax with `skipHtmlTags` to prevent scanning pre/code/textarea elements and blocking UI interaction:
+  ```html
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+      startup: { pageReady: () => MathJax.startup.defaultPageReady() }
     };
-}
-```
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  ```
 
 ---
 
-## Tab Architecture & Module Development Standard
+## 6. Header, Identity & Metadata Standards
 
-When adding a new engineering or quality tool tab:
-
-### 1. Scoped CSS & Namespace
-- Wrap all styles in a dedicated class scope (e.g. `.smart-scope`, `.sc-scope`, `.pr-scope`) to guarantee zero interference with existing tabs.
-
-### 2. Three-Tier Sub-Tab Convention
-Every major tool should feature:
-1. **Interactive Tool / Evaluator / Calculator** (Core computational/workflow interface).
-2. **Demo / Mock Library** (Preset realistic industrial scenarios with 1-click loading).
-3. **HELP / Guide / FAQ** (Theoretical background, formulas, checklists, best practices).
-
-### 3. Integration with 8D Problem Solving
-- Provide seamless action export (e.g., adding evaluated SMART action targets directly into `kanbanTasks` with phase `'D6'`).
+Every workspace file must maintain:
+- **Title & Author Attribution**: `Masa Lean expert workingspace @ Masa Tu`
+  - Email: `mailto:masahltu0322@gmail.com`
+  - LinkedIn: `https://www.linkedin.com/in/masatu19810322/`
+- **MASA TU Motto Banner**:
+  `M 挑戰精進 (Mastery Challenge) · A 目標對齊 (Align & Adjust) · S 解決問題 (Solve Problems) · A 迅速行動 (Act Swiftly) · T 團隊協作 (Team Up) · U 成就他人 (Uplift Others)`
+- **Version & Update Badge**: Next to theme toggle (e.g. `v1.4.1 | Update: YYYY-MM-DD`).
 
 ---
 
-## Git Operations & Automation Rule
-- Automatic Git commits and push to `origin main` upon completing and verifying code changes without requiring additional confirmation.
+## 7. Dual-Theme & Eye-Care Design Standard (護眼雙模式)
+
+- **Light Mode**:
+  - `--bg-primary: #f1f5f9;` (Soft slate, never blinding `#ffffff`).
+  - `--bg-secondary: #ffffff;` (Cards & containers).
+  - `--border-color: #e2e8f0;` (Hairline border).
+  - `--text-primary: #1e293b;` (Deep slate for crisp contrast).
+  - `--color-blue: #0284c7;` (Legible non-glaring sky blue).
+  - Header: Solid `#ffffff` with subtle soft shadow (never hardcoded dark gradients).
+- **Dark Mode**: Rich slate `#0b0f19` / `#151c2c`, cyan/purple accents.
+- **Plotly Chart Synchronization**: Automatically sync Plotly chart background, text, and grid colors on theme switch.
+
+---
+
+## 8. Git Operations & Automation Rule
+
+- Authorized to perform Git actions (stage, commit, push to `origin main`) immediately upon completing and verifying code modifications without waiting for manual confirmation.
