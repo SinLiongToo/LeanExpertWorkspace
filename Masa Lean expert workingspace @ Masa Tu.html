@@ -7356,7 +7356,6 @@ body.dark-mode .lim-scope {
             document.getElementById('sidebarControls').classList.add('hidden');
             document.getElementById('mainContainer').classList.add('full-width');
             smartInit();
-        }
         } else if (tabId === 'limitsop') {
             const limPanel = document.getElementById('limitsopPanel');
             if (limPanel) limPanel.classList.remove('hidden');
@@ -7367,7 +7366,7 @@ body.dark-mode .lim-scope {
                     try { recalculate(); } catch (e) { console.error('Limit SOP recalculate error:', e); }
                 }, 60);
             }
- else if (tabId === 'help') {
+        } else if (tabId === 'help') {
             document.getElementById('helpPanel').classList.remove('hidden');
             document.getElementById('sidebarControls').classList.add('hidden');
             document.getElementById('mainContainer').classList.add('full-width');
