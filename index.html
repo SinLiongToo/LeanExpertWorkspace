@@ -7847,6 +7847,7 @@
             document.getElementById('reportPanel').classList.remove('hidden');
             document.getElementById('sidebarControls').classList.add('hidden');
             document.getElementById('mainContainer').classList.add('full-width');
+            if (typeof prUpdateDisplay === 'function') prUpdateDisplay();
         } else if (tabId === 'yield') {
             document.getElementById('yieldPanel').classList.remove('hidden');
             document.getElementById('sidebarControls').classList.add('hidden');
@@ -11010,9 +11011,9 @@ function handleCpkDistChange() {
 
     function limTriggerChartResize() {
       limResizePlotlyCharts();
-      setTimeout(resizePlotlyCharts, 60);
-      setTimeout(resizePlotlyCharts, 160);
-      setTimeout(resizePlotlyCharts, 320);
+      setTimeout(limResizePlotlyCharts, 60);
+      setTimeout(limResizePlotlyCharts, 160);
+      setTimeout(limResizePlotlyCharts, 320);
     }
 
     function limResizePlotlyCharts() {
@@ -11052,7 +11053,7 @@ function handleCpkDistChange() {
     });
 
     // Auto resize Plotly on window resize
-    window.addEventListener('resize', resizePlotlyCharts);
+    window.addEventListener('resize', limResizePlotlyCharts);
 
     /* ==========================================================================
        Input Switching & Raw Data Parser
@@ -12488,8 +12489,9 @@ function handleCpkDistChange() {
        Initial Boot
        ========================================================================== */
     window.addEventListener('DOMContentLoaded', () => {
-      // Initialize with featured mock example: Standby Leakage Current
-      limLoadMockExample();
+      if (document.getElementById('lim_inputMean')) {
+        limLoadMockExample();
+      }
     });
 
     // Bootstrap app
